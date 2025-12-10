@@ -65,6 +65,7 @@ export default function Home() {
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
             alt="Professional business team"
             fill
+            sizes="100vw"
             className="object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-600/50 to-primary-800/60"></div>
@@ -214,6 +215,7 @@ export default function Home() {
                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
                     alt="Business analytics and data management"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-600/20 to-transparent"></div>
@@ -322,6 +324,7 @@ export default function Home() {
             src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80"
             alt="Professional consultation"
             fill
+            sizes="100vw"
             className="object-cover opacity-10"
           />
         </div>

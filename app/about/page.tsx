@@ -29,6 +29,7 @@ export default function AboutPage() {
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
                   alt="Professional team meeting"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-600/30 to-transparent"></div>
@@ -143,6 +144,7 @@ export default function AboutPage() {
                       src={teamImages[index % teamImages.length]}
                       alt={member.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-primary-600/20 group-hover:from-primary-400/0 group-hover:to-primary-600/0 transition-all"></div>

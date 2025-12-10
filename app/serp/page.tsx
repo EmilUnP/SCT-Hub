@@ -27,6 +27,7 @@ export default function SERPPage() {
             src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80"
             alt="Business technology and analytics"
             fill
+            sizes="100vw"
             className="object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-600/90 to-primary-800/90"></div>
@@ -68,6 +69,7 @@ export default function SERPPage() {
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
                   alt="Business analytics dashboard"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-600/30 to-transparent"></div>
@@ -148,6 +150,7 @@ export default function SERPPage() {
             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80"
             alt="Technology dashboard"
             fill
+            sizes="100vw"
             className="object-cover opacity-10"
           />
         </div>

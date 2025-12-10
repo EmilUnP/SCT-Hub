@@ -60,11 +60,13 @@
     },
     "tabs": {
       "overview": "Обзор",
+      "info": "Информация профиля",
       "notes": "Заметки",
       "documents": "Документы",
       "classes": "Классы",
       "students": "Ученики"
     },
+    "personalInfo": "Личная информация",
     "overview": {
       "title": "Обзор панели",
       "notes": "Заметки",

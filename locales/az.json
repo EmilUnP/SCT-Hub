@@ -60,11 +60,13 @@
     },
     "tabs": {
       "overview": "Ümumi baxış",
+      "info": "Profil Məlumatları",
       "notes": "Qeydlər",
       "documents": "Sənədlər",
       "classes": "Siniflər",
       "students": "Tələbələr"
     },
+    "personalInfo": "Şəxsi Məlumatlar",
     "overview": {
       "title": "Panel Ümumi Baxışı",
       "notes": "Qeydlər",

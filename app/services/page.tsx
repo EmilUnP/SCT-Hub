@@ -89,6 +89,7 @@ export default function ServicesPage() {
                     }
                     alt={service.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-transparent"></div>

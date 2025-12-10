@@ -60,11 +60,13 @@
     },
     "tabs": {
       "overview": "Overview",
+      "info": "Profile Info",
       "notes": "Notes",
       "documents": "Documents",
       "classes": "Classes",
       "students": "Students"
     },
+    "personalInfo": "Personal Information",
     "overview": {
       "title": "Dashboard Overview",
       "notes": "Notes",
