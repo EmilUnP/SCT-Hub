@@ -41,17 +41,53 @@ export default function RegisterPage() {
       return;
     }
 
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setErrorMessage("Please enter a valid email address");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate required fields
+    if (!formData.name.trim()) {
+      setErrorMessage("Full name is required");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      setErrorMessage("Phone number is required");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const { error } = await signUp(
-        formData.email,
+        formData.email.trim(),
         formData.password,
-        formData.name,
-        formData.phone,
-        formData.company
+        formData.name.trim() || undefined,
+        formData.phone.trim() || undefined,
+        formData.company.trim() || undefined
       );
 
       if (error) {
-        setErrorMessage(error.message || "Registration failed. Please try again.");
+        // Show detailed error message from Supabase
+        let errorMsg = error.message || "Registration failed. Please try again.";
+        
+        // Provide user-friendly messages for common errors
+        if (error.message?.includes("already registered") || error.message?.includes("already exists")) {
+          errorMsg = "This email is already registered. Please try logging in instead.";
+        } else if (error.message?.includes("invalid email") || error.message?.includes("Email address")) {
+          errorMsg = "This email address is not accepted. Please try a different email address or contact support if you believe this is an error.";
+        } else if (error.message?.includes("password")) {
+          errorMsg = "Password does not meet requirements. Please use a stronger password.";
+        } else if (error.message?.includes("blocked") || error.message?.includes("domain")) {
+          errorMsg = "This email domain is not allowed. Please use a different email address.";
+        }
+        
+        setErrorMessage(errorMsg);
+        console.error("Registration error details:", error);
       } else {
         setSubmitSuccess(true);
         // Redirect to login after 2 seconds
@@ -59,8 +95,9 @@ export default function RegisterPage() {
           router.push("/login");
         }, 2000);
       }
-    } catch (error) {
-      setErrorMessage("An unexpected error occurred. Please try again.");
+    } catch (error: any) {
+      const errorMsg = error?.message || "An unexpected error occurred. Please try again.";
+      setErrorMessage(errorMsg);
       console.error("Registration error:", error);
     } finally {
       setIsSubmitting(false);

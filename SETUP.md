@@ -73,3 +73,23 @@ The following database schema has been set up in your Supabase project:
 - Verify RLS policies are correctly set up
 - Check browser console for database errors
 
+### "Email address is invalid" error
+This error occurs when Supabase rejects an email address that appears valid. Common causes:
+
+1. **Email Domain Restrictions**: Supabase may have domain restrictions configured
+   - Go to your Supabase Dashboard → Authentication → Settings
+   - Check "Site URL" and "Redirect URLs" settings
+   - Look for any "Email Domain Restrictions" or "Allowed Email Domains" settings
+   - If present, add your email domain (e.g., `mail.ru`) to the allowed list
+
+2. **Disposable Email Blocking**: Some email providers may be blocked
+   - Check Authentication → Settings → "Email Templates"
+   - Look for any email validation or blocking rules
+
+3. **Solution**: Try using a different email address (like Gmail, Outlook, etc.) to test if it's domain-specific
+
+4. **If you need to allow specific domains**:
+   - In Supabase Dashboard, go to Authentication → Settings
+   - Check if there's an "Allowed Email Domains" or "Blocked Email Domains" setting
+   - If your project has domain restrictions, contact your Supabase project administrator
+

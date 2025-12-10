@@ -168,41 +168,67 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     company?: string
   ) => {
     try {
+      // Validate email format
+      if (!email || !email.includes("@")) {
+        return { error: new Error("Please enter a valid email address") };
+      }
+
+      // Validate password
+      if (!password || password.length < 6) {
+        return { error: new Error("Password must be at least 6 characters long") };
+      }
+
+      // Only include non-empty values in metadata
+      const userMetadata: Record<string, string> = {
+        role: "student",
+      };
+      
+      if (name && name.trim()) {
+        userMetadata.name = name.trim();
+      }
+      if (phone && phone.trim()) {
+        userMetadata.phone = phone.trim();
+      }
+      if (company && company.trim()) {
+        userMetadata.company = company.trim();
+      }
+
       const { data, error } = await supabase.auth.signUp({
-        email,
+        email: email.trim(),
         password,
         options: {
-          data: {
-            name,
-            phone,
-            company,
-            role: "student", // Default role
-          },
+          data: userMetadata,
         },
       });
 
       if (error) {
+        console.error("Supabase signup error:", error);
         return { error: error as Error };
       }
 
       // Create profile in database if user was created
       if (data.user) {
-        const { error: profileError } = await supabase.from("profiles").insert({
+        const profileData: Record<string, any> = {
           id: data.user.id,
           email: data.user.email,
-          name,
-          phone,
-          company,
           role: "student",
-        });
+        };
+
+        if (name && name.trim()) profileData.name = name.trim();
+        if (phone && phone.trim()) profileData.phone = phone.trim();
+        if (company && company.trim()) profileData.company = company.trim();
+
+        const { error: profileError } = await supabase.from("profiles").insert(profileData);
 
         if (profileError) {
           console.error("Error creating profile:", profileError);
+          // Don't fail registration if profile creation fails - user is already created
         }
       }
 
       return { error: null };
     } catch (error) {
+      console.error("Unexpected signup error:", error);
       return { error: error as Error };
     }
   };

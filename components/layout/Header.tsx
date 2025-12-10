@@ -33,6 +33,7 @@ export default function Header() {
                 width={40}
                 height={40}
                 className="h-10 w-auto"
+                style={{ width: "auto" }}
                 onError={() => setLogoError(true)}
               />
             )}
