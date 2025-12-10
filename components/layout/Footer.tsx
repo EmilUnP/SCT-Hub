@@ -30,8 +30,7 @@ export default function Footer() {
                   alt="STC Hub Logo" 
                   width={40}
                   height={40}
-                  className="h-10"
-                  style={{ width: "auto", height: "2.5rem" }}
+                  className="h-10 w-auto"
                   onError={() => setLogoError(true)}
                 />
               )}

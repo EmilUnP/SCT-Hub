@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from "react";
 import AdminLayout from "@/components/admin/AdminLayout";
-import { getNews, getTrainings, getServices, getUsers } from "@/lib/admin";
-import { Newspaper, GraduationCap, Briefcase, TrendingUp, Users } from "lucide-react";
+import { getNews, getTrainings, getUsers } from "@/lib/admin";
+import { Newspaper, GraduationCap, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
     news: 0,
     trainings: 0,
-    services: 0,
     users: 0,
   });
   const [loading, setLoading] = useState(true);
@@ -18,17 +17,15 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function loadStats() {
       try {
-        const [newsData, trainingsData, servicesData, usersData] = await Promise.all([
+        const [newsData, trainingsData, usersData] = await Promise.all([
           getNews(),
           getTrainings(),
-          getServices(),
           getUsers(),
         ]);
 
         setStats({
           news: newsData.length,
           trainings: trainingsData.length,
-          services: servicesData.length,
           users: usersData.length,
         });
       } catch (error) {
@@ -52,7 +49,7 @@ export default function AdminDashboard() {
         {loading ? (
           <div className="text-center py-12">Loading...</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <Link href="/admin/news">
               <div className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition cursor-pointer">
                 <div className="flex items-center justify-between mb-4">
@@ -75,17 +72,6 @@ export default function AdminDashboard() {
               </div>
             </Link>
 
-            <Link href="/admin/services">
-              <div className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition cursor-pointer">
-                <div className="flex items-center justify-between mb-4">
-                  <Briefcase className="w-12 h-12 text-purple-600" />
-                  <span className="text-3xl font-bold text-gray-900">{stats.services}</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Services</h3>
-                <p className="text-sm text-gray-500">Manage services offered</p>
-              </div>
-            </Link>
-
             <Link href="/admin/users">
               <div className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition cursor-pointer">
                 <div className="flex items-center justify-between mb-4">
@@ -101,7 +87,7 @@ export default function AdminDashboard() {
 
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link
               href="/admin/news/new"
               className="px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition text-center"
@@ -113,12 +99,6 @@ export default function AdminDashboard() {
               className="px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition text-center"
             >
               Add Training Course
-            </Link>
-            <Link
-              href="/admin/services/new"
-              className="px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition text-center"
-            >
-              Add Service
             </Link>
           </div>
         </div>

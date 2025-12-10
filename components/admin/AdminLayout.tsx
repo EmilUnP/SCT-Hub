@@ -8,7 +8,6 @@ import {
   LayoutDashboard, 
   Newspaper, 
   GraduationCap, 
-  Briefcase, 
   LogOut,
   Shield,
   Users
@@ -87,13 +86,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             >
               <GraduationCap className="w-5 h-5" />
               <span>Trainings</span>
-            </Link>
-            <Link
-              href="/admin/services"
-              className="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 transition"
-            >
-              <Briefcase className="w-5 h-5" />
-              <span>Services</span>
             </Link>
             <Link
               href="/admin/users"

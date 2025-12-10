@@ -26,23 +26,24 @@ export default function TrainingCard({ training, onClick }: TrainingCardProps) {
     >
       <div className="relative h-48 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
+          src={training.image || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"}
           alt={training.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover group-hover:scale-110 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
         <span className="absolute top-4 left-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-glow backdrop-blur-sm">
-          {t(`trainings.categories.${training.category}`) || t(`trainings.courses.${training.id}.category`) || training.category}
+          {t(`trainings.categories.${training.category}`) || training.category}
         </span>
       </div>
 
       <div className="p-6">
         <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
-          {t(`trainings.courses.${training.id}.title`) || training.title}
+          {training.title}
         </h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
-          {t(`trainings.courses.${training.id}.description`) || training.description}
+          {training.description}
         </p>
 
       <div className="space-y-2 text-sm text-gray-600 mb-4">
@@ -56,7 +57,7 @@ export default function TrainingCard({ training, onClick }: TrainingCardProps) {
         </div>
         <div className="flex items-center gap-2">
           <User className="w-4 h-4" />
-          <span>{t(`trainings.courses.${training.id}.trainer`) || training.trainer}</span>
+          <span>{training.trainer}</span>
         </div>
         <div className="flex items-center gap-2">
           <DollarSign className="w-4 h-4" />

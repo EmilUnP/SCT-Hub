@@ -34,9 +34,10 @@ export default function NewsCard({ news, onClick }: NewsCardProps) {
     >
       <div className="relative h-48 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80"
+          src={news.image || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80"}
           alt={news.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
@@ -48,10 +49,10 @@ export default function NewsCard({ news, onClick }: NewsCardProps) {
       <div className="p-6 flex flex-col flex-1">
         <div className="mb-3">
           <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
-            {t(`news.items.${news.id}.title`) || news.title}
+            {news.title}
           </h3>
           <p className="text-gray-600 text-sm line-clamp-3 leading-relaxed">
-            {t(`news.items.${news.id}.excerpt`) || news.excerpt}
+            {news.excerpt}
           </p>
         </div>
 
