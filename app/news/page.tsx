@@ -15,10 +15,6 @@ export default function NewsPage() {
   const [news, setNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadNews();
-  }, [loadNews]);
-
   const loadNews = useCallback(async () => {
     try {
       setLoading(true);
@@ -39,6 +35,10 @@ export default function NewsPage() {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    loadNews();
+  }, [loadNews]);
 
   // Map category names to translation keys - memoized
   const categoryToKey = useCallback((category: string): string => {

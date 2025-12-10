@@ -14,10 +14,6 @@ export default function AdminTrainingsPage() {
   const [error, setError] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadTrainings();
-  }, [loadTrainings]);
-
   const loadTrainings = useCallback(async () => {
     try {
       setLoading(true);
@@ -40,6 +36,10 @@ export default function AdminTrainingsPage() {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    loadTrainings();
+  }, [loadTrainings]);
 
   const handleDelete = useCallback(async (id: string) => {
     if (!confirm("Are you sure you want to delete this training? This action cannot be undone.")) return;

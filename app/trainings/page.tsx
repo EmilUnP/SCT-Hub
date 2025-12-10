@@ -16,10 +16,6 @@ export default function TrainingsPage() {
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadTrainings();
-  }, [loadTrainings]);
-
   const loadTrainings = useCallback(async () => {
     try {
       setLoading(true);
@@ -40,6 +36,10 @@ export default function TrainingsPage() {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    loadTrainings();
+  }, [loadTrainings]);
 
   // Memoize course lookup
   const course = useMemo(() => {

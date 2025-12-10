@@ -14,10 +14,6 @@ export default function AdminNewsPage() {
   const [error, setError] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadNews();
-  }, [loadNews]);
-
   const loadNews = useCallback(async () => {
     try {
       setLoading(true);
@@ -40,6 +36,10 @@ export default function AdminNewsPage() {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    loadNews();
+  }, [loadNews]);
 
   const handleDelete = useCallback(async (id: string) => {
     if (!confirm("Are you sure you want to delete this news article? This action cannot be undone.")) return;

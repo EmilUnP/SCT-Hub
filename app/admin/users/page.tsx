@@ -26,18 +26,6 @@ export default function AdminUsersPage() {
   const [roleFilter, setRoleFilter] = useState<UserRole | "all">("all");
   const [updatingUserId, setUpdatingUserId] = useState<string | null>(null);
 
-  // Debounce search term to prevent excessive filtering
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
-
-  useEffect(() => {
-    loadUsers();
-  }, [loadUsers]);
-
   const loadUsers = useCallback(async () => {
     try {
       setLoading(true);
@@ -59,6 +47,18 @@ export default function AdminUsersPage() {
       setLoading(false);
     }
   }, []);
+
+  // Debounce search term to prevent excessive filtering
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    loadUsers();
+  }, [loadUsers]);
 
   const handleRoleChange = useCallback(async (userId: string, newRole: UserRole) => {
     if (!confirm(`Are you sure you want to change this user's role to ${newRole}?`)) {
