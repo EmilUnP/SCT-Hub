@@ -62,7 +62,14 @@
     "roles": {
       "teacher": "Teacher",
       "staff": "Staff",
-      "student": "Student"
+      "student": "Student",
+      "guest": "Guest"
+    },
+    "guest": {
+      "title": "Guest Account",
+      "subtitle": "Your account is pending approval",
+      "message": "Your account is pending approval. An administrator needs to assign you a role (Student, Staff, or Teacher) before you can access your profile.",
+      "contact": "Please contact an administrator to get your role assigned."
     },
     "tabs": {
       "overview": "Overview",

@@ -115,7 +115,9 @@ export default function AdminUsersPage() {
         user.name?.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
         user.phone?.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
       
-      const matchesRole = roleFilter === "all" || user.role === roleFilter;
+      // Handle guest role (users without role or with null role are considered guests)
+      const userRole = user.role || "guest";
+      const matchesRole = roleFilter === "all" || userRole === roleFilter;
       
       return matchesSearch && matchesRole;
     });
@@ -219,6 +221,16 @@ export default function AdminUsersPage() {
               >
                 Students
               </button>
+              <button
+                onClick={() => setRoleFilter("guest")}
+                className={`px-4 py-2 rounded-lg transition ${
+                  roleFilter === "guest"
+                    ? "bg-yellow-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                Guests
+              </button>
             </div>
           </div>
         </div>
@@ -303,6 +315,7 @@ export default function AdminUsersPage() {
                             disabled={updatingUserId === user.id}
                             className="px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                           >
+                            <option value="guest">Guest</option>
                             <option value="student">Student</option>
                             <option value="staff">Staff</option>
                             <option value="teacher">Teacher</option>

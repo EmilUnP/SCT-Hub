@@ -62,7 +62,14 @@
     "roles": {
       "teacher": "Müəllim",
       "staff": "İşçi",
-      "student": "Tələbə"
+      "student": "Tələbə",
+      "guest": "Qonaq"
+    },
+    "guest": {
+      "title": "Qonaq Hesabı",
+      "subtitle": "Hesabınız təsdiq gözləyir",
+      "message": "Hesabınız təsdiq gözləyir. Profilinizə daxil olmazdan əvvəl administrator sizə rol (Tələbə, İşçi və ya Müəllim) təyin etməlidir.",
+      "contact": "Rolunuzun təyin edilməsi üçün administratorla əlaqə saxlayın."
     },
     "tabs": {
       "overview": "Ümumi baxış",

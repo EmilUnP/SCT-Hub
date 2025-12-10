@@ -180,9 +180,11 @@ export default function ProfileInfoSection() {
                     ? "bg-purple-100 text-purple-700" 
                     : user.role === "staff"
                     ? "bg-blue-100 text-blue-700"
-                    : "bg-green-100 text-green-700"
+                    : user.role === "student"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-yellow-100 text-yellow-700"
                 }`}>
-                  {user.role === "teacher" ? "👨‍🏫 Teacher" : user.role === "staff" ? "👔 Staff" : "🎓 Student"}
+                  {user.role === "teacher" ? "👨‍🏫 Teacher" : user.role === "staff" ? "👔 Staff" : user.role === "student" ? "🎓 Student" : "👤 Guest"}
                 </span>
               </div>
               {user.role === "student" && (
