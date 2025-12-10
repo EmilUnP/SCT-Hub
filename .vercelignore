@@ -1,0 +1,11 @@
+# Ignore files that shouldn't be deployed
+node_modules
+.next
+.env*.local
+.git
+.vscode
+.idea
+*.log
+.DS_Store
+Thumbs.db
+
