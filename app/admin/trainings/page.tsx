@@ -5,12 +5,13 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import { getTrainings, deleteTraining } from "@/lib/admin";
 import type { Training } from "@/types";
 import Link from "next/link";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Calendar, GraduationCap, AlertCircle, Clock, DollarSign, User } from "lucide-react";
 
 export default function AdminTrainingsPage() {
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     loadTrainings();
@@ -19,23 +20,29 @@ export default function AdminTrainingsPage() {
   const loadTrainings = async () => {
     try {
       setLoading(true);
+      setError("");
       const data = await getTrainings();
       setTrainings(data);
     } catch (err: any) {
       setError(err.message || "Failed to load trainings");
+      console.error("Error loading trainings:", err);
     } finally {
       setLoading(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this training?")) return;
+    if (!confirm("Are you sure you want to delete this training? This action cannot be undone.")) return;
 
     try {
+      setDeletingId(id);
       await deleteTraining(id);
       setTrainings(trainings.filter((item) => item.id !== id));
     } catch (err: any) {
       alert("Failed to delete: " + (err.message || "Unknown error"));
+      console.error("Error deleting training:", err);
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -49,7 +56,7 @@ export default function AdminTrainingsPage() {
           </div>
           <Link
             href="/admin/trainings/new"
-            className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition"
+            className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition shadow-lg hover:shadow-xl"
           >
             <Plus className="w-5 h-5" />
             Add New Training
@@ -57,93 +64,145 @@ export default function AdminTrainingsPage() {
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-            {error}
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-sm font-medium text-red-800">Error</p>
+              <p className="text-sm text-red-700 mt-1">{error}</p>
+            </div>
           </div>
         )}
 
         {loading ? (
-          <div className="text-center py-12">Loading...</div>
-        ) : trainings.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-lg shadow">
-            <p className="text-gray-500 mb-4">No trainings yet.</p>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+            <p className="mt-4 text-gray-600">Loading trainings...</p>
+          </div>
+        ) : trainings.length === 0 ? (
+          <div className="text-center py-12 bg-white rounded-lg shadow border border-gray-200">
+            <GraduationCap className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <p className="text-gray-500 mb-2 text-lg font-medium">No trainings yet</p>
+            <p className="text-gray-400 mb-6 text-sm">Get started by creating your first training course</p>
             <Link
               href="/admin/trainings/new"
-              className="inline-block px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition shadow-lg"
             >
+              <Plus className="w-5 h-5" />
               Create First Training
             </Link>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Title
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Category
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Duration
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Price
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {trainings.map((item) => (
-                  <tr key={item.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <div className="text-sm font-medium text-gray-900">{item.title}</div>
-                      <div className="text-sm text-gray-500">{item.description.substring(0, 50)}...</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded">
-                        {item.category}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {item.duration}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {item.price}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(item.date).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <div className="flex items-center justify-end gap-2">
-                        <Link
-                          href={`/admin/trainings/${item.id}`}
-                          className="text-primary-600 hover:text-primary-900"
-                        >
-                          <Edit className="w-5 h-5" />
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(item.id)}
-                          className="text-red-600 hover:text-red-900"
-                        >
-                          <Trash2 className="w-5 h-5" />
-                        </button>
-                      </div>
-                    </td>
+          <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Training
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Category
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Details
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Date
+                    </th>
+                    <th className="px-6 py-4 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Actions
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {trainings.map((item) => (
+                    <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="flex items-start gap-3">
+                          {item.image ? (
+                            <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-gray-200">
+                              <img
+                                src={item.image}
+                                alt={item.title}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).style.display = "none";
+                                }}
+                              />
+                            </div>
+                          ) : (
+                            <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center border border-primary-200">
+                              <GraduationCap className="w-8 h-8 text-primary-600" />
+                            </div>
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-semibold text-gray-900 mb-1">{item.title}</div>
+                            <div className="text-sm text-gray-500 line-clamp-2">{item.description}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className="px-3 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">
+                          {item.category}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2 text-xs text-gray-600">
+                            <Clock className="w-3 h-3" />
+                            {item.duration}
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-gray-600">
+                            <DollarSign className="w-3 h-3" />
+                            {item.price}
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-gray-600">
+                            <User className="w-3 h-3" />
+                            {item.trainer}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <Calendar className="w-4 h-4" />
+                          {new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div className="flex items-center justify-end gap-3">
+                          <Link
+                            href={`/admin/trainings/${item.id}`}
+                            className="p-2 text-primary-600 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition"
+                            title="Edit"
+                          >
+                            <Edit className="w-5 h-5" />
+                          </Link>
+                          <button
+                            onClick={() => handleDelete(item.id)}
+                            disabled={deletingId === item.id}
+                            className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-lg transition disabled:opacity-50"
+                            title="Delete"
+                          >
+                            {deletingId === item.id ? (
+                              <div className="w-5 h-5 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                            ) : (
+                              <Trash2 className="w-5 h-5" />
+                            )}
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>
     </AdminLayout>
   );
 }
-
