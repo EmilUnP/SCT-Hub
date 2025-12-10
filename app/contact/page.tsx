@@ -64,10 +64,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">{t("contact.email")}</h3>
                     <a
-                      href="mailto:info@sinamconsulting.com"
+                      href="mailto:info@stchub.com"
                       className="text-primary-600 hover:text-primary-700"
                     >
-                      info@sinamconsulting.com
+                      info@stchub.com
                     </a>
                   </div>
                 </div>

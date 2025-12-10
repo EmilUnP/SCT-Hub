@@ -1,6 +1,6 @@
-# Sinam Consulting - SERP Supported Accounting & HR Outsourcing Portal
+# STC Hub — Sinam Training & Consulting
 
-A modern, professional portal for Sinam Consulting showcasing accounting, HR, tax services, and SERP system integration.
+A modern, professional portal for STC Hub — Sinam Training & Consulting showcasing accounting, HR, tax services, and SERP system integration.
 
 ## Tech Stack
 

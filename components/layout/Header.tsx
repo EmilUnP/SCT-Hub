@@ -11,6 +11,7 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const { t } = useLanguage();
   const { isAuthenticated, user, isAdmin } = useAuth();
 
@@ -23,8 +24,23 @@ export default function Header() {
         {/* Main Navigation */}
         <nav className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold gradient-text-primary hover:opacity-90 transition-all duration-300 transform hover:scale-105">
-            Sinam Consulting
+          <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 transform hover:scale-105">
+            {!logoError && (
+              <img 
+                src="/logo.png" 
+                alt="STC Hub Logo" 
+                className="h-10 w-auto"
+                onError={() => setLogoError(true)}
+              />
+            )}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+              <span className="text-xl font-bold gradient-text-primary">
+                STC Hub
+              </span>
+              <span className="text-xs sm:text-sm text-gray-600 font-medium">
+                — Sinam Training & Consulting
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

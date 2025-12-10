@@ -122,12 +122,12 @@
     }
   },
   "header": {
-    "title": "Sinam Consulting",
+    "title": "STC Hub — Sinam Training & Consulting",
     "phone": "+1 (234) 567-890",
-    "email": "info@sinamconsulting.com"
+    "email": "info@stchub.com"
   },
   "footer": {
-    "company": "Sinam Consulting",
+    "company": "STC Hub — Sinam Training & Consulting",
     "description": "SERP sistemi inteqrasiyası ilə peşəkar mühasibat, HR və vergi xidmətləri.",
     "quickLinks": "Sürətli Keçidlər",
     "services": "Xidmətlər",
@@ -183,7 +183,7 @@
       "viewAllNews": "Bütün Xəbərlərə Bax"
     },
     "about": {
-      "title": "Sinam Consulting Haqqında",
+      "title": "STC Hub Haqqında",
       "description": "Peşəkar mühasibat və HR həlləri axtaran bizneslər üçün etibarlı tərəfdaş. Nəticələri çatdırmaq üçün ekspertizamızı kəskin SERP texnologiyası ilə birləşdiririk.",
       "learnMore": "Haqqımızda Ətraflı"
     },
@@ -342,11 +342,11 @@
     }
   },
   "about": {
-    "title": "Sinam Consulting Haqqında",
+    "title": "STC Hub Haqqında",
     "subtitle": "Biznes mükaməldə etibarlı tərəfdaşınız",
     "mission": {
       "title": "Missiyamız",
-      "description1": "Sinam Consulting-də missiyamız biznesləri böyümə və uğur gətirən hərtərəfli mühasibat, HR və vergi həlləri ilə gücləndirməkdir. Dərin ekspertizamızı kəskin SERP texnologiyası ilə birləşdirərək müştərilərimizə fövqəladə dəyər təmin edirik.",
+      "description1": "STC Hub — Sinam Training & Consulting-də missiyamız biznesləri böyümə və uğur gətirən hərtərəfli mühasibat, HR və vergi həlləri ilə gücləndirməkdir. Dərin ekspertizamızı kəskin SERP texnologiyası ilə birləşdirərək müştərilərimizə fövqəladə dəyər təmin edirik.",
       "description2": "Biz müştərilərimizlə uzunmüddətli tərəfdaşlıq qurmağa, onların unikal ehtiyaclarını başa düşməyə və ən yüksək peşəkar və bütövlük standartlarını saxlayaraq biznes məqsədlərinə çatmağa kömək edən fərdiləşdirilmiş həllər təmin etməyə inanırıq."
     },
     "values": {
@@ -370,7 +370,7 @@
     },
     "team": {
       "title": "Komandamız",
-      "subtitle": "Sinam Consulting-in arxasında olan ekspertlərlə tanış olun"
+      "subtitle": "STC Hub-in arxasında olan ekspertlərlə tanış olun"
     }
   },
   "contact": {
@@ -504,7 +504,7 @@
   },
   "register": {
     "title": "Hesab Yarat",
-    "subtitle": "Sinam Consulting portalına qoşulun",
+    "subtitle": "STC Hub portalına qoşulun",
     "register": "Qeydiyyat",
     "fullName": "Tam Ad",
     "email": "E-poçt Ünvanı",

@@ -122,12 +122,12 @@
     }
   },
   "header": {
-    "title": "Sinam Consulting",
+    "title": "STC Hub — Sinam Training & Consulting",
     "phone": "+1 (234) 567-890",
-    "email": "info@sinamconsulting.com"
+    "email": "info@stchub.com"
   },
   "footer": {
-    "company": "Sinam Consulting",
+    "company": "STC Hub — Sinam Training & Consulting",
     "description": "Professional accounting, HR and tax services with SERP system integration.",
     "quickLinks": "Quick Links",
     "services": "Services",
@@ -183,7 +183,7 @@
       "viewAllNews": "View All News"
     },
     "about": {
-      "title": "About Sinam Consulting",
+      "title": "About STC Hub",
       "description": "Your trusted partner for businesses seeking professional accounting and HR solutions. We combine our expertise with cutting-edge SERP technology to deliver exceptional results.",
       "learnMore": "Learn More About Us"
     },
@@ -342,11 +342,11 @@
     }
   },
   "about": {
-    "title": "About Sinam Consulting",
+    "title": "About STC Hub",
     "subtitle": "Your trusted partner in business excellence",
     "mission": {
       "title": "Our Mission",
-      "description1": "At Sinam Consulting, our mission is to empower businesses with comprehensive accounting, HR, and tax solutions that drive growth and success. We combine our deep expertise with cutting-edge SERP technology to deliver exceptional value to our clients.",
+      "description1": "At STC Hub — Sinam Training & Consulting, our mission is to empower businesses with comprehensive accounting, HR, and tax solutions that drive growth and success. We combine our deep expertise with cutting-edge SERP technology to deliver exceptional value to our clients.",
       "description2": "We believe in building long-term partnerships with our clients, understanding their unique needs, and providing tailored solutions that help them achieve their business goals while maintaining the highest standards of professionalism and integrity."
     },
     "values": {
@@ -370,7 +370,7 @@
     },
     "team": {
       "title": "Our Team",
-      "subtitle": "Meet the experts behind Sinam Consulting"
+      "subtitle": "Meet the experts behind STC Hub"
     }
   },
   "contact": {
@@ -504,7 +504,7 @@
   },
   "register": {
     "title": "Create Account",
-    "subtitle": "Join the Sinam Consulting portal",
+    "subtitle": "Join the STC Hub portal",
     "register": "Register",
     "fullName": "Full Name",
     "email": "Email Address",

@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
+  const [logoError, setLogoError] = useState(false);
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
@@ -20,7 +22,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 gradient-text-primary">{t("footer.company")}</h3>
+            <div className="flex items-center gap-3 mb-4">
+              {!logoError && (
+                <img 
+                  src="/logo.png" 
+                  alt="STC Hub Logo" 
+                  className="h-10 w-auto"
+                  onError={() => setLogoError(true)}
+                />
+              )}
+              <h3 className="text-2xl font-bold gradient-text-primary">{t("footer.company")}</h3>
+            </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               {t("footer.description")}
             </p>
@@ -133,11 +145,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@sinamconsulting.com" className="flex items-center gap-3 text-gray-300 hover:text-white transition-all duration-300 group">
+                <a href="mailto:info@stchub.com" className="flex items-center gap-3 text-gray-300 hover:text-white transition-all duration-300 group">
                   <div className="p-2 rounded-lg bg-white/10 group-hover:bg-primary-600 transition-all duration-300">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span className="group-hover:translate-x-1 transition-transform">info@sinamconsulting.com</span>
+                  <span className="group-hover:translate-x-1 transition-transform">info@stchub.com</span>
                 </a>
               </li>
             </ul>
