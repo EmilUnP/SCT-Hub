@@ -20,6 +20,14 @@ if (!supabaseUrl || !supabaseAnonKey) {
       url: supabaseUrl || 'MISSING',
       key: supabaseAnonKey ? '***' + supabaseAnonKey.slice(-4) : 'MISSING'
     });
+    // Additional help for production
+    if (process.env.NODE_ENV === 'production') {
+      console.error('🔧 To fix this in Vercel:');
+      console.error('1. Go to Vercel Dashboard → Your Project → Settings → Environment Variables');
+      console.error('2. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY');
+      console.error('3. Redeploy your application');
+      console.error('See VERCEL_DEPLOYMENT.md for detailed instructions.');
+    }
   } else {
     // Server-side: log but don't throw to allow build to complete
     console.warn('⚠️ Supabase environment variables are missing. The application may not work correctly.');
