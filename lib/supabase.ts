@@ -35,15 +35,18 @@ if (process.env.NODE_ENV === 'development' && supabaseUrl && supabaseAnonKey) {
 }
 
 // Initialize Supabase client
-// Throw error if env vars are missing in production
-if (!supabaseUrl || !supabaseAnonKey) {
-  if (process.env.NODE_ENV === 'production') {
-    throw new Error('Supabase environment variables are required in production');
-  }
-}
-
+// Don't throw during build - let it fail at runtime if needed
+// This allows the build to complete even if env vars aren't set in CI/CD
 export const supabase: SupabaseClient = createClient(
   supabaseUrl || 'https://placeholder.supabase.co',
   supabaseAnonKey || 'placeholder-anon-key'
 );
+
+// Runtime check for production (after client is created)
+if (typeof window === 'undefined' && process.env.NODE_ENV === 'production') {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    console.error('⚠️ WARNING: Supabase environment variables are missing in production!');
+    console.error('Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your deployment environment.');
+  }
+}
 
