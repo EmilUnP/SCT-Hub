@@ -6,11 +6,25 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap', // Better font loading performance
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "Sinam Training & Consulting",
   description: "Professional accounting, HR, tax services and SERP system integration for businesses",
+  openGraph: {
+    title: "Sinam Training & Consulting",
+    description: "Professional accounting, HR, tax services and SERP system integration for businesses",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sinam Training & Consulting",
+    description: "Professional accounting, HR, tax services and SERP system integration for businesses",
+  },
 };
 
 export default function RootLayout({

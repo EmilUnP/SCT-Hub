@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, ReactNode } from 'react';
 import { Language, getLanguage, setLanguage as setLang, loadTranslations, supportedLanguages, defaultLanguage } from '@/lib/i18n';
 
 interface LanguageContextType {
@@ -45,7 +45,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setTimeout(() => setIsLoading(false), 0);
   };
 
-  const t = (key: string, params?: Record<string, string | number>): string => {
+  const t = useCallback((key: string, params?: Record<string, string | number>): string => {
     const keys = key.split('.');
     let value: any = translations;
 
@@ -70,10 +70,20 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
 
     return value;
-  };
+  }, [translations]);
+
+  const value = useMemo(
+    () => ({
+      language,
+      setLanguage,
+      t,
+      isLoading,
+    }),
+    [language, t, isLoading]
+  );
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, isLoading }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );

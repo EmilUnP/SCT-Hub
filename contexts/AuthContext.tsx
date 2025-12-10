@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useMemo, ReactNode } from "react";
 import { supabase } from "@/lib/supabase";
 import { updateLastLogin } from "@/lib/profile";
 import type { User as SupabaseUser, Session } from "@supabase/supabase-js";
@@ -287,18 +287,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const isAdmin = user?.role === "teacher";
 
+  const value = useMemo(
+    () => ({
+      user,
+      isAuthenticated: !!user,
+      isAdmin,
+      login,
+      signUp,
+      logout,
+      isLoading,
+    }),
+    [user, isAdmin, isLoading]
+  );
+
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAuthenticated: !!user,
-        isAdmin,
-        login,
-        signUp,
-        logout,
-        isLoading,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

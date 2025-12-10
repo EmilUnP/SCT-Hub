@@ -9,7 +9,11 @@ import { getTrainings, getNews } from "@/lib/admin";
 import ServiceCard from "@/components/cards/ServiceCard";
 import TrainingCard from "@/components/cards/TrainingCard";
 import NewsCard from "@/components/cards/NewsCard";
-import InquiryModal from "@/components/forms/InquiryModal";
+import dynamic from "next/dynamic";
+
+const InquiryModal = dynamic(() => import("@/components/forms/InquiryModal"), {
+  ssr: false, // Modals don't need SSR
+});
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Training, News } from "@/types";
 
@@ -66,6 +70,7 @@ export default function Home() {
             alt="Professional business team"
             fill
             sizes="100vw"
+            priority
             className="object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-600/50 to-primary-800/60"></div>

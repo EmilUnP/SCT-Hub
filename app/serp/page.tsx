@@ -28,6 +28,7 @@ export default function SERPPage() {
             alt="Business technology and analytics"
             fill
             sizes="100vw"
+            priority
             className="object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-600/90 to-primary-800/90"></div>
