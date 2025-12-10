@@ -29,21 +29,14 @@ export default function Home() {
     try {
       setLoading(true);
       const [trainingsData, newsData] = await Promise.all([
-        getTrainings().catch((err) => {
-          console.error("Failed to load trainings:", err);
-          return [];
-        }),
-        getNews().catch((err) => {
-          console.error("Failed to load news:", err);
-          return [];
-        }),
+        getTrainings().catch(() => []),
+        getNews().catch(() => []),
       ]);
 
       setTrainings(Array.isArray(trainingsData) ? trainingsData : []);
-      setNews(Array.isArray(newsData) ? newsData.slice(0, 3) : []); // Show only latest 3 on homepage
+      setNews(Array.isArray(newsData) ? newsData.slice(0, 3) : []);
     } catch (error) {
       console.error("Failed to load data:", error);
-      // Ensure arrays are set even on error
       setTrainings([]);
       setNews([]);
     } finally {
@@ -51,11 +44,10 @@ export default function Home() {
     }
   };
 
-  // Calculate statistics from loaded data
   const statistics = {
-    clients: 500, // Keep static for now, can be moved to database later
-    yearsExperience: 15, // Keep static for now
-    services: services.length, // Use static services count
+    clients: 500,
+    yearsExperience: 15,
+    services: services.length,
     trainings: trainings.length,
   };
 
@@ -68,7 +60,6 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-24 md:py-32 overflow-hidden">
-        {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
@@ -81,29 +72,29 @@ export default function Home() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fade-in">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               {t("home.hero.title")}
             </h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 animate-fade-in-delay">
+            <p className="text-xl md:text-2xl text-primary-100 mb-8">
               {t("home.hero.subtitle")}
             </p>
-            <p className="text-lg text-primary-200 mb-10 max-w-2xl animate-fade-in-delay-2">
+            <p className="text-lg text-primary-200 mb-10 max-w-2xl">
               {t("home.hero.description")}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay-3">
+            <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => {
                   setSelectedService("");
                   setInquiryModalOpen(true);
                 }}
-                className="px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 group"
+                className="px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
               >
                 {t("home.hero.getStarted")}
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5" />
               </button>
               <Link
                 href="/services"
-                className="px-8 py-4 border-2 border-white/80 text-white rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 transform hover:scale-105 text-center backdrop-blur-sm hover:border-white"
+                className="px-8 py-4 border-2 border-white/80 text-white rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 transform hover:scale-105 text-center"
               >
                 {t("home.hero.ourServices")}
               </Link>
@@ -113,33 +104,29 @@ export default function Home() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary-500 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary-600 rounded-full blur-3xl"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center group p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:bg-white hover:shadow-modern-lg transition-all duration-500">
-              <div className="text-4xl md:text-5xl font-bold gradient-text-primary mb-3 transition-transform group-hover:scale-110">
+            <div className="text-center p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:bg-white hover:shadow-lg transition-all duration-500">
+              <div className="text-4xl md:text-5xl font-bold text-primary-600 mb-3">
                 {statistics.clients}+
               </div>
               <div className="text-gray-600 font-semibold">{t("home.statistics.happyClients")}</div>
             </div>
-            <div className="text-center group p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:bg-white hover:shadow-modern-lg transition-all duration-500">
-              <div className="text-4xl md:text-5xl font-bold gradient-text-primary mb-3 transition-transform group-hover:scale-110">
+            <div className="text-center p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:bg-white hover:shadow-lg transition-all duration-500">
+              <div className="text-4xl md:text-5xl font-bold text-primary-600 mb-3">
                 {statistics.yearsExperience}+
               </div>
               <div className="text-gray-600 font-semibold">{t("home.statistics.yearsExperience")}</div>
             </div>
-            <div className="text-center group p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:bg-white hover:shadow-modern-lg transition-all duration-500">
-              <div className="text-4xl md:text-5xl font-bold gradient-text-primary mb-3 transition-transform group-hover:scale-110">
+            <div className="text-center p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:bg-white hover:shadow-lg transition-all duration-500">
+              <div className="text-4xl md:text-5xl font-bold text-primary-600 mb-3">
                 {statistics.services}+
               </div>
               <div className="text-gray-600 font-semibold">{t("home.statistics.services")}</div>
             </div>
-            <div className="text-center group p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:bg-white hover:shadow-modern-lg transition-all duration-500">
-              <div className="text-4xl md:text-5xl font-bold gradient-text-primary mb-3 transition-transform group-hover:scale-110">
+            <div className="text-center p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:bg-white hover:shadow-lg transition-all duration-500">
+              <div className="text-4xl md:text-5xl font-bold text-primary-600 mb-3">
                 {statistics.trainings}+
               </div>
               <div className="text-gray-600 font-semibold">{t("home.statistics.trainingCourses")}</div>
@@ -165,10 +152,10 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold group"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
             >
               {t("home.services.viewAllServices")}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
@@ -187,7 +174,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white rounded-xl shadow-xl p-8 md:p-12 mb-8 overflow-hidden">
+            <div className="bg-white rounded-xl shadow-xl p-8 md:p-12 mb-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
@@ -216,10 +203,10 @@ export default function Home() {
                   </ul>
                   <Link
                     href="/serp"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-semibold group"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-semibold"
                   >
                     {t("home.serp.learnMore")}
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-5 h-5" />
                   </Link>
                 </div>
                 <div className="relative rounded-xl overflow-hidden h-80 md:h-96">
@@ -251,13 +238,11 @@ export default function Home() {
               <p className="text-gray-600">Loading trainings...</p>
             </div>
           ) : trainings.length > 0 ? (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {trainings.slice(0, 4).map((training) => (
-                  <TrainingCard key={training.id} training={training} />
-                ))}
-              </div>
-            </>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {trainings.slice(0, 4).map((training) => (
+                <TrainingCard key={training.id} training={training} />
+              ))}
+            </div>
           ) : (
             <div className="text-center py-12">
               <p className="text-gray-600">No trainings available at the moment.</p>
@@ -266,10 +251,10 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link
               href="/trainings"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold group"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
             >
               {t("home.trainings.viewAllTrainings")}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
@@ -302,10 +287,10 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold group"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
             >
               {t("home.news.viewAllNews")}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
@@ -321,10 +306,10 @@ export default function Home() {
             </p>
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold group"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
             >
               {t("home.about.learnMore")}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
@@ -355,7 +340,7 @@ export default function Home() {
               </Link>
               <a
                 href="tel:+1234567890"
-                className="px-8 py-4 border-2 border-white/80 text-white rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 backdrop-blur-sm hover:border-white"
+                className="px-8 py-4 border-2 border-white/80 text-white rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
               >
                 <Phone className="w-5 h-5" />
                 {t("home.contact.callUsNow")}
@@ -373,4 +358,3 @@ export default function Home() {
     </>
   );
 }
-
