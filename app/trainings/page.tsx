@@ -19,18 +19,19 @@ export default function TrainingsPage() {
   const loadTrainings = useCallback(async () => {
     try {
       setLoading(true);
-      // Add timeout wrapper
-      const timeoutPromise = new Promise<never>((_, reject) => 
-        setTimeout(() => reject(new Error('Request timeout')), 10000)
-      );
+      // Remove timeout wrapper - getTrainings now handles errors gracefully
+      const data = await getTrainings();
       
-      const data = await Promise.race([
-        getTrainings(),
-        timeoutPromise
-      ]);
+      console.log("Trainings loaded:", data?.length || 0, "items");
       setTrainings(Array.isArray(data) ? data : []);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to load trainings:", error);
+      console.error("Error details:", {
+        message: error?.message,
+        code: error?.code,
+        details: error?.details,
+        hint: error?.hint
+      });
       setTrainings([]);
     } finally {
       setLoading(false);

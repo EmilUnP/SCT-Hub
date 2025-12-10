@@ -3,14 +3,28 @@ import type { News, Training } from "@/types";
 
 // News CRUD operations
 export async function getNews() {
-  const { data, error } = await supabase
-    .from("news")
-    .select("id, title, excerpt, content, category, date, image, created_at, updated_at")
-    .order("date", { ascending: false })
-    .limit(100); // Limit results for performance
-  
-  if (error) throw error;
-  return data || [];
+  try {
+    const { data, error } = await supabase
+      .from("news")
+      .select("id, title, excerpt, content, category, date, image, created_at, updated_at")
+      .order("date", { ascending: false })
+      .limit(100); // Limit results for performance
+    
+    if (error) {
+      console.error("Supabase error in getNews:", {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      throw error;
+    }
+    
+    return Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.error("Error in getNews function:", error);
+    throw error;
+  }
 }
 
 export async function getNewsById(id: string) {
@@ -58,14 +72,33 @@ export async function deleteNews(id: string) {
 
 // Trainings CRUD operations
 export async function getTrainings() {
-  const { data, error } = await supabase
-    .from("trainings")
-    .select("id, title, description, category, date, duration, trainer, price, image, created_at, updated_at")
-    .order("date", { ascending: true })
-    .limit(100); // Limit results for performance
-  
-  if (error) throw error;
-  return data || [];
+  try {
+    const { data, error } = await supabase
+      .from("trainings")
+      .select("id, title, description, category, date, duration, trainer, price, image, created_at, updated_at")
+      .order("date", { ascending: true })
+      .limit(100); // Limit results for performance
+    
+    if (error) {
+      console.error("Supabase error in getTrainings:", {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      throw error;
+    }
+    
+    // Ensure we always return an array
+    const result = Array.isArray(data) ? data : [];
+    console.log("getTrainings returned:", result.length, "items");
+    return result;
+  } catch (error) {
+    console.error("Error in getTrainings function:", error);
+    // Return empty array instead of throwing to prevent UI crashes
+    // The error is already logged above
+    return [];
+  }
 }
 
 export async function getTrainingById(id: string) {

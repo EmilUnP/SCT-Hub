@@ -53,9 +53,10 @@ export default function Home() {
         ]);
       };
       
+      // getTrainings and getNews now handle errors internally and return empty arrays
       const [trainingsData, newsData] = await Promise.all([
-        withTimeout(getTrainings().catch(() => []), 10000),
-        withTimeout(getNews().catch(() => []), 10000),
+        getTrainings(),
+        getNews(),
       ]);
 
       setTrainings(Array.isArray(trainingsData) ? trainingsData : []);

@@ -18,15 +18,8 @@ export default function AdminTrainingsPage() {
     try {
       setLoading(true);
       setError("");
-      // Add timeout wrapper
-      const timeoutPromise = new Promise<never>((_, reject) => 
-        setTimeout(() => reject(new Error('Request timeout')), 10000)
-      );
-      
-      const data = await Promise.race([
-        getTrainings(),
-        timeoutPromise
-      ]);
+      // getTrainings now handles errors gracefully and returns empty array
+      const data = await getTrainings();
       setTrainings(Array.isArray(data) ? data : []);
     } catch (err: any) {
       setError(err.message || "Failed to load trainings");
