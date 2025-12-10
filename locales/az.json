@@ -1,0 +1,564 @@
+{
+  "common": {
+    "home": "Ana Səhifə",
+    "services": "Xidmətlər",
+    "about": "Haqqımızda",
+    "contact": "Əlaqə",
+    "news": "Xəbərlər",
+    "trainings": "Təlimlər",
+    "login": "Giriş",
+    "register": "Qeydiyyat",
+    "serp": "SERP Sistemi",
+    "getStarted": "Başla",
+    "learnMore": "Ətraflı",
+    "viewAll": "Hamısına bax",
+    "readMore": "Daha çox oxu",
+    "contactUs": "Bizimlə əlaqə",
+    "callUs": "Bizə zəng edin",
+    "submit": "Göndər",
+    "cancel": "Ləğv et",
+    "close": "Bağla",
+    "back": "Geri",
+    "next": "Növbəti",
+    "previous": "Əvvəlki",
+    "search": "Axtar",
+    "filter": "Filtrlə",
+    "loading": "Yüklənir...",
+    "error": "Xəta",
+    "success": "Uğur",
+    "required": "Mütləq",
+    "optional": "İstəyə bağlı",
+    "profile": "Profil",
+    "inquiry": "Sorğu",
+    "viewDetails": "Detallara Bax",
+    "delete": "Sil",
+    "edit": "Redaktə et",
+    "download": "Yüklə"
+  },
+  "profile": {
+    "title": "Müəllim Paneli",
+    "subtitle": "Siniflərinizi, tələbələrinizi, qeydlərinizi və sənədlərinizi idarə edin",
+    "user": "İstifadəçi",
+    "edit": "Redaktə et",
+    "save": "Saxla",
+    "logout": "Çıxış",
+    "accountInfo": "Hesab Məlumatları",
+    "email": "E-poçt",
+    "memberSince": "Üzvlük Tarixi",
+    "namePlaceholder": "Adınızı daxil edin",
+    "notLoggedIn": "Daxil olmamısınız. Profilinizi görmək üçün daxil olun.",
+    "roles": {
+      "teacher": "Müəllim",
+      "staff": "İşçi",
+      "student": "Tələbə"
+    },
+    "tabs": {
+      "overview": "Ümumi baxış",
+      "notes": "Qeydlər",
+      "documents": "Sənədlər",
+      "classes": "Siniflər",
+      "students": "Tələbələr"
+    },
+    "overview": {
+      "title": "Panel Ümumi Baxışı",
+      "notes": "Qeydlər",
+      "documents": "Sənədlər",
+      "classes": "Siniflər",
+      "students": "Tələbələr"
+    },
+    "notes": {
+      "title": "Qeydlərim",
+      "addNote": "Qeyd Əlavə Et",
+      "titleLabel": "Başlıq",
+      "titlePlaceholder": "Qeyd başlığını daxil edin",
+      "contentLabel": "Məzmun",
+      "contentPlaceholder": "Qeydinizi buraya yazın...",
+      "noNotes": "Hələ qeyd yoxdur. İlk qeydinizi yaradın!",
+      "created": "Yaradıldı",
+      "updated": "Yeniləndi",
+      "confirmDelete": "Bu qeydi silmək istədiyinizə əminsiniz?"
+    },
+    "documents": {
+      "title": "Sənədlərim",
+      "upload": "Sənəd Yüklə",
+      "nameLabel": "Sənəd Adı",
+      "namePlaceholder": "Sənəd adını daxil edin",
+      "descriptionLabel": "Təsvir",
+      "descriptionPlaceholder": "Təsvir əlavə edin (istəyə bağlı)",
+      "selectFile": "Fayl Seç",
+      "noDocuments": "Hələ sənəd yoxdur. İlk sənədinizi yükləyin!",
+      "confirmDelete": "Bu sənədi silmək istədiyinizə əminsiniz?"
+    },
+    "classes": {
+      "title": "Siniflərim",
+      "createClass": "Sinif Yarat",
+      "nameLabel": "Sinif Adı",
+      "namePlaceholder": "məs., Riyaziyyat 101",
+      "subjectLabel": "Fənn",
+      "subjectPlaceholder": "məs., Riyaziyyat",
+      "scheduleLabel": "Cədvəl",
+      "schedulePlaceholder": "məs., Bazar ertəsi, Çərşənbə, Cümə 10:00",
+      "descriptionLabel": "Təsvir",
+      "descriptionPlaceholder": "Sinif təsviri əlavə edin...",
+      "noClasses": "Hələ sinif yoxdur. İlk sinfinizi yaradın!",
+      "students": "tələbə",
+      "confirmDelete": "Bu sinifi silmək istədiyinizə əminsiniz?"
+    },
+    "students": {
+      "title": "Tələbələrim",
+      "addStudent": "Tələbə Əlavə Et",
+      "nameLabel": "Tələbə Adı",
+      "namePlaceholder": "Tələbə adını daxil edin",
+      "emailLabel": "E-poçt",
+      "emailPlaceholder": "telebe@misal.com",
+      "phoneLabel": "Telefon",
+      "phonePlaceholder": "+994 12 345 67 89",
+      "classLabel": "Sinif",
+      "selectClass": "Sinif seçin",
+      "notesLabel": "Qeydlər",
+      "notesPlaceholder": "Tələbə haqqında əlavə qeydlər...",
+      "noStudents": "Hələ tələbə yoxdur. İlk tələbənizi əlavə edin!",
+      "confirmDelete": "Bu tələbəni silmək istədiyinizə əminsiniz?"
+    }
+  },
+  "header": {
+    "title": "Sinam Consulting",
+    "phone": "+1 (234) 567-890",
+    "email": "info@sinamconsulting.com"
+  },
+  "footer": {
+    "company": "Sinam Consulting",
+    "description": "SERP sistemi inteqrasiyası ilə peşəkar mühasibat, HR və vergi xidmətləri.",
+    "quickLinks": "Sürətli Keçidlər",
+    "services": "Xidmətlər",
+    "contact": "Əlaqə",
+    "allRightsReserved": "Bütün hüquqlar qorunur.",
+    "address": "123 Business Street\nCity, State 12345",
+    "businessHours": "İş saatları",
+    "mondayFriday": "Bazar ertəsi - Cümə",
+    "saturday": "Şənbə",
+    "sunday": "Bazar",
+    "closed": "Bağlıdır"
+  },
+  "home": {
+    "hero": {
+      "title": "Peşəkar Mühasibat və HR Xidmətləri",
+      "subtitle": "SERP Sistemi İnteqrasiyası ilə Təchiz Olunmuş",
+      "description": "Biznesinizi hərtərəfli mühasibat, vergi və HR aussenqinq həlləri ilə transformasiya edin.",
+      "getStarted": "Başla",
+      "ourServices": "Xidmətlərimiz"
+    },
+    "statistics": {
+      "happyClients": "Məmnun Müştərilər",
+      "yearsExperience": "İl Təcrübə",
+      "services": "Xidmət",
+      "trainingCourses": "Təlim Kursu"
+    },
+    "services": {
+      "title": "Xidmətlərimiz",
+      "subtitle": "Ehtiyaclarınıza uyğun hərtərəfli biznes həlləri",
+      "viewAllServices": "Bütün Xidmətlərə Bax"
+    },
+    "serp": {
+      "title": "SERP Sistemi İnteqrasiyası",
+      "subtitle": "Əsas fərqləndirici xüsusiyyətimiz - Problemsiz biznes idarəetməsi",
+      "whatIsSERP": "SERP nədir?",
+      "description": "SERP mühasibat, HR, inventar və hesabatları vahid, güclü platformada birləşdirən inteqrasiya olunmuş biznes idarəetmə sistemimizdir.",
+      "features": {
+        "unifiedData": "Vahid məlumat idarəetməsi",
+        "realTimeReporting": "Real vaxt hesabatları",
+        "automatedWorkflows": "Avtomatlaşdırılmış iş axınları",
+        "thirdPartyIntegrations": "Üçüncü tərəf inteqrasiyaları"
+      },
+      "learnMore": "SERP haqqında ətraflı"
+    },
+    "trainings": {
+      "title": "Yaxınlaşan Təlimlər",
+      "subtitle": "Peşəkar təlim kurslarımızla bacarıqlarınızı artırın",
+      "viewAllTrainings": "Bütün Təlimlərə Bax"
+    },
+    "news": {
+      "title": "Son Xəbərlər",
+      "subtitle": "Ən son yeniləmələrimiz və fikirlərimizlə yenilənin",
+      "viewAllNews": "Bütün Xəbərlərə Bax"
+    },
+    "about": {
+      "title": "Sinam Consulting Haqqında",
+      "description": "Peşəkar mühasibat və HR həlləri axtaran bizneslər üçün etibarlı tərəfdaş. Nəticələri çatdırmaq üçün ekspertizamızı kəskin SERP texnologiyası ilə birləşdiririk.",
+      "learnMore": "Haqqımızda Ətraflı"
+    },
+    "contact": {
+      "title": "Başlamağa hazırsınız?",
+      "description": "Biznesinizi transformasiya etməyə necə kömək edə biləcəyimizi müzakirə etmək üçün bu gün bizimlə əlaqə saxlayın",
+      "contactUs": "Bizimlə Əlaqə",
+      "callUsNow": "İndi Zəng Edin"
+    }
+  },
+  "services": {
+    "title": "Xidmətlərimiz",
+    "subtitle": "SERP sistemi inteqrasiyası ilə təchiz olunmuş hərtərəfli biznes həlləri",
+    "serpIntegrated": "SERP İnteqrasiya Olunub",
+    "requestInquiry": "Sorğu Göndər",
+    "customizedSolutions": {
+      "title": "Fərdiləşdirilmiş Həllər Lazımdır?",
+      "description": "Komandamız sizin xüsusi biznes ehtiyaclarınızı müzakirə etməyə və fərdiləşdirilmiş həll yaratmağa hazırdır.",
+      "contactUs": "Bizimlə Əlaqə"
+    },
+    "accounting": {
+      "title": "Mühasibat Xidmətləri",
+      "description": "Biznesiniz üçün hərtərəfli mühasibat həlləri",
+      "features": {
+        "bookkeeping": "Mühasibat uçotu və hesab idarəetməsi",
+        "financialReporting": "Maliyyə hesabatları",
+        "accountsPayable": "Ödənişli və alınacaq hesablar",
+        "bankReconciliation": "Bank uyğunlaşdırması",
+        "monthEndClosing": "Ay sonu bağlanması"
+      }
+    },
+    "tax": {
+      "title": "Vergi Xidmətləri",
+      "description": "Ekspert vergi planlaşdırması və uyğunluq xidmətləri",
+      "features": {
+        "taxPlanning": "Vergi planlaşdırması və strategiyası",
+        "taxReturn": "Vergi bəyannaməsi hazırlanması",
+        "taxCompliance": "Vergi uyğunluğu",
+        "taxConsulting": "Vergi məsləhəti",
+        "auditSupport": "Audit dəstəyi"
+      }
+    },
+    "hr": {
+      "title": "HR və Kadr İdarəetməsi",
+      "description": "Tam HR aussenqinq həlləri",
+      "features": {
+        "payroll": "Əmək haqqı idarəetməsi",
+        "employeeRecords": "İşçi qeydləri",
+        "hrDocumentation": "HR sənədləşməsi",
+        "complianceManagement": "Uyğunluq idarəetməsi",
+        "performanceManagement": "Performans idarəetməsi"
+      }
+    },
+    "audit": {
+      "title": "Audit Xidmətləri",
+      "description": "Peşəkar audit və təminat xidmətləri",
+      "features": {
+        "financialAudits": "Maliyyə hesabatı auditləri",
+        "internalAudits": "Daxili auditlər",
+        "complianceAudits": "Uyğunluq auditləri",
+        "riskAssessment": "Risk qiymətləndirməsi",
+        "auditReports": "Audit hesabatları"
+      }
+    },
+    "serpIntegration": {
+      "title": "SERP İnteqrasiyası",
+      "description": "SERP biznes idarəetmə sistemi ilə problemsiz inteqrasiya",
+      "features": {
+        "systemIntegration": "Sistem inteqrasiyası",
+        "dataMigration": "Məlumat köçürməsi",
+        "customWorkflows": "Fərdi iş axınları",
+        "trainingSupport": "Təlim və dəstək",
+        "ongoingMaintenance": "Davamlı texniki xidmət"
+      }
+    },
+    "serp-integration": {
+      "title": "SERP İnteqrasiyası",
+      "description": "SERP biznes idarəetmə sistemi ilə problemsiz inteqrasiya",
+      "features": {
+        "systemIntegration": "Sistem inteqrasiyası",
+        "dataMigration": "Məlumat köçürməsi",
+        "customWorkflows": "Fərdi iş axınları",
+        "trainingSupport": "Təlim və dəstək",
+        "ongoingMaintenance": "Davamlı texniki xidmət"
+      }
+    }
+  },
+  "serp": {
+    "title": "SERP Sistemi",
+    "subtitle": "İnteqrasiya Olunmuş Biznes İdarəetmə Platforması - Əsas Fərqləndirici Xüsusiyyətimiz",
+    "whatIsSERP": {
+      "title": "SERP nədir?",
+      "description": "SERP (Sistem Enterprise Resource Planning) bizneslərin əməliyyatlarını idarə etmə üsulunu inqilab edən mülkiyyət inteqrasiya olunmuş biznes idarəetmə platformamızdır.",
+      "comprehensiveSolution": {
+        "title": "Hərtərəfli Həll",
+        "description1": "SERP biznes əməliyyatlarınızın bütün aspektlərini vahid, birləşdirilmiş platformada birləşdirir. Maliyyə idarəetməsindən insan resurslarına, inventar nəzarətindən hesabat və analitikaya qədər, SERP biznesinizi səmərəli idarə etmək üçün lazım olan hər şeyi təmin edir.",
+        "description2": "Mühasibat, HR və vergi xidmətlərimiz SERP ilə problemsiz şəkildə inteqrasiya olunur, sizə real vaxt anlayışları və vaxta qənaət edən və səhvləri azaldan avtomatlaşdırılmış iş axınları təmin edir."
+      }
+    },
+    "modules": {
+      "title": "SERP Modulları",
+      "subtitle": "Bütün biznes ehtiyaclarınızı ödəmək üçün hazırlanmış güclü modullar",
+      "financial": {
+        "title": "Maliyyə İdarəetməsi",
+        "description": "Tam maliyyə idarəetməsi və mühasibat modulu"
+      },
+      "hr": {
+        "title": "İnsan Resursları",
+        "description": "Hərtərəfli HR və əmək haqqı idarəetmə sistemi"
+      },
+      "inventory": {
+        "title": "İnventar İdarəetməsi",
+        "description": "Təkmilləşdirilmiş inventar izləmə və idarəetmə"
+      },
+      "reporting": {
+        "title": "Hesabat və Analitika",
+        "description": "Real vaxt hesabatları və biznes analitikası"
+      },
+      "integration": {
+        "title": "Üçüncü Tərəf İnteqrasiyası",
+        "description": "Xarici sistemlərlə problemsiz inteqrasiya"
+      }
+    },
+    "advantages": {
+      "title": "Niyə SERP seçməli?",
+      "subtitle": "Sizin biznesiniz üçün SERP-i ən yaxşı seçim edən üstünlükləri kəşf edin",
+      "unifiedPlatform": {
+        "title": "Vahid Platforma",
+        "description": "Bütün biznes əməliyyatlarınız bir yerdə - artıq sistemlər arasında keçid yoxdur"
+      },
+      "realTimeData": {
+        "title": "Real Vaxt Məlumatları",
+        "description": "Daha yaxşı qərar qəbul etmək üçün dərhal aktual məlumatlara çıxış"
+      },
+      "automatedWorkflows": {
+        "title": "Avtomatlaşdırılmış İş Axınları",
+        "description": "İntellektual avtomatlaşdırma və proses optimallaşdırması ilə manual işi azaldın"
+      },
+      "customizable": {
+        "title": "Fərdiləşdirilə Bilən",
+        "description": "Sizin xüsusi biznes ehtiyaclarınıza və sənaye tələblərinizə uyğunlaşdırılmışdır"
+      },
+      "scalable": {
+        "title": "Genişləndirilə Bilən",
+        "description": "Startapdan müəssisə səviyyəsinə qədər biznesinizlə birlikdə böyüyür"
+      },
+      "expertSupport": {
+        "title": "Ekspert Dəstəyi",
+        "description": "SERP-in potensialını maksimuma çatdırmaq üçün səxsi dəstək komandası"
+      }
+    },
+    "demo": {
+      "title": "SERP-i Fəaliyyətdə Təcrübə Edin",
+      "description": "Fərdiləşdirilmiş demo tələb edin və SERP-in biznes əməliyyatlarınızı necə transformasiya edə biləcəyini görün",
+      "requestDemo": "Demo Tələb Et"
+    }
+  },
+  "about": {
+    "title": "Sinam Consulting Haqqında",
+    "subtitle": "Biznes mükaməldə etibarlı tərəfdaşınız",
+    "mission": {
+      "title": "Missiyamız",
+      "description1": "Sinam Consulting-də missiyamız biznesləri böyümə və uğur gətirən hərtərəfli mühasibat, HR və vergi həlləri ilə gücləndirməkdir. Dərin ekspertizamızı kəskin SERP texnologiyası ilə birləşdirərək müştərilərimizə fövqəladə dəyər təmin edirik.",
+      "description2": "Biz müştərilərimizlə uzunmüddətli tərəfdaşlıq qurmağa, onların unikal ehtiyaclarını başa düşməyə və ən yüksək peşəkar və bütövlük standartlarını saxlayaraq biznes məqsədlərinə çatmağa kömək edən fərdiləşdirilmiş həllər təmin etməyə inanırıq."
+    },
+    "values": {
+      "title": "Dəyərlərimiz",
+      "subtitle": "Hər şeyi idarə edən prinsiplər",
+      "integrity": {
+        "title": "Bütövlük",
+        "description": "Bütün qarşılıqlı əlaqələrimizdə və xidmətlərimizdə ən yüksək etik standartları saxlayırıq."
+      },
+      "excellence": {
+        "title": "Mükəmməllik",
+        "description": "Təmin etdiyimiz hər xidmətdə və çatdırdığımız hər həlldə mükəmməlliyə çalışırıq."
+      },
+      "partnership": {
+        "title": "Tərəfdaşlıq",
+        "description": "Etibar və qarşılıqlı uğur əsasında müştərilərimizlə davamlı münasibətlər qururuq."
+      }
+    },
+    "achievements": {
+      "title": "Nailiyyətlərimiz"
+    },
+    "team": {
+      "title": "Komandamız",
+      "subtitle": "Sinam Consulting-in arxasında olan ekspertlərlə tanış olun"
+    }
+  },
+  "contact": {
+    "title": "Bizimlə Əlaqə",
+    "subtitle": "Komandamızla əlaqə saxlayın - kömək etməyə hazırıq",
+    "getInTouch": {
+      "title": "Əlaqə Saxlayın",
+      "description": "Sualınız var? Sizdən eşitməyi çox istəyirik. Bizə mesaj göndərin və mümkün qədər tez cavab verəcəyik."
+    },
+    "address": "Ünvan",
+    "phone": "Telefon",
+    "email": "E-poçt",
+    "sendMessage": {
+      "title": "Bizə Mesaj Göndərin"
+    },
+    "businessHours": {
+      "title": "İş Saatları",
+      "mondayFriday": "Bazar ertəsi - Cümə",
+      "saturday": "Şənbə",
+      "sunday": "Bazar",
+      "closed": "Bağlıdır"
+    },
+    "map": {
+      "placeholder": "Xəritə inteqrasiyası burada əlavə edilə bilər"
+    },
+    "form": {
+      "fullName": "Tam Ad",
+      "email": "E-poçt",
+      "phone": "Telefon",
+      "subject": "Mövzu",
+      "message": "Mesaj",
+      "yourMessage": "Mesajınız...",
+      "sendMessage": "Mesaj Göndər",
+      "sending": "Göndərilir...",
+      "thankYou": "Təşəkkür edirik! Tezliklə sizinlə əlaqə saxlayacağıq."
+    }
+  },
+  "trainings": {
+    "title": "Peşəkar Təlim Kursları",
+    "subtitle": "Hərtərəfli təlim proqramlarımızla bacarıqlarınızı artırın",
+    "availableCourses": {
+      "title": "Mövcud Kurslar",
+      "subtitle": "Detalları görmək və qeydiyyatdan keçmək üçün kurs seçin"
+    },
+    "courseDetails": {
+      "duration": "Müddət",
+      "date": "Tarix",
+      "trainer": "Təlimçi",
+      "price": "Qiymət",
+      "registerNow": "İndi Qeydiyyatdan Keç",
+      "backToCourses": "Kurslara Qayıt"
+    },
+    "registration": {
+      "title": "Kurs Qeydiyyatı"
+    },
+    "courses": {
+      "serp-basics": {
+        "title": "SERP Sisteminin Əsasları",
+        "description": "Mühasibat mütəxəssisləri üçün SERP sisteminin əsaslarını öyrənin",
+        "category": "SERP Təlimi",
+        "trainer": "Ekspert Təlimçi"
+      },
+      "tax-compliance": {
+        "title": "Vergi Uyğunluğu Seminari",
+        "description": "Vergi uyğunluğu və qaydalarına dərin nəzər",
+        "category": "Vergi Təlimi",
+        "trainer": "Vergi Mütəxəssisi"
+      },
+      "hr-management": {
+        "title": "HR İdarəetməsinin Ən Yaxşı Təcrübələri",
+        "description": "Peşəkarlar üçün hərtərəfli HR idarəetmə təlimi",
+        "category": "HR Təlimi",
+        "trainer": "HR Eksperti"
+      },
+      "financial-reporting": {
+        "title": "Qabaqcıl Maliyyə Hesabatları",
+        "description": "SERP sistemi ilə maliyyə hesabatlarında mükəmməllik",
+        "category": "Mühasibat Təlimi",
+        "trainer": "CFO Məsləhətçisi"
+      }
+    },
+    "categories": {
+      "SERP Training": "SERP Təlimi",
+      "Tax Training": "Vergi Təlimi",
+      "HR Training": "HR Təlimi",
+      "Accounting Training": "Mühasibat Təlimi"
+    }
+  },
+  "news": {
+    "title": "Xəbərlər və Yeniləmələr",
+    "subtitle": "Ən son xəbərlərimiz, yeniləmələrimiz və sənaye anlayışlarımızla məlumatlı qalın",
+    "filterByCategory": "Kateqoriyaya görə filtrlə:",
+    "all": "Hamısı",
+    "backToNews": "Xəbərlərə Qayıt",
+    "noNewsFound": "Bu kateqoriyada xəbər tapılmadı.",
+    "categories": {
+      "productUpdates": "Məhsul Yeniləmələri",
+      "taxUpdates": "Vergi Yeniləmələri",
+      "events": "Tədbirlər"
+    },
+    "items": {
+      "news-1": {
+        "title": "Yeni SERP Modulu Buraxıldı",
+        "excerpt": "Təkmilləşdirilmiş funksiyalar ilə yeni SERP modulumuzun buraxılışını elan etməkdən məmnunuq",
+        "content": "Yeni SERP modulunun buraxılışı haqqında tam məzmun..."
+      },
+      "news-2": {
+        "title": "2025-ci il Vergi Qanun Dəyişiklikləri",
+        "excerpt": "Biznesinizə təsir edən 2025-ci ildə gələn vacib vergi qanun dəyişiklikləri",
+        "content": "Vergi qanun dəyişiklikləri haqqında tam məzmun..."
+      },
+      "news-3": {
+        "title": "HR Uyğunluq Seminari",
+        "excerpt": "Gələn ay bizim pulsuz HR uyğunluq seminarımıza qoşulun",
+        "content": "HR seminari haqqında tam məzmun..."
+      }
+    }
+  },
+  "login": {
+    "title": "Giriş",
+    "subtitle": "Hesabınıza daxil olun",
+    "welcomeBack": "Xoş gəlmisiniz",
+    "email": "E-poçt Ünvanı",
+    "password": "Şifrə",
+    "rememberMe": "Məni xatırla",
+    "forgotPassword": "Şifrəni unutmusunuz?",
+    "loggingIn": "Daxil olunur...",
+    "login": "Daxil Ol",
+    "noAccount": "Hesabınız yoxdur?",
+    "registerHere": "Burada qeydiyyatdan keçin"
+  },
+  "register": {
+    "title": "Hesab Yarat",
+    "subtitle": "Sinam Consulting portalına qoşulun",
+    "register": "Qeydiyyat",
+    "fullName": "Tam Ad",
+    "email": "E-poçt Ünvanı",
+    "phone": "Telefon Nömrəsi",
+    "companyName": "Şirkət Adı",
+    "password": "Şifrə",
+    "confirmPassword": "Şifrəni Təsdiqlə",
+    "agreeTerms": "Razılaşma və Şərtlərə razıyam",
+    "termsAndConditions": "Razılaşma və Şərtlər",
+    "creatingAccount": "Hesab yaradılır...",
+    "createAccount": "Hesab Yarat",
+    "success": {
+      "title": "Qeydiyyat Uğurlu!",
+      "description": "İndi hesabınıza daxil ola bilərsiniz.",
+      "goToLogin": "Girişə Get"
+    },
+    "haveAccount": "Artıq hesabınız var?",
+    "loginHere": "Burada daxil olun"
+  },
+  "forms": {
+    "inquiry": {
+      "title": "Xidmət Sorğusu",
+      "fullName": "Tam Ad",
+      "email": "E-poçt",
+      "phone": "Telefon",
+      "company": "Şirkət",
+      "serviceInterested": "Maraqlandığınız Xidmət",
+      "selectService": "Xidmət seçin",
+      "message": "Mesaj",
+      "tellUsNeeds": "Ehtiyaclarınız haqqında bizə bildirin...",
+      "submitting": "Göndərilir...",
+      "submitInquiry": "Sorğu Göndər",
+      "thankYou": "Təşəkkür edirik!",
+      "contactSoon": "Tezliklə sizinlə əlaqə saxlayacağıq."
+    },
+    "registration": {
+      "title": "Kurs Qeydiyyatı",
+      "fullName": "Tam Ad",
+      "email": "E-poçt",
+      "phone": "Telefon",
+      "company": "Şirkət",
+      "position": "Vəzifə",
+      "additionalInfo": "Əlavə Məlumat",
+      "submit": "Qeydiyyatdan Keç",
+      "submitting": "Göndərilir..."
+    }
+  },
+  "data": {
+    "statistics": {
+      "clients": "Məmnun Müştərilər",
+      "years": "İl Təcrübə",
+      "services": "Xidmət",
+      "trainings": "Təlim Kursu"
+    }
+  }
+}
+

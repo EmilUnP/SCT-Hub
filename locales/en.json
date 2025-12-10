@@ -1,0 +1,563 @@
+{
+  "common": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "news": "News",
+    "trainings": "Trainings",
+    "login": "Login",
+    "register": "Register",
+    "serp": "SERP System",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "contactUs": "Contact Us",
+    "callUs": "Call Us",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "required": "Required",
+    "optional": "Optional",
+    "profile": "Profile",
+    "inquiry": "Inquiry",
+    "viewDetails": "View Details",
+    "delete": "Delete",
+    "edit": "Edit",
+    "download": "Download"
+  },
+  "profile": {
+    "title": "Teacher Dashboard",
+    "subtitle": "Manage your classes, students, notes, and documents",
+    "user": "User",
+    "edit": "Edit",
+    "save": "Save",
+    "logout": "Logout",
+    "accountInfo": "Account Information",
+    "email": "Email",
+    "memberSince": "Member Since",
+    "namePlaceholder": "Enter your name",
+    "notLoggedIn": "You are not logged in. Please login to view your profile.",
+    "roles": {
+      "teacher": "Teacher",
+      "staff": "Staff",
+      "student": "Student"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "notes": "Notes",
+      "documents": "Documents",
+      "classes": "Classes",
+      "students": "Students"
+    },
+    "overview": {
+      "title": "Dashboard Overview",
+      "notes": "Notes",
+      "documents": "Documents",
+      "classes": "Classes",
+      "students": "Students"
+    },
+    "notes": {
+      "title": "My Notes",
+      "addNote": "Add Note",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Enter note title",
+      "contentLabel": "Content",
+      "contentPlaceholder": "Write your note here...",
+      "noNotes": "No notes yet. Create your first note!",
+      "created": "Created",
+      "updated": "Updated",
+      "confirmDelete": "Are you sure you want to delete this note?"
+    },
+    "documents": {
+      "title": "My Documents",
+      "upload": "Upload Document",
+      "nameLabel": "Document Name",
+      "namePlaceholder": "Enter document name",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Add a description (optional)",
+      "selectFile": "Select File",
+      "noDocuments": "No documents yet. Upload your first document!",
+      "confirmDelete": "Are you sure you want to delete this document?"
+    },
+    "classes": {
+      "title": "My Classes",
+      "createClass": "Create Class",
+      "nameLabel": "Class Name",
+      "namePlaceholder": "e.g., Mathematics 101",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "e.g., Mathematics",
+      "scheduleLabel": "Schedule",
+      "schedulePlaceholder": "e.g., Monday, Wednesday, Friday 10:00 AM",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Add class description...",
+      "noClasses": "No classes yet. Create your first class!",
+      "students": "students",
+      "confirmDelete": "Are you sure you want to delete this class?"
+    },
+    "students": {
+      "title": "My Students",
+      "addStudent": "Add Student",
+      "nameLabel": "Student Name",
+      "namePlaceholder": "Enter student name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "student@example.com",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "+1 (234) 567-8900",
+      "classLabel": "Class",
+      "selectClass": "Select a class",
+      "notesLabel": "Notes",
+      "notesPlaceholder": "Additional notes about the student...",
+      "noStudents": "No students yet. Add your first student!",
+      "confirmDelete": "Are you sure you want to delete this student?"
+    }
+  },
+  "header": {
+    "title": "Sinam Consulting",
+    "phone": "+1 (234) 567-890",
+    "email": "info@sinamconsulting.com"
+  },
+  "footer": {
+    "company": "Sinam Consulting",
+    "description": "Professional accounting, HR and tax services with SERP system integration.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "allRightsReserved": "All rights reserved.",
+    "address": "123 Business Street\nCity, State 12345",
+    "businessHours": "Business Hours",
+    "mondayFriday": "Monday - Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "closed": "Closed"
+  },
+  "home": {
+    "hero": {
+      "title": "Professional Accounting and HR Services",
+      "subtitle": "Powered by SERP System Integration",
+      "description": "Transform your business with comprehensive accounting, tax, and HR outsourcing solutions.",
+      "getStarted": "Get Started",
+      "ourServices": "Our Services"
+    },
+    "statistics": {
+      "happyClients": "Happy Clients",
+      "yearsExperience": "Years Experience",
+      "services": "Services",
+      "trainingCourses": "Training Courses"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Comprehensive business solutions tailored to your needs",
+      "viewAllServices": "View All Services"
+    },
+    "serp": {
+      "title": "SERP System Integration",
+      "subtitle": "Our key differentiator - Seamless business management",
+      "whatIsSERP": "What is SERP?",
+      "description": "SERP is our integrated business management system that combines accounting, HR, inventory, and reporting into a single, powerful platform.",
+      "features": {
+        "unifiedData": "Unified data management",
+        "realTimeReporting": "Real-time reporting",
+        "automatedWorkflows": "Automated workflows",
+        "thirdPartyIntegrations": "Third-party integrations"
+      },
+      "learnMore": "Learn more about SERP"
+    },
+    "trainings": {
+      "title": "Upcoming Trainings",
+      "subtitle": "Enhance your skills with our professional training courses",
+      "viewAllTrainings": "View All Trainings"
+    },
+    "news": {
+      "title": "Latest News",
+      "subtitle": "Stay updated with our latest updates and insights",
+      "viewAllNews": "View All News"
+    },
+    "about": {
+      "title": "About Sinam Consulting",
+      "description": "Your trusted partner for businesses seeking professional accounting and HR solutions. We combine our expertise with cutting-edge SERP technology to deliver exceptional results.",
+      "learnMore": "Learn More About Us"
+    },
+    "contact": {
+      "title": "Ready to Get Started?",
+      "description": "Contact us today to discuss how we can help transform your business",
+      "contactUs": "Contact Us",
+      "callUsNow": "Call Us Now"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive business solutions powered by SERP system integration",
+    "serpIntegrated": "SERP Integrated",
+    "requestInquiry": "Request Inquiry",
+    "customizedSolutions": {
+      "title": "Need Customized Solutions?",
+      "description": "Our team is ready to discuss your specific business needs and create tailored solutions.",
+      "contactUs": "Contact Us"
+    },
+    "accounting": {
+      "title": "Accounting Services",
+      "description": "Comprehensive accounting solutions for your business",
+      "features": {
+        "bookkeeping": "Bookkeeping and account management",
+        "financialReporting": "Financial reporting",
+        "accountsPayable": "Accounts payable and receivable",
+        "bankReconciliation": "Bank reconciliation",
+        "monthEndClosing": "Month-end closing"
+      }
+    },
+    "tax": {
+      "title": "Tax Services",
+      "description": "Expert tax planning and compliance services",
+      "features": {
+        "taxPlanning": "Tax planning and strategy",
+        "taxReturn": "Tax return preparation",
+        "taxCompliance": "Tax compliance",
+        "taxConsulting": "Tax consulting",
+        "auditSupport": "Audit support"
+      }
+    },
+    "hr": {
+      "title": "HR and Personnel Management",
+      "description": "Complete HR outsourcing solutions",
+      "features": {
+        "payroll": "Payroll management",
+        "employeeRecords": "Employee records",
+        "hrDocumentation": "HR documentation",
+        "complianceManagement": "Compliance management",
+        "performanceManagement": "Performance management"
+      }
+    },
+    "audit": {
+      "title": "Audit Services",
+      "description": "Professional audit and assurance services",
+      "features": {
+        "financialAudits": "Financial statement audits",
+        "internalAudits": "Internal audits",
+        "complianceAudits": "Compliance audits",
+        "riskAssessment": "Risk assessment",
+        "auditReports": "Audit reports"
+      }
+    },
+    "serpIntegration": {
+      "title": "SERP Integration",
+      "description": "Seamless integration with SERP business management system",
+      "features": {
+        "systemIntegration": "System integration",
+        "dataMigration": "Data migration",
+        "customWorkflows": "Custom workflows",
+        "trainingSupport": "Training and support",
+        "ongoingMaintenance": "Ongoing maintenance"
+      }
+    },
+    "serp-integration": {
+      "title": "SERP Integration",
+      "description": "Seamless integration with SERP business management system",
+      "features": {
+        "systemIntegration": "System integration",
+        "dataMigration": "Data migration",
+        "customWorkflows": "Custom workflows",
+        "trainingSupport": "Training and support",
+        "ongoingMaintenance": "Ongoing maintenance"
+      }
+    }
+  },
+  "serp": {
+    "title": "SERP System",
+    "subtitle": "Integrated Business Management Platform - Our Key Differentiator",
+    "whatIsSERP": {
+      "title": "What is SERP?",
+      "description": "SERP (System Enterprise Resource Planning) is our proprietary integrated business management platform that revolutionizes how businesses manage their operations.",
+      "comprehensiveSolution": {
+        "title": "Comprehensive Solution",
+        "description1": "SERP brings together all aspects of your business operations into a single, unified platform. From financial management to human resources, from inventory control to reporting and analytics, SERP provides everything you need to efficiently manage your business.",
+        "description2": "Our accounting, HR, and tax services seamlessly integrate with SERP, providing you with real-time insights and time-saving automated workflows that reduce errors and increase efficiency."
+      }
+    },
+    "modules": {
+      "title": "SERP Modules",
+      "subtitle": "Powerful modules designed to meet all your business needs",
+      "financial": {
+        "title": "Financial Management",
+        "description": "Complete financial management and accounting module"
+      },
+      "hr": {
+        "title": "Human Resources",
+        "description": "Comprehensive HR and payroll management system"
+      },
+      "inventory": {
+        "title": "Inventory Management",
+        "description": "Advanced inventory tracking and management"
+      },
+      "reporting": {
+        "title": "Reporting and Analytics",
+        "description": "Real-time reporting and business analytics"
+      },
+      "integration": {
+        "title": "Third-Party Integration",
+        "description": "Seamless integration with external systems"
+      }
+    },
+    "advantages": {
+      "title": "Why Choose SERP?",
+      "subtitle": "Discover the advantages that make SERP the best choice for your business",
+      "unifiedPlatform": {
+        "title": "Unified Platform",
+        "description": "All your business operations in one place - no more switching between systems"
+      },
+      "realTimeData": {
+        "title": "Real-Time Data",
+        "description": "Instant access to up-to-date information for better decision-making"
+      },
+      "automatedWorkflows": {
+        "title": "Automated Workflows",
+        "description": "Reduce manual work with intelligent automation and process optimization"
+      },
+      "customizable": {
+        "title": "Customizable",
+        "description": "Tailored to your specific business needs and industry requirements"
+      },
+      "scalable": {
+        "title": "Scalable",
+        "description": "Grows with your business from startup to enterprise level"
+      },
+      "expertSupport": {
+        "title": "Expert Support",
+        "description": "Dedicated support team to maximize SERP's potential"
+      }
+    },
+    "demo": {
+      "title": "Experience SERP in Action",
+      "description": "Request a personalized demo and see how SERP can transform your business operations",
+      "requestDemo": "Request Demo"
+    }
+  },
+  "about": {
+    "title": "About Sinam Consulting",
+    "subtitle": "Your trusted partner in business excellence",
+    "mission": {
+      "title": "Our Mission",
+      "description1": "At Sinam Consulting, our mission is to empower businesses with comprehensive accounting, HR, and tax solutions that drive growth and success. We combine our deep expertise with cutting-edge SERP technology to deliver exceptional value to our clients.",
+      "description2": "We believe in building long-term partnerships with our clients, understanding their unique needs, and providing tailored solutions that help them achieve their business goals while maintaining the highest standards of professionalism and integrity."
+    },
+    "values": {
+      "title": "Our Values",
+      "subtitle": "The principles that guide everything we do",
+      "integrity": {
+        "title": "Integrity",
+        "description": "We maintain the highest ethical standards in all our interactions and services."
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "We strive for excellence in every service we provide and every solution we deliver."
+      },
+      "partnership": {
+        "title": "Partnership",
+        "description": "We build lasting relationships with our clients based on trust and mutual success."
+      }
+    },
+    "achievements": {
+      "title": "Our Achievements"
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Meet the experts behind Sinam Consulting"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team - we're here to help",
+    "getInTouch": {
+      "title": "Get in Touch",
+      "description": "Have a question? We'd love to hear from you. Send us a message and we'll respond as soon as possible."
+    },
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "sendMessage": {
+      "title": "Send Us a Message"
+    },
+    "businessHours": {
+      "title": "Business Hours",
+      "mondayFriday": "Monday - Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "closed": "Closed"
+    },
+    "map": {
+      "placeholder": "Map integration can be added here"
+    },
+    "form": {
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "Message",
+      "yourMessage": "Your message...",
+      "sendMessage": "Send Message",
+      "sending": "Sending...",
+      "thankYou": "Thank you! We'll get back to you soon."
+    }
+  },
+  "trainings": {
+    "title": "Professional Training Courses",
+    "subtitle": "Enhance your skills with our comprehensive training programs",
+    "availableCourses": {
+      "title": "Available Courses",
+      "subtitle": "Select a course to view details and register"
+    },
+    "courseDetails": {
+      "duration": "Duration",
+      "date": "Date",
+      "trainer": "Trainer",
+      "price": "Price",
+      "registerNow": "Register Now",
+      "backToCourses": "Back to Courses"
+    },
+    "registration": {
+      "title": "Course Registration"
+    },
+    "courses": {
+      "serp-basics": {
+        "title": "SERP System Fundamentals",
+        "description": "Learn the basics of SERP system for accounting professionals",
+        "category": "SERP Training",
+        "trainer": "Expert Trainer"
+      },
+      "tax-compliance": {
+        "title": "Tax Compliance Workshop",
+        "description": "Deep dive into tax compliance and regulations",
+        "category": "Tax Training",
+        "trainer": "Tax Specialist"
+      },
+      "hr-management": {
+        "title": "HR Management Best Practices",
+        "description": "Comprehensive HR management training for professionals",
+        "category": "HR Training",
+        "trainer": "HR Expert"
+      },
+      "financial-reporting": {
+        "title": "Advanced Financial Reporting",
+        "description": "Master financial reporting with SERP system",
+        "category": "Accounting Training",
+        "trainer": "CFO Consultant"
+      }
+    },
+    "categories": {
+      "SERP Training": "SERP Training",
+      "Tax Training": "Tax Training",
+      "HR Training": "HR Training",
+      "Accounting Training": "Accounting Training"
+    }
+  },
+  "news": {
+    "title": "News and Updates",
+    "subtitle": "Stay informed with our latest news, updates, and industry insights",
+    "filterByCategory": "Filter by category:",
+    "all": "All",
+    "backToNews": "Back to News",
+    "noNewsFound": "No news found in this category.",
+    "categories": {
+      "productUpdates": "Product Updates",
+      "taxUpdates": "Tax Updates",
+      "events": "Events"
+    },
+    "items": {
+      "news-1": {
+        "title": "New SERP Module Released",
+        "excerpt": "We're excited to announce the release of our new SERP module with enhanced features",
+        "content": "Full content about the new SERP module release..."
+      },
+      "news-2": {
+        "title": "Tax Law Changes 2025",
+        "excerpt": "Important tax law changes coming in 2025 that affect your business",
+        "content": "Full content about tax law changes..."
+      },
+      "news-3": {
+        "title": "HR Compliance Workshop",
+        "excerpt": "Join our free HR compliance workshop next month",
+        "content": "Full content about the HR workshop..."
+      }
+    }
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Sign in to your account",
+    "welcomeBack": "Welcome Back",
+    "email": "Email Address",
+    "password": "Password",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot Password?",
+    "loggingIn": "Logging in...",
+    "login": "Login",
+    "noAccount": "Don't have an account?",
+    "registerHere": "Register here"
+  },
+  "register": {
+    "title": "Create Account",
+    "subtitle": "Join the Sinam Consulting portal",
+    "register": "Register",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "companyName": "Company Name",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "agreeTerms": "I agree to the Terms and Conditions",
+    "termsAndConditions": "Terms and Conditions",
+    "creatingAccount": "Creating account...",
+    "createAccount": "Create Account",
+    "success": {
+      "title": "Registration Successful!",
+      "description": "You can now sign in to your account.",
+      "goToLogin": "Go to Login"
+    },
+    "haveAccount": "Already have an account?",
+    "loginHere": "Login here"
+  },
+  "forms": {
+    "inquiry": {
+      "title": "Service Inquiry",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "serviceInterested": "Service Interested In",
+      "selectService": "Select a service",
+      "message": "Message",
+      "tellUsNeeds": "Tell us about your needs...",
+      "submitting": "Submitting...",
+      "submitInquiry": "Submit Inquiry",
+      "thankYou": "Thank you!",
+      "contactSoon": "We'll contact you soon."
+    },
+    "registration": {
+      "title": "Course Registration",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "position": "Position",
+      "additionalInfo": "Additional Information",
+      "submit": "Register",
+      "submitting": "Submitting..."
+    }
+  },
+  "data": {
+    "statistics": {
+      "clients": "Happy Clients",
+      "years": "Years Experience",
+      "services": "Services",
+      "trainings": "Training Courses"
+    }
+  }
+}
