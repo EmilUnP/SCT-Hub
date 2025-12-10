@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
+import Image from "next/image";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { getNewsById, updateNews } from "@/lib/admin";
 import type { News } from "@/types";
@@ -299,14 +300,19 @@ export default function EditNewsPage() {
             {formData.image && isValidUrl(formData.image) && (
               <div className="mt-3">
                 <p className="text-xs text-gray-600 mb-2">Image Preview:</p>
-                <img
-                  src={formData.image}
-                  alt="Preview"
-                  className="w-full h-48 object-cover rounded-lg border border-gray-200"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                />
+                <div className="relative w-full h-48 rounded-lg border border-gray-200 overflow-hidden">
+                  <Image
+                    src={formData.image}
+                    alt="Preview"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    unoptimized
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                </div>
               </div>
             )}
           </div>

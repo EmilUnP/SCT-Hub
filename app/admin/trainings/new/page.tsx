@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { createTraining } from "@/lib/admin";
 import type { Training } from "@/types";
@@ -298,14 +299,19 @@ export default function NewTrainingPage() {
             {formData.image && isValidUrl(formData.image) && (
               <div className="mt-3">
                 <p className="text-xs text-gray-600 mb-2">Image Preview:</p>
-                <img
-                  src={formData.image}
-                  alt="Preview"
-                  className="w-full h-48 object-cover rounded-lg border border-gray-200"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                />
+                <div className="relative w-full h-48 rounded-lg border border-gray-200 overflow-hidden">
+                  <Image
+                    src={formData.image}
+                    alt="Preview"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    unoptimized
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                </div>
               </div>
             )}
           </div>

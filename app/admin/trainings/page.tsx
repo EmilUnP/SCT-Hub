@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { getTrainings, deleteTraining } from "@/lib/admin";
 import type { Training } from "@/types";
@@ -120,11 +121,14 @@ export default function AdminTrainingsPage() {
                       <td className="px-6 py-4">
                         <div className="flex items-start gap-3">
                           {item.image ? (
-                            <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-gray-200">
-                              <img
+                            <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-gray-200 relative">
+                              <Image
                                 src={item.image}
                                 alt={item.title}
-                                className="w-full h-full object-cover"
+                                fill
+                                sizes="64px"
+                                className="object-cover"
+                                unoptimized
                                 onError={(e) => {
                                   (e.target as HTMLImageElement).style.display = "none";
                                 }}
