@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import Image from "next/image";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { getNews, deleteNews } from "@/lib/admin";
@@ -18,34 +18,43 @@ export default function AdminNewsPage() {
     loadNews();
   }, []);
 
-  const loadNews = async () => {
+  const loadNews = useCallback(async () => {
     try {
       setLoading(true);
       setError("");
-      const data = await getNews();
-      setNews(data);
+      // Add timeout wrapper
+      const timeoutPromise = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout')), 10000)
+      );
+      
+      const data = await Promise.race([
+        getNews(),
+        timeoutPromise
+      ]);
+      setNews(Array.isArray(data) ? data : []);
     } catch (err: any) {
       setError(err.message || "Failed to load news articles");
       console.error("Error loading news:", err);
+      setNews([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = useCallback(async (id: string) => {
     if (!confirm("Are you sure you want to delete this news article? This action cannot be undone.")) return;
 
     try {
       setDeletingId(id);
       await deleteNews(id);
-      setNews(news.filter((item) => item.id !== id));
+      setNews(prev => prev.filter((item) => item.id !== id));
     } catch (err: any) {
       alert("Failed to delete: " + (err.message || "Unknown error"));
       console.error("Error deleting news:", err);
     } finally {
       setDeletingId(null);
     }
-  };
+  }, []);
 
   return (
     <AdminLayout>

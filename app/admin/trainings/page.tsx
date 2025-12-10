@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { getTrainings, deleteTraining } from "@/lib/admin";
@@ -18,34 +18,43 @@ export default function AdminTrainingsPage() {
     loadTrainings();
   }, []);
 
-  const loadTrainings = async () => {
+  const loadTrainings = useCallback(async () => {
     try {
       setLoading(true);
       setError("");
-      const data = await getTrainings();
-      setTrainings(data);
+      // Add timeout wrapper
+      const timeoutPromise = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout')), 10000)
+      );
+      
+      const data = await Promise.race([
+        getTrainings(),
+        timeoutPromise
+      ]);
+      setTrainings(Array.isArray(data) ? data : []);
     } catch (err: any) {
       setError(err.message || "Failed to load trainings");
       console.error("Error loading trainings:", err);
+      setTrainings([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = useCallback(async (id: string) => {
     if (!confirm("Are you sure you want to delete this training? This action cannot be undone.")) return;
 
     try {
       setDeletingId(id);
       await deleteTraining(id);
-      setTrainings(trainings.filter((item) => item.id !== id));
+      setTrainings(prev => prev.filter((item) => item.id !== id));
     } catch (err: any) {
       alert("Failed to delete: " + (err.message || "Unknown error"));
       console.error("Error deleting training:", err);
     } finally {
       setDeletingId(null);
     }
-  };
+  }, []);
 
   return (
     <AdminLayout>

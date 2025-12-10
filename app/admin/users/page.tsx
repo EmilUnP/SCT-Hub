@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { getUsers, updateUserRole } from "@/lib/admin";
 import { Users, Shield, UserCheck, GraduationCap, Search } from "lucide-react";
@@ -22,26 +22,45 @@ export default function AdminUsersPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState<UserRole | "all">("all");
   const [updatingUserId, setUpdatingUserId] = useState<string | null>(null);
+
+  // Debounce search term to prevent excessive filtering
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   useEffect(() => {
     loadUsers();
   }, []);
 
-  const loadUsers = async () => {
+  const loadUsers = useCallback(async () => {
     try {
       setLoading(true);
-      const data = await getUsers();
-      setUsers(data);
+      setError("");
+      // Add timeout wrapper
+      const timeoutPromise = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout')), 10000)
+      );
+      
+      const data = await Promise.race([
+        getUsers(),
+        timeoutPromise
+      ]);
+      setUsers(Array.isArray(data) ? data : []);
     } catch (err: any) {
       setError(err.message || "Failed to load users");
+      setUsers([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const handleRoleChange = async (userId: string, newRole: UserRole) => {
+  const handleRoleChange = useCallback(async (userId: string, newRole: UserRole) => {
     if (!confirm(`Are you sure you want to change this user's role to ${newRole}?`)) {
       return;
     }
@@ -49,15 +68,19 @@ export default function AdminUsersPage() {
     try {
       setUpdatingUserId(userId);
       await updateUserRole(userId, newRole);
-      // Reload users to get updated data
-      await loadUsers();
+      // Update local state instead of reloading
+      setUsers(prev => prev.map(user => 
+        user.id === userId ? { ...user, role: newRole } : user
+      ));
       alert(`User role updated to ${newRole} successfully!`);
     } catch (err: any) {
       alert("Failed to update role: " + (err.message || "Unknown error"));
+      // Reload on error to ensure consistency
+      await loadUsers();
     } finally {
       setUpdatingUserId(null);
     }
-  };
+  }, [loadUsers]);
 
   const getRoleBadgeColor = (role?: UserRole) => {
     switch (role) {
@@ -85,24 +108,29 @@ export default function AdminUsersPage() {
     }
   };
 
-  // Filter users based on search and role
-  const filteredUsers = users.filter((user) => {
-    const matchesSearch =
-      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.phone?.toLowerCase().includes(searchTerm.toLowerCase());
+  // Memoize filtered users to prevent recalculation on every render
+  const filteredUsers = useMemo(() => {
+    if (!debouncedSearchTerm && roleFilter === "all") return users;
     
-    const matchesRole = roleFilter === "all" || user.role === roleFilter;
-    
-    return matchesSearch && matchesRole;
-  });
+    return users.filter((user) => {
+      const matchesSearch = !debouncedSearchTerm || 
+        user.email?.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+        user.name?.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+        user.phone?.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
+      
+      const matchesRole = roleFilter === "all" || user.role === roleFilter;
+      
+      return matchesSearch && matchesRole;
+    });
+  }, [users, debouncedSearchTerm, roleFilter]);
 
-  const roleCounts = {
+  // Memoize role counts
+  const roleCounts = useMemo(() => ({
     all: users.length,
     teacher: users.filter((u) => u.role === "teacher").length,
     staff: users.filter((u) => u.role === "staff").length,
     student: users.filter((u) => u.role === "student").length,
-  };
+  }), [users]);
 
   return (
     <AdminLayout>

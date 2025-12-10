@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { getTrainings } from "@/lib/admin";
 import TrainingCard from "@/components/cards/TrainingCard";
 import RegistrationForm from "@/components/forms/RegistrationForm";
@@ -20,19 +20,31 @@ export default function TrainingsPage() {
     loadTrainings();
   }, []);
 
-  const loadTrainings = async () => {
+  const loadTrainings = useCallback(async () => {
     try {
       setLoading(true);
-      const data = await getTrainings();
-      setTrainings(data);
+      // Add timeout wrapper
+      const timeoutPromise = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout')), 10000)
+      );
+      
+      const data = await Promise.race([
+        getTrainings(),
+        timeoutPromise
+      ]);
+      setTrainings(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Failed to load trainings:", error);
+      setTrainings([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const course = selectedCourse ? trainings.find((t) => t.id === selectedCourse) : null;
+  // Memoize course lookup
+  const course = useMemo(() => {
+    return selectedCourse ? trainings.find((t) => t.id === selectedCourse) : null;
+  }, [trainings, selectedCourse]);
 
   return (
     <>

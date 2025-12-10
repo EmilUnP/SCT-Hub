@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { getNews } from "@/lib/admin";
 import NewsCard from "@/components/cards/NewsCard";
 import { formatDate } from "@/lib/utils";
@@ -19,35 +19,53 @@ export default function NewsPage() {
     loadNews();
   }, []);
 
-  const loadNews = async () => {
+  const loadNews = useCallback(async () => {
     try {
       setLoading(true);
-      const data = await getNews();
-      setNews(data);
+      // Add timeout wrapper
+      const timeoutPromise = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout')), 10000)
+      );
+      
+      const data = await Promise.race([
+        getNews(),
+        timeoutPromise
+      ]);
+      setNews(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Failed to load news:", error);
+      setNews([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  // Map category names to translation keys
-  const categoryToKey = (category: string): string => {
+  // Map category names to translation keys - memoized
+  const categoryToKey = useCallback((category: string): string => {
     const mapping: Record<string, string> = {
       "Product Updates": "productUpdates",
       "Tax Updates": "taxUpdates",
       "Events": "events",
     };
     return mapping[category] || category.toLowerCase().replace(/\s+/g, "");
-  };
+  }, []);
 
-  const categories = ["all", ...Array.from(new Set(news.map((item) => item.category)))];
-  const filteredNews =
-    selectedCategory === "all"
+  // Memoize categories to prevent recalculation
+  const categories = useMemo(() => {
+    return ["all", ...Array.from(new Set(news.map((item) => item.category)))];
+  }, [news]);
+
+  // Memoize filtered news
+  const filteredNews = useMemo(() => {
+    return selectedCategory === "all"
       ? news
       : news.filter((item) => item.category === selectedCategory);
+  }, [news, selectedCategory]);
 
-  const currentNews = selectedNews ? news.find((n) => n.id === selectedNews) : null;
+  // Memoize current news
+  const currentNews = useMemo(() => {
+    return selectedNews ? news.find((n) => n.id === selectedNews) : null;
+  }, [news, selectedNews]);
 
   if (loading) {
     return (
