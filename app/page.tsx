@@ -29,14 +29,23 @@ export default function Home() {
     try {
       setLoading(true);
       const [trainingsData, newsData] = await Promise.all([
-        getTrainings(),
-        getNews(),
+        getTrainings().catch((err) => {
+          console.error("Failed to load trainings:", err);
+          return [];
+        }),
+        getNews().catch((err) => {
+          console.error("Failed to load news:", err);
+          return [];
+        }),
       ]);
 
-      setTrainings(trainingsData);
-      setNews(newsData.slice(0, 3)); // Show only latest 3 on homepage
+      setTrainings(Array.isArray(trainingsData) ? trainingsData : []);
+      setNews(Array.isArray(newsData) ? newsData.slice(0, 3) : []); // Show only latest 3 on homepage
     } catch (error) {
       console.error("Failed to load data:", error);
+      // Ensure arrays are set even on error
+      setTrainings([]);
+      setNews([]);
     } finally {
       setLoading(false);
     }
