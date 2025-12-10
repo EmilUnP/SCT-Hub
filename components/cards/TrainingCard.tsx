@@ -1,5 +1,6 @@
 "use client";
 
+import { memo, useCallback } from "react";
 import Image from "next/image";
 import { Clock, User, Calendar, DollarSign } from "lucide-react";
 import { Training } from "@/types";
@@ -11,13 +12,15 @@ interface TrainingCardProps {
   onClick?: (trainingId: string) => void;
 }
 
-export default function TrainingCard({ training, onClick }: TrainingCardProps) {
+function TrainingCard({ training, onClick }: TrainingCardProps) {
   const { t } = useLanguage();
-  const handleClick = () => {
+  
+  // Memoize click handler
+  const handleClick = useCallback(() => {
     if (onClick) {
       onClick(training.id);
     }
-  };
+  }, [onClick, training.id]);
 
   return (
     <div
@@ -30,6 +33,7 @@ export default function TrainingCard({ training, onClick }: TrainingCardProps) {
           alt={training.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
           className="object-cover group-hover:scale-110 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -72,3 +76,6 @@ export default function TrainingCard({ training, onClick }: TrainingCardProps) {
     </div>
   );
 }
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(TrainingCard);

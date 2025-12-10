@@ -1,3 +1,6 @@
+"use client";
+
+import { memo, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { Calendar } from "lucide-react";
 import { News } from "@/types";
@@ -19,13 +22,18 @@ const categoryToKey = (category: string): string => {
   return mapping[category] || category.toLowerCase().replace(/\s+/g, "");
 };
 
-export default function NewsCard({ news, onClick }: NewsCardProps) {
+function NewsCard({ news, onClick }: NewsCardProps) {
   const { t } = useLanguage();
-  const handleClick = () => {
+  
+  // Memoize category key
+  const categoryKey = useMemo(() => categoryToKey(news.category), [news.category]);
+  
+  // Memoize click handler
+  const handleClick = useCallback(() => {
     if (onClick) {
       onClick(news.id);
     }
-  };
+  }, [onClick, news.id]);
 
   return (
     <div
@@ -38,11 +46,12 @@ export default function NewsCard({ news, onClick }: NewsCardProps) {
           alt={news.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
           className="object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
         <span className="absolute top-4 left-4 bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
-          {t(`news.categories.${categoryToKey(news.category)}`) || news.category}
+          {t(`news.categories.${categoryKey}`) || news.category}
         </span>
       </div>
 
@@ -66,3 +75,6 @@ export default function NewsCard({ news, onClick }: NewsCardProps) {
     </div>
   );
 }
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(NewsCard);

@@ -1,5 +1,6 @@
 "use client";
 
+import { memo, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle } from "lucide-react";
@@ -18,23 +19,27 @@ const serviceImages: Record<string, string> = {
   default: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
 };
 
-export default function ServiceCard({ service, onInquiry }: ServiceCardProps) {
+function ServiceCard({ service, onInquiry }: ServiceCardProps) {
   const { t } = useLanguage();
-  const getServiceImage = () => {
+  
+  // Memoize image URL calculation
+  const serviceImage = useMemo(() => {
     const serviceId = service.id.toLowerCase();
     if (serviceId.includes("accounting")) return serviceImages.accounting;
     if (serviceId.includes("hr") || serviceId.includes("human")) return serviceImages.hr;
     if (serviceId.includes("tax")) return serviceImages.tax;
     return serviceImages.default;
-  };
+  }, [service.id]);
 
   return (
     <div className="bg-white rounded-2xl shadow-modern hover:shadow-modern-lg transition-all duration-500 overflow-hidden border border-gray-100/50 group card-hover">
       <div className="relative h-48 overflow-hidden">
         <Image
-          src={getServiceImage()}
+          src={serviceImage}
           alt={service.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
           className="object-cover group-hover:scale-110 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -94,4 +99,7 @@ export default function ServiceCard({ service, onInquiry }: ServiceCardProps) {
     </div>
   );
 }
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(ServiceCard);
 

@@ -1,18 +1,29 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, TrendingUp, Users, Award, Phone } from "lucide-react";
 import { services } from "@/lib/data";
 import { getTrainings, getNews } from "@/lib/admin";
-import ServiceCard from "@/components/cards/ServiceCard";
-import TrainingCard from "@/components/cards/TrainingCard";
-import NewsCard from "@/components/cards/NewsCard";
 import dynamic from "next/dynamic";
 
+// Lazy load modal (doesn't need SSR)
 const InquiryModal = dynamic(() => import("@/components/forms/InquiryModal"), {
-  ssr: false, // Modals don't need SSR
+  ssr: false,
+});
+
+// Lazy load card components (below-the-fold content)
+const ServiceCard = dynamic(() => import("@/components/cards/ServiceCard"), {
+  loading: () => <div className="bg-white rounded-2xl shadow-md h-96 animate-pulse" />,
+});
+
+const TrainingCard = dynamic(() => import("@/components/cards/TrainingCard"), {
+  loading: () => <div className="bg-white rounded-2xl shadow-md h-96 animate-pulse" />,
+});
+
+const NewsCard = dynamic(() => import("@/components/cards/NewsCard"), {
+  loading: () => <div className="bg-white rounded-xl shadow-md h-80 animate-pulse" />,
 });
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Training, News } from "@/types";
@@ -48,17 +59,24 @@ export default function Home() {
     }
   };
 
-  const statistics = {
+  // Memoize statistics to prevent recalculation on every render
+  const statistics = useMemo(() => ({
     clients: 500,
     yearsExperience: 15,
     services: services.length,
     trainings: trainings.length,
-  };
+  }), [trainings.length]);
 
-  const handleInquiry = (serviceId: string) => {
+  // Memoize event handlers to prevent unnecessary re-renders
+  const handleInquiry = useCallback((serviceId: string) => {
     setSelectedService(serviceId);
     setInquiryModalOpen(true);
-  };
+  }, []);
+
+  const handleOpenInquiry = useCallback(() => {
+    setSelectedService("");
+    setInquiryModalOpen(true);
+  }, []);
 
   return (
     <>
@@ -89,10 +107,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => {
-                  setSelectedService("");
-                  setInquiryModalOpen(true);
-                }}
+                onClick={handleOpenInquiry}
                 className="px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
               >
                 {t("home.hero.getStarted")}
