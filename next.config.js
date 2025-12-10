@@ -13,6 +13,8 @@ const nextConfig = {
       },
     ],
   },
+  // Ensure proper routing on Vercel
+  trailingSlash: false,
 }
 
 module.exports = nextConfig
