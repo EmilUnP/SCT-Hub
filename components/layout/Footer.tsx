@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -24,9 +25,11 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               {!logoError && (
-                <img 
+                <Image 
                   src="/logo.png" 
                   alt="STC Hub Logo" 
+                  width={40}
+                  height={40}
                   className="h-10 w-auto"
                   onError={() => setLogoError(true)}
                 />

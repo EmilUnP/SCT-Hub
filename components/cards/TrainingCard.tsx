@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Clock, User, Calendar, DollarSign } from "lucide-react";
 import { Training } from "@/types";
 import { formatDate } from "@/lib/utils";
@@ -24,10 +25,11 @@ export default function TrainingCard({ training, onClick }: TrainingCardProps) {
       className={`bg-white rounded-2xl shadow-modern hover:shadow-modern-lg transition-all duration-500 overflow-hidden border border-gray-100/50 h-full group card-hover ${onClick ? "cursor-pointer" : ""}`}
     >
       <div className="relative h-48 overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
           alt={training.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
         <span className="absolute top-4 left-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-glow backdrop-blur-sm">

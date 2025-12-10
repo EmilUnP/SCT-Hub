@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { CheckCircle, Database, TrendingUp, Users, Package, BarChart, Link as LinkIcon } from "lucide-react";
 import { serpModules } from "@/lib/data";
 import InquiryModal from "@/components/forms/InquiryModal";
@@ -22,10 +23,11 @@ export default function SERPPage() {
     <>
       <section className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20 md:py-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80"
             alt="Business technology and analytics"
-            className="w-full h-full object-cover opacity-20"
+            fill
+            className="object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-600/90 to-primary-800/90"></div>
         </div>
@@ -62,10 +64,11 @@ export default function SERPPage() {
                 </p>
               </div>
               <div className="relative rounded-xl overflow-hidden shadow-xl h-80">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
                   alt="Business analytics dashboard"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-600/30 to-transparent"></div>
               </div>
@@ -141,10 +144,11 @@ export default function SERPPage() {
       {/* Demo Request */}
       <section className="relative py-20 bg-primary-600 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80"
             alt="Technology dashboard"
-            className="w-full h-full object-cover opacity-10"
+            fill
+            className="object-cover opacity-10"
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">

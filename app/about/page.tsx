@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { statistics, teamMembers } from "@/lib/data";
 import { Target, Users, TrendingUp, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -24,10 +25,11 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative rounded-xl overflow-hidden shadow-xl h-96">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
                   alt="Professional team meeting"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-600/30 to-transparent"></div>
               </div>
@@ -137,10 +139,11 @@ export default function AboutPage() {
               return (
                 <div key={member.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center group">
                   <div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full">
-                    <img
+                    <Image
                       src={teamImages[index % teamImages.length]}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-primary-600/20 group-hover:from-primary-400/0 group-hover:to-primary-600/0 transition-all"></div>
                   </div>

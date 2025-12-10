@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ChevronDown, User, Shield } from "lucide-react";
 import { services } from "@/lib/data";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -24,23 +25,17 @@ export default function Header() {
         {/* Main Navigation */}
         <nav className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 transform hover:scale-105">
+          <Link href="/" className="flex items-center hover:opacity-90 transition-all duration-300 transform hover:scale-105">
             {!logoError && (
-              <img 
+              <Image 
                 src="/logo.png" 
                 alt="STC Hub Logo" 
+                width={40}
+                height={40}
                 className="h-10 w-auto"
                 onError={() => setLogoError(true)}
               />
             )}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-              <span className="text-xl font-bold gradient-text-primary">
-                STC Hub
-              </span>
-              <span className="text-xs sm:text-sm text-gray-600 font-medium">
-                — Sinam Training & Consulting
-              </span>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Calendar } from "lucide-react";
 import { News } from "@/types";
 import { formatDate } from "@/lib/utils";
@@ -32,10 +33,11 @@ export default function NewsCard({ news, onClick }: NewsCardProps) {
       className={`bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col group ${onClick ? "cursor-pointer" : ""}`}
     >
       <div className="relative h-48 overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80"
           alt={news.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
         <span className="absolute top-4 left-4 bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">

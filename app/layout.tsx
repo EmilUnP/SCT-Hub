@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "STC Hub — Sinam Training & Consulting",
+  title: "Sinam Training & Consulting",
   description: "Professional accounting, HR, tax services and SERP system integration for businesses",
 };
 

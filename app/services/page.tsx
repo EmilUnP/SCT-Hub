@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { services } from "@/lib/data";
 import InquiryModal from "@/components/forms/InquiryModal";
@@ -76,7 +77,7 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="flex-1 relative rounded-xl overflow-hidden h-80 shadow-lg">
-                  <img
+                  <Image
                     src={
                       service.id.toLowerCase().includes("accounting")
                         ? "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80"
@@ -87,7 +88,8 @@ export default function ServicesPage() {
                         : "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
                     }
                     alt={service.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-transparent"></div>
                 </div>

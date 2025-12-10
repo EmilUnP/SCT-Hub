@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Service } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -30,10 +31,11 @@ export default function ServiceCard({ service, onInquiry }: ServiceCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-modern hover:shadow-modern-lg transition-all duration-500 overflow-hidden border border-gray-100/50 group card-hover">
       <div className="relative h-48 overflow-hidden">
-        <img
+        <Image
           src={getServiceImage()}
           alt={service.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
         {service.serpIntegrated && (

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle, TrendingUp, Users, Award, Phone } from "lucide-react";
 import { services } from "@/lib/data";
 import { getTrainings, getNews } from "@/lib/admin";
@@ -60,10 +61,11 @@ export default function Home() {
       <section className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-24 md:py-32 overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
             alt="Professional business team"
-            className="w-full h-full object-cover opacity-60"
+            fill
+            className="object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-600/50 to-primary-800/60"></div>
         </div>
@@ -212,10 +214,11 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="relative rounded-xl overflow-hidden h-80 md:h-96">
-                  <img
+                  <Image
                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
                     alt="Business analytics and data management"
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-600/20 to-transparent"></div>
                 </div>
@@ -321,10 +324,11 @@ export default function Home() {
       {/* Contact Preview */}
       <section className="relative py-20 bg-primary-600 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80"
             alt="Professional consultation"
-            className="w-full h-full object-cover opacity-10"
+            fill
+            className="object-cover opacity-10"
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
