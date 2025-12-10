@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { updateLastLogin } from "@/lib/profile";
 import type { User as SupabaseUser, Session } from "@supabase/supabase-js";
 
-export type UserRole = "teacher" | "staff" | "student";
+export type UserRole = "teacher" | "staff" | "student" | "guest";
 
 export interface User {
   id: string;
@@ -92,7 +92,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const profileData: Record<string, any> = {
           id: supabaseUser.id,
           email: supabaseUser.email,
-          role: (supabaseUser.user_metadata?.role as UserRole) || "student",
+          role: (supabaseUser.user_metadata?.role as UserRole) || "guest",
         };
 
         if (supabaseUser.user_metadata?.name) {
@@ -120,7 +120,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             id: supabaseUser.id,
             email: supabaseUser.email || "",
             name: newProfile?.name || supabaseUser.user_metadata?.name || supabaseUser.email?.split("@")[0],
-            role: (newProfile?.role as UserRole) || (supabaseUser.user_metadata?.role as UserRole) || "student",
+            role: (newProfile?.role as UserRole) || (supabaseUser.user_metadata?.role as UserRole) || "guest",
             phone: newProfile?.phone || supabaseUser.user_metadata?.phone,
             company: newProfile?.company || supabaseUser.user_metadata?.company,
             // Extended fields from profile
@@ -158,7 +158,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: supabaseUser.id,
         email: supabaseUser.email || "",
         name: profile?.name || supabaseUser.user_metadata?.name || supabaseUser.email?.split("@")[0],
-        role: (profile?.role as UserRole) || (supabaseUser.user_metadata?.role as UserRole) || "student",
+        role: (profile?.role as UserRole) || (supabaseUser.user_metadata?.role as UserRole) || "guest",
         phone: profile?.phone || supabaseUser.user_metadata?.phone,
         company: profile?.company || supabaseUser.user_metadata?.company,
         // Extended fields
@@ -191,7 +191,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: supabaseUser.id,
         email: supabaseUser.email || "",
         name: supabaseUser.user_metadata?.name || supabaseUser.email?.split("@")[0],
-        role: (supabaseUser.user_metadata?.role as UserRole) || "student",
+        role: (supabaseUser.user_metadata?.role as UserRole) || "guest",
         phone: supabaseUser.user_metadata?.phone,
         company: supabaseUser.user_metadata?.company,
       });
@@ -243,7 +243,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       // Only include non-empty values in metadata
       const userMetadata: Record<string, string> = {
-        role: "student",
+        role: "guest",
       };
       
       if (name && name.trim()) {

@@ -191,7 +191,7 @@ export async function getUserById(id: string) {
   return data;
 }
 
-export async function updateUserRole(id: string, role: "teacher" | "staff" | "student") {
+export async function updateUserRole(id: string, role: "teacher" | "staff" | "student" | "guest") {
   const { data, error } = await supabase
     .from("profiles")
     .update({ role })

@@ -77,7 +77,7 @@ export interface UserProfile {
   name?: string;
   phone?: string;
   company?: string;
-  role?: "teacher" | "staff" | "student";
+  role?: "teacher" | "staff" | "student" | "guest";
   // Personal Information
   address?: string;
   city?: string;

@@ -42,8 +42,14 @@
     "goBack": "Geri Qayıt"
   },
   "profile": {
-    "title": "Müəllim Paneli",
+    "title": "Profilim",
+    "titleTeacher": "Müəllim Paneli",
+    "titleStaff": "İşçi Paneli",
+    "titleStudent": "Tələbə Paneli",
     "subtitle": "Siniflərinizi, tələbələrinizi, qeydlərinizi və sənədlərinizi idarə edin",
+    "subtitleStudent": "Profilinizi və hesab məlumatlarınızı görüntüləyin",
+    "welcomeStudent": "Xoş gəlmisiniz, Tələbə!",
+    "studentMessage": "Siz tələbə kimi qeydiyyatdan keçmisiniz. Məlumatlarınızı yeniləmək üçün Profil Məlumatları bölməsindən istifadə edin.",
     "user": "İstifadəçi",
     "edit": "Redaktə et",
     "save": "Saxla",

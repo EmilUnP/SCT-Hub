@@ -184,21 +184,21 @@ export const serpModules: SERPModule[] = [
 export const teamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "John Smith",
+    name: "Emil Babayev",
     role: "CEO & Founder",
-    bio: "20+ years of experience in accounting and business consulting",
+    bio: "20+ years of experience in accounting and business consulting. Expert in business development in Azerbaijan",
   },
   {
     id: "2",
-    name: "Sarah Johnson",
+    name: "Leyla Məmmədova",
     role: "Head of Accounting",
-    bio: "CPA with expertise in financial management and SERP systems",
+    bio: "Expert in financial management and SERP systems. Extensive experience in financial services in Baku",
   },
   {
     id: "3",
-    name: "Michael Chen",
+    name: "Rəşad Həsənov",
     role: "HR Director",
-    bio: "HR professional specializing in outsourcing and compliance",
+    bio: "HR professional specializing in outsourcing and compliance. Consultant for Azerbaijan job market",
   },
 ];
 

@@ -42,8 +42,14 @@
     "goBack": "Go Back"
   },
   "profile": {
-    "title": "Teacher Dashboard",
+    "title": "My Profile",
+    "titleTeacher": "Teacher Dashboard",
+    "titleStaff": "Staff Dashboard",
+    "titleStudent": "Student Dashboard",
     "subtitle": "Manage your classes, students, notes, and documents",
+    "subtitleStudent": "View your profile and account information",
+    "welcomeStudent": "Welcome, Student!",
+    "studentMessage": "You are registered as a student. Use the Profile Info tab to update your information.",
     "user": "User",
     "edit": "Edit",
     "save": "Save",

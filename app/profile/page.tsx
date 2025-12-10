@@ -28,7 +28,7 @@ export default function ProfilePage() {
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && (user?.role === "teacher" || user?.role === "staff")) {
       const notes = JSON.parse(localStorage.getItem("teacher_notes") || "[]");
       const documents = JSON.parse(localStorage.getItem("teacher_documents") || "[]");
       const classes = JSON.parse(localStorage.getItem("teacher_classes") || "[]");
@@ -40,8 +40,16 @@ export default function ProfilePage() {
         classes: classes.length,
         students: students.length,
       });
+    } else {
+      // For students, set all stats to 0
+      setStats({
+        notes: 0,
+        documents: 0,
+        classes: 0,
+        students: 0,
+      });
     }
-  }, [activeTab]);
+  }, [activeTab, user?.role]);
 
   const handleLogout = () => {
     logout();
@@ -83,14 +91,48 @@ export default function ProfilePage() {
     );
   }
 
-  const tabs = [
-    { id: "overview" as TabType, label: t("profile.tabs.overview") || "Overview", icon: User },
-    { id: "info" as TabType, label: t("profile.tabs.info") || "Profile Info", icon: Settings },
-    { id: "notes" as TabType, label: t("profile.tabs.notes") || "Notes", icon: FileText },
-    { id: "documents" as TabType, label: t("profile.tabs.documents") || "Documents", icon: File },
-    { id: "classes" as TabType, label: t("profile.tabs.classes") || "Classes", icon: BookOpen },
-    { id: "students" as TabType, label: t("profile.tabs.students") || "Students", icon: GraduationCap },
+  // Block guest users from accessing profile
+  if (user.role === "guest") {
+    return (
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-md mx-auto text-center bg-white rounded-2xl shadow-modern-lg p-8">
+            <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <User className="w-10 h-10 text-yellow-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">{t("profile.guest.title") || "Guest Account"}</h2>
+            <p className="text-gray-600 mb-6 text-lg">
+              {t("profile.guest.message") || "Your account is pending approval. An administrator needs to assign you a role (Student, Staff, or Teacher) before you can access your profile."}
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              {t("profile.guest.contact") || "Please contact an administrator to get your role assigned."}
+            </p>
+            <button
+              onClick={handleLogout}
+              className="btn-modern"
+            >
+              {t("profile.logout")}
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Define tabs based on user role
+  const allTabs = [
+    { id: "overview" as TabType, label: t("profile.tabs.overview") || "Overview", icon: User, roles: ["teacher", "staff", "student"] },
+    { id: "info" as TabType, label: t("profile.tabs.info") || "Profile Info", icon: Settings, roles: ["teacher", "staff", "student"] },
+    { id: "notes" as TabType, label: t("profile.tabs.notes") || "Notes", icon: FileText, roles: ["teacher", "staff"] },
+    { id: "documents" as TabType, label: t("profile.tabs.documents") || "Documents", icon: File, roles: ["teacher", "staff"] },
+    { id: "classes" as TabType, label: t("profile.tabs.classes") || "Classes", icon: BookOpen, roles: ["teacher", "staff"] },
+    { id: "students" as TabType, label: t("profile.tabs.students") || "Students", icon: GraduationCap, roles: ["teacher"] },
   ];
+
+  // Filter tabs based on user role (exclude guest)
+  const tabs = allTabs.filter(tab => 
+    user?.role && tab.roles.includes(user.role)
+  );
 
   return (
     <>
@@ -101,8 +143,22 @@ export default function ProfilePage() {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in">{t("profile.title")}</h1>
-          <p className="text-xl md:text-2xl text-primary-100 animate-fade-in-delay">{t("profile.subtitle")}</p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in">
+            {user?.role === "teacher" 
+              ? t("profile.titleTeacher") 
+              : user?.role === "staff" 
+              ? t("profile.titleStaff") 
+              : user?.role === "student"
+              ? t("profile.titleStudent")
+              : t("profile.title")}
+          </h1>
+          <p className="text-xl md:text-2xl text-primary-100 animate-fade-in-delay">
+            {user?.role === "student" 
+              ? t("profile.subtitleStudent") 
+              : user?.role === "guest"
+              ? t("profile.guest.subtitle") || ""
+              : t("profile.subtitle")}
+          </p>
         </div>
       </section>
 
@@ -219,9 +275,14 @@ export default function ProfilePage() {
                 <div className="space-y-8 animate-fade-in">
                   <div>
                     <h3 className="text-3xl font-bold text-gray-900 mb-2">{t("profile.overview.title")}</h3>
-                    <p className="text-gray-600">Welcome to your dashboard overview</p>
+                    <p className="text-gray-600">
+                      {user?.role === "student" 
+                        ? "Welcome to your student dashboard" 
+                        : "Welcome to your dashboard overview"}
+                    </p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {(user?.role === "teacher" || user?.role === "staff") && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl p-6 border border-blue-200/50 hover:shadow-modern-lg transition-all duration-500 group card-hover">
                       <div className="flex items-center justify-between mb-4">
                         <div className="p-3 bg-blue-500/20 rounded-xl group-hover:bg-blue-500/30 transition-colors">
@@ -259,6 +320,15 @@ export default function ProfilePage() {
                       <p className="text-gray-700 font-semibold">{t("profile.overview.students")}</p>
                     </div>
                   </div>
+                  )}
+                  {user?.role === "student" && (
+                    <div className="bg-gradient-to-br from-primary-50 to-primary-100/50 rounded-2xl p-8 border border-primary-200/50 text-center">
+                      <h4 className="text-2xl font-bold text-gray-900 mb-4">{t("profile.welcomeStudent") || "Welcome, Student!"}</h4>
+                      <p className="text-gray-700 mb-6">
+                        {t("profile.studentMessage") || "You are registered as a student. Use the Profile Info tab to update your information."}
+                      </p>
+                    </div>
+                  )}
                   <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200/50">
                     <h4 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                       <Settings className="w-5 h-5 text-primary-600" />
@@ -312,10 +382,10 @@ export default function ProfilePage() {
                 </div>
               )}
 
-              {activeTab === "notes" && <NotesSection />}
-              {activeTab === "documents" && <DocumentsSection />}
-              {activeTab === "classes" && <ClassesSection />}
-              {activeTab === "students" && <StudentsSection />}
+              {activeTab === "notes" && (user?.role === "teacher" || user?.role === "staff") && <NotesSection />}
+              {activeTab === "documents" && (user?.role === "teacher" || user?.role === "staff") && <DocumentsSection />}
+              {activeTab === "classes" && (user?.role === "teacher" || user?.role === "staff") && <ClassesSection />}
+              {activeTab === "students" && user?.role === "teacher" && <StudentsSection />}
             </div>
           </div>
         </div>

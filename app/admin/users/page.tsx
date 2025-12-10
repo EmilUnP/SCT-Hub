@@ -98,6 +98,8 @@ export default function AdminUsersPage() {
         return <UserCheck className="w-4 h-4" />;
       case "student":
         return <GraduationCap className="w-4 h-4" />;
+      case "guest":
+        return <Users className="w-4 h-4" />;
       default:
         return <Users className="w-4 h-4" />;
     }
@@ -125,6 +127,7 @@ export default function AdminUsersPage() {
     teacher: users.filter((u) => u.role === "teacher").length,
     staff: users.filter((u) => u.role === "staff").length,
     student: users.filter((u) => u.role === "student").length,
+    guest: users.filter((u) => u.role === "guest" || !u.role).length,
   }), [users]);
 
   return (
@@ -139,7 +142,7 @@ export default function AdminUsersPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
           <div className="bg-white rounded-lg shadow p-4">
             <div className="text-sm text-gray-600 mb-1">Total Users</div>
             <div className="text-2xl font-bold text-gray-900">{roleCounts.all}</div>
@@ -155,6 +158,10 @@ export default function AdminUsersPage() {
           <div className="bg-white rounded-lg shadow p-4">
             <div className="text-sm text-gray-600 mb-1">Students</div>
             <div className="text-2xl font-bold text-green-600">{roleCounts.student}</div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4">
+            <div className="text-sm text-gray-600 mb-1">Guests</div>
+            <div className="text-2xl font-bold text-yellow-600">{roleCounts.guest}</div>
           </div>
         </div>
 
@@ -275,7 +282,7 @@ export default function AdminUsersPage() {
                             )}`}
                           >
                             {getRoleIcon(user.role)}
-                            {user.role || "student"}
+                            {user.role || "guest"}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -289,7 +296,7 @@ export default function AdminUsersPage() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <select
-                            value={user.role || "student"}
+                            value={user.role || "guest"}
                             onChange={(e) =>
                               handleRoleChange(user.id, e.target.value as UserRole)
                             }
