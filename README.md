@@ -21,12 +21,6 @@ A modern, professional portal for STC Hub — Sinam Training & Consulting showca
 
 1. Create a `.env.local` file in the root directory:
 
-```bash
-# Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=https://vinbdgvmijczcunvkjde.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_3XpWDm7VwOHAkjfZKpIaEw_FE-z88jJ
-```
-
 2. Install dependencies:
 
 ```bash
