@@ -73,23 +73,55 @@ The following database schema has been set up in your Supabase project:
 - Verify RLS policies are correctly set up
 - Check browser console for database errors
 
+### "new row violates row-level security policy" error
+This error occurs when trying to create a profile during user registration. The RLS policy is blocking the insert operation.
+
+**Solution**: Run the SQL script provided in `supabase_fix_rls.sql`:
+
+1. Go to your Supabase Dashboard: https://supabase.com/dashboard
+2. Select your project
+3. Navigate to **SQL Editor** → **New query**
+4. Open the file `supabase_fix_rls.sql` in your project root
+5. Copy and paste the SQL into the editor
+6. **Choose one of the two options**:
+   - **Option 1 (Recommended)**: Add an RLS policy that allows users to insert their own profile
+   - **Option 2**: Use a database trigger to automatically create profiles (more automatic)
+7. Run the selected option
+8. The profile creation should now work during registration
+
+**Note**: If you choose Option 2 (database trigger), profiles will be created automatically and you can remove the profile creation code from your application.
+
 ### "Email address is invalid" error
 This error occurs when Supabase rejects an email address that appears valid. Common causes:
 
 1. **Email Domain Restrictions**: Supabase may have domain restrictions configured
-   - Go to your Supabase Dashboard → Authentication → Settings
-   - Check "Site URL" and "Redirect URLs" settings
-   - Look for any "Email Domain Restrictions" or "Allowed Email Domains" settings
-   - If present, add your email domain (e.g., `mail.ru`) to the allowed list
+   - Go to your Supabase Dashboard: https://supabase.com/dashboard
+   - Select your project
+   - Navigate to **Authentication** → **Settings** (or **Providers** → **Email**)
+   - Look for **"Email Domain Restrictions"** or **"Allowed Email Domains"** settings
+   - If you see domain restrictions, you have two options:
+     - **Option A**: Add your domain (e.g., `mail.ru`) to the allowed list
+     - **Option B**: Remove domain restrictions entirely (for development/testing)
+   - **Note**: Some Supabase projects may have email validation rules that block certain domains by default
 
 2. **Disposable Email Blocking**: Some email providers may be blocked
-   - Check Authentication → Settings → "Email Templates"
+   - Check Authentication → Settings → **"Email Templates"** or **"Email Auth"**
    - Look for any email validation or blocking rules
+   - Disable disposable email blocking if needed for testing
 
-3. **Solution**: Try using a different email address (like Gmail, Outlook, etc.) to test if it's domain-specific
+3. **Quick Solution for Testing**: 
+   - Use a Gmail, Outlook, or other common email provider for testing
+   - These domains are typically allowed by default
 
-4. **If you need to allow specific domains**:
-   - In Supabase Dashboard, go to Authentication → Settings
-   - Check if there's an "Allowed Email Domains" or "Blocked Email Domains" setting
-   - If your project has domain restrictions, contact your Supabase project administrator
+4. **To Allow Specific Domains (e.g., mail.ru)**:
+   - In Supabase Dashboard → Authentication → Settings
+   - Find **"Email Domain Allowlist"** or similar setting
+   - Add `mail.ru` (or your domain) to the allowed domains list
+   - Save the changes
+   - The change takes effect immediately
+
+5. **If domain restrictions are not visible**:
+   - Your Supabase project might be using default email validation
+   - Contact Supabase support or check if there are custom email validation rules
+   - Alternatively, use a different email provider for registration
 

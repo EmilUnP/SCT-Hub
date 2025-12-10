@@ -179,3 +179,37 @@ export async function deleteService(id: string) {
   if (error) throw error;
 }
 
+// User management operations
+export async function getUsers() {
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("*")
+    .order("created_at", { ascending: false });
+  
+  if (error) throw error;
+  return data;
+}
+
+export async function getUserById(id: string) {
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", id)
+    .single();
+  
+  if (error) throw error;
+  return data;
+}
+
+export async function updateUserRole(id: string, role: "teacher" | "staff" | "student") {
+  const { data, error } = await supabase
+    .from("profiles")
+    .update({ role })
+    .eq("id", id)
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
+}
+

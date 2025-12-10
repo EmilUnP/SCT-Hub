@@ -86,8 +86,71 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .eq("id", supabaseUser.id)
         .single();
 
-      if (error && error.code !== "PGRST116") {
-        // PGRST116 is "not found" - we'll create profile on first login
+      // If profile doesn't exist, try to create it
+      if (error && error.code === "PGRST116") {
+        // Profile not found - create it with data from user_metadata
+        const profileData: Record<string, any> = {
+          id: supabaseUser.id,
+          email: supabaseUser.email,
+          role: (supabaseUser.user_metadata?.role as UserRole) || "student",
+        };
+
+        if (supabaseUser.user_metadata?.name) {
+          profileData.name = supabaseUser.user_metadata.name;
+        }
+        if (supabaseUser.user_metadata?.phone) {
+          profileData.phone = supabaseUser.user_metadata.phone;
+        }
+        if (supabaseUser.user_metadata?.company) {
+          profileData.company = supabaseUser.user_metadata.company;
+        }
+
+        const { data: newProfile, error: createError } = await supabase
+          .from("profiles")
+          .insert(profileData)
+          .select()
+          .single();
+
+        if (createError) {
+          console.error("Error creating profile on first login:", createError);
+          // Continue with user_metadata if profile creation fails
+        } else {
+          // Use the newly created profile
+          const userData: User = {
+            id: supabaseUser.id,
+            email: supabaseUser.email || "",
+            name: newProfile?.name || supabaseUser.user_metadata?.name || supabaseUser.email?.split("@")[0],
+            role: (newProfile?.role as UserRole) || (supabaseUser.user_metadata?.role as UserRole) || "student",
+            phone: newProfile?.phone || supabaseUser.user_metadata?.phone,
+            company: newProfile?.company || supabaseUser.user_metadata?.company,
+            // Extended fields from profile
+            address: newProfile?.address,
+            city: newProfile?.city,
+            country: newProfile?.country,
+            postal_code: newProfile?.postal_code,
+            bio: newProfile?.bio,
+            avatar_url: newProfile?.avatar_url,
+            position: newProfile?.position,
+            department: newProfile?.department,
+            specialization: newProfile?.specialization,
+            business_name: newProfile?.business_name,
+            business_type: newProfile?.business_type,
+            business_registration: newProfile?.business_registration,
+            tax_id: newProfile?.tax_id,
+            website: newProfile?.website,
+            linkedin: newProfile?.linkedin,
+            status: newProfile?.status,
+            created_at: newProfile?.created_at,
+            updated_at: newProfile?.updated_at,
+            last_login: newProfile?.last_login,
+          };
+
+          setUser(userData);
+          setIsLoading(false);
+          return;
+        }
+      } else if (error) {
+        // Other error loading profile
         console.error("Error loading profile:", error);
       }
 
@@ -206,25 +269,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { error: error as Error };
       }
 
-      // Create profile in database if user was created
-      if (data.user) {
-        const profileData: Record<string, any> = {
-          id: data.user.id,
-          email: data.user.email,
-          role: "student",
-        };
-
-        if (name && name.trim()) profileData.name = name.trim();
-        if (phone && phone.trim()) profileData.phone = phone.trim();
-        if (company && company.trim()) profileData.company = company.trim();
-
-        const { error: profileError } = await supabase.from("profiles").insert(profileData);
-
-        if (profileError) {
-          console.error("Error creating profile:", profileError);
-          // Don't fail registration if profile creation fails - user is already created
-        }
-      }
+      // Profile will be created automatically via database trigger or on first login
+      // We don't create it here to avoid RLS policy issues during signup
+      // The profile will be created when the user first logs in (see loadUserProfile)
 
       return { error: null };
     } catch (error) {

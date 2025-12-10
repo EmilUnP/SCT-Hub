@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import AdminLayout from "@/components/admin/AdminLayout";
-import { getNews, getTrainings, getServices } from "@/lib/admin";
-import { Newspaper, GraduationCap, Briefcase, TrendingUp } from "lucide-react";
+import { getNews, getTrainings, getServices, getUsers } from "@/lib/admin";
+import { Newspaper, GraduationCap, Briefcase, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function AdminDashboard() {
@@ -11,22 +11,25 @@ export default function AdminDashboard() {
     news: 0,
     trainings: 0,
     services: 0,
+    users: 0,
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadStats() {
       try {
-        const [newsData, trainingsData, servicesData] = await Promise.all([
+        const [newsData, trainingsData, servicesData, usersData] = await Promise.all([
           getNews(),
           getTrainings(),
           getServices(),
+          getUsers(),
         ]);
 
         setStats({
           news: newsData.length,
           trainings: trainingsData.length,
           services: servicesData.length,
+          users: usersData.length,
         });
       } catch (error) {
         console.error("Error loading stats:", error);
@@ -49,7 +52,7 @@ export default function AdminDashboard() {
         {loading ? (
           <div className="text-center py-12">Loading...</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <Link href="/admin/news">
               <div className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition cursor-pointer">
                 <div className="flex items-center justify-between mb-4">
@@ -80,6 +83,17 @@ export default function AdminDashboard() {
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">Services</h3>
                 <p className="text-sm text-gray-500">Manage services offered</p>
+              </div>
+            </Link>
+
+            <Link href="/admin/users">
+              <div className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition cursor-pointer">
+                <div className="flex items-center justify-between mb-4">
+                  <Users className="w-12 h-12 text-orange-600" />
+                  <span className="text-3xl font-bold text-gray-900">{stats.users}</span>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">Users</h3>
+                <p className="text-sm text-gray-500">Manage user roles</p>
               </div>
             </Link>
           </div>

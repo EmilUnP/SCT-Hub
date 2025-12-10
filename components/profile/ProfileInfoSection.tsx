@@ -173,10 +173,45 @@ export default function ProfileInfoSection() {
               <Shield className="w-4 h-4 inline mr-2" />
               Role
             </label>
-            <div className="px-4 py-2 bg-gray-50 rounded-lg text-gray-900">
-              <span className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold">
-                {user.role || "student"}
-              </span>
+            <div className="px-4 py-2 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                  user.role === "teacher" 
+                    ? "bg-purple-100 text-purple-700" 
+                    : user.role === "staff"
+                    ? "bg-blue-100 text-blue-700"
+                    : "bg-green-100 text-green-700"
+                }`}>
+                  {user.role === "teacher" ? "👨‍🏫 Teacher" : user.role === "staff" ? "👔 Staff" : "🎓 Student"}
+                </span>
+              </div>
+              {user.role === "student" && (
+                <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-xs text-blue-800 mb-2">
+                    <strong>Want to access the admin panel?</strong>
+                  </p>
+                  <p className="text-xs text-blue-700 mb-2">
+                    To change your role to <strong>Teacher</strong> or <strong>Staff</strong>, you need to:
+                  </p>
+                  <ol className="text-xs text-blue-700 list-decimal list-inside space-y-1 mb-2">
+                    <li>Ask an existing admin to update your role in the admin panel</li>
+                    <li>Or update it manually in Supabase Dashboard</li>
+                  </ol>
+                  <p className="text-xs text-blue-600">
+                    See <strong>ADMIN_SETUP.md</strong> for detailed instructions.
+                  </p>
+                </div>
+              )}
+              {user.role === "teacher" && (
+                <p className="text-xs text-gray-600 mt-2">
+                  ✓ You have full admin access to manage content and users
+                </p>
+              )}
+              {user.role === "staff" && (
+                <p className="text-xs text-gray-600 mt-2">
+                  ✓ You have staff access (limited admin privileges)
+                </p>
+              )}
             </div>
           </div>
         </div>

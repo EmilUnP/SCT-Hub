@@ -10,7 +10,8 @@ import {
   GraduationCap, 
   Briefcase, 
   LogOut,
-  Shield
+  Shield,
+  Users
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -93,6 +94,13 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             >
               <Briefcase className="w-5 h-5" />
               <span>Services</span>
+            </Link>
+            <Link
+              href="/admin/users"
+              className="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 transition"
+            >
+              <Users className="w-5 h-5" />
+              <span>Users</span>
             </Link>
           </nav>
         </div>

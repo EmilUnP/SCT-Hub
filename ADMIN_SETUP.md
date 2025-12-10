@@ -1,5 +1,15 @@
 # How to Set Up Admin Access
 
+This guide explains how to set up admin access and manage user roles in the SCT Hub application.
+
+## Understanding User Roles
+
+The application has three user roles:
+
+- **Student** (default): Regular users who can view content and manage their profile
+- **Staff**: Staff members with limited admin privileges
+- **Teacher**: Full admin access to manage content, users, and all features
+
 ## Step 1: Register a User Account
 
 1. **Start your development server** (if not already running):
@@ -37,9 +47,21 @@
 
 ## Step 3: Make Your User an Admin
 
-To access the admin panel, you need to change your user role to `teacher`. You have two options:
+To access the admin panel, you need to change your user role to `teacher`. You have **three options**:
 
-### Option A: Using Supabase Dashboard (Recommended)
+### Option 1: Using Admin Panel (Recommended - If you already have an admin)
+
+If you already have a user with `teacher` role:
+
+1. **Ask the existing admin** to log in and go to `/admin/users`
+2. **Find your user** in the user management table
+3. **Change your role** from the dropdown menu to `teacher`
+4. **Logout and login again** to refresh your session
+5. You should now see the Shield icon (🛡️) in the header
+
+### Option 2: Using Supabase Dashboard (Manual Method)
+
+### Option A: Using Supabase Dashboard
 
 1. **Go to your Supabase Dashboard**:
    - Visit: https://supabase.com/dashboard
@@ -58,7 +80,7 @@ To access the admin panel, you need to change your user role to `teacher`. You h
    - Change it from `student` to `teacher`
    - Click "Save" or press Enter
 
-### Option B: Using SQL Editor in Supabase
+### Option B: Using SQL Editor in Supabase (Quick Method)
 
 1. **Go to your Supabase Dashboard**:
    - Visit: https://supabase.com/dashboard
@@ -146,7 +168,29 @@ Once you have admin access, you can:
 - **Manage News**: Create, edit, and delete news articles
 - **Manage Trainings**: Add and update training courses
 - **Manage Services**: Configure services and their features
-- **View Statistics**: See counts of all content items
+- **Manage Users**: Change user roles (Student, Staff, Teacher) from the admin panel
+- **View Statistics**: See counts of all content items and users
 
 All changes you make will immediately appear on the frontend pages!
+
+## Managing User Roles
+
+### For Admins (Teachers)
+
+1. **Go to Admin Panel** → **Users** (`/admin/users`)
+2. **Find the user** you want to update (use search or filters)
+3. **Select a new role** from the dropdown menu:
+   - **Student**: Regular user (default)
+   - **Staff**: Limited admin access
+   - **Teacher**: Full admin access
+4. **The change takes effect immediately** (user needs to logout/login to see changes)
+
+### For Regular Users
+
+If you're a student and want to become a teacher or staff:
+
+1. **Ask an existing admin** to update your role in the admin panel
+2. **Or follow Option 2/3** in Step 3 above to update it manually in Supabase
+3. **Logout and login again** to refresh your session
+4. You'll see the Shield icon (🛡️) in the header if you're a teacher
 

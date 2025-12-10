@@ -79,7 +79,9 @@ export default function RegisterPage() {
         if (error.message?.includes("already registered") || error.message?.includes("already exists")) {
           errorMsg = "This email is already registered. Please try logging in instead.";
         } else if (error.message?.includes("invalid email") || error.message?.includes("Email address")) {
-          errorMsg = "This email address is not accepted. Please try a different email address or contact support if you believe this is an error.";
+          // Extract domain from email for more specific error message
+          const emailDomain = formData.email.split("@")[1];
+          errorMsg = `The email domain "${emailDomain}" is not currently allowed. Please use a different email address (e.g., Gmail, Outlook) or contact support to request domain access.`;
         } else if (error.message?.includes("password")) {
           errorMsg = "Password does not meet requirements. Please use a stronger password.";
         } else if (error.message?.includes("blocked") || error.message?.includes("domain")) {
