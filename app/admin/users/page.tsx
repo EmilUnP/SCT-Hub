@@ -30,18 +30,13 @@ export default function AdminUsersPage() {
     try {
       setLoading(true);
       setError("");
-      // Add timeout wrapper
-      const timeoutPromise = new Promise<never>((_, reject) => 
-        setTimeout(() => reject(new Error('Request timeout')), 10000)
-      );
-      
-      const data = await Promise.race([
-        getUsers(),
-        timeoutPromise
-      ]);
+      // getUsers now handles errors gracefully and returns empty array
+      const data = await getUsers();
+      console.log("Users loaded:", data?.length || 0, "users");
       setUsers(Array.isArray(data) ? data : []);
     } catch (err: any) {
       setError(err.message || "Failed to load users");
+      console.error("Error loading users:", err);
       setUsers([]);
     } finally {
       setLoading(false);

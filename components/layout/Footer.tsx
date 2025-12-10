@@ -135,16 +135,15 @@ export default function Footer() {
                   <MapPin className="w-4 h-4 flex-shrink-0" />
                 </div>
                 <span className="text-gray-300 group-hover:text-white transition-colors leading-relaxed">
-                  123 Business Street<br />
-                  City, State 12345
+                  Baku, Azerbaijan
                 </span>
               </li>
               <li>
-                <a href="tel:+1234567890" className="flex items-center gap-3 text-gray-300 hover:text-white transition-all duration-300 group">
+                <a href="tel:+994501234567" className="flex items-center gap-3 text-gray-300 hover:text-white transition-all duration-300 group">
                   <div className="p-2 rounded-lg bg-white/10 group-hover:bg-primary-600 transition-all duration-300">
                     <Phone className="w-4 h-4" />
                   </div>
-                  <span className="group-hover:translate-x-1 transition-transform">+1 (234) 567-890</span>
+                  <span className="group-hover:translate-x-1 transition-transform">+994 (50) 1234567</span>
                 </a>
               </li>
               <li>

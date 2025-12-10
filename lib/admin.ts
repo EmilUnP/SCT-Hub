@@ -151,14 +151,33 @@ export async function deleteTraining(id: string) {
 
 // User management operations
 export async function getUsers() {
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("id, email, name, role, phone, company, created_at, updated_at, last_login")
-    .order("created_at", { ascending: false })
-    .limit(100); // Limit results for performance
-  
-  if (error) throw error;
-  return data || [];
+  try {
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, email, name, role, phone, company, created_at, updated_at, last_login")
+      .order("created_at", { ascending: false })
+      .limit(100); // Limit results for performance
+    
+    if (error) {
+      console.error("Supabase error in getUsers:", {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      throw error;
+    }
+    
+    // Ensure we always return an array
+    const result = Array.isArray(data) ? data : [];
+    console.log("getUsers returned:", result.length, "users");
+    return result;
+  } catch (error) {
+    console.error("Error in getUsers function:", error);
+    // Return empty array instead of throwing to prevent UI crashes
+    // The error is already logged above
+    return [];
+  }
 }
 
 export async function getUserById(id: string) {

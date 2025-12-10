@@ -120,7 +120,7 @@
       "emailLabel": "Email",
       "emailPlaceholder": "student@example.com",
       "phoneLabel": "Phone",
-      "phonePlaceholder": "+1 (234) 567-8900",
+      "phonePlaceholder": "+994 (50) 1234567",
       "classLabel": "Class",
       "selectClass": "Select a class",
       "notesLabel": "Notes",
@@ -131,7 +131,7 @@
   },
   "header": {
     "title": "STC Hub — Sinam Training & Consulting",
-    "phone": "+1 (234) 567-890",
+    "phone": "+994 (50) 1234567",
     "email": "info@stchub.com"
   },
   "footer": {
@@ -141,7 +141,7 @@
     "services": "Services",
     "contact": "Contact",
     "allRightsReserved": "All rights reserved.",
-    "address": "123 Business Street\nCity, State 12345",
+    "address": "Baku, Azerbaijan",
     "businessHours": "Business Hours",
     "mondayFriday": "Monday - Friday",
     "saturday": "Saturday",

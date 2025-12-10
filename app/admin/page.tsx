@@ -43,7 +43,7 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-          <p className="text-gray-600">Manage your content and services</p>
+          <p className="text-gray-600">Manage your content and users</p>
         </div>
 
         {loading ? (

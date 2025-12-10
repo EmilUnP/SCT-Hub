@@ -97,10 +97,10 @@ The admin panel provides full CRUD (Create, Read, Update, Delete) operations for
   - Set duration, price, trainer, and dates
   - Organize by categories
 
-- **Services Management** (`/admin/services`)
-  - Manage service offerings
-  - Configure features and SERP integration
-  - Organize by service categories
+- **User Management** (`/admin/users`)
+  - View all users
+  - Manage user roles (teacher, staff, student)
+  - Update user permissions
 
 ### Setting Up Admin Access
 
@@ -123,13 +123,16 @@ WHERE email = 'admin@example.com';
 
 The admin panel manages the following tables:
 
+- **profiles** - User profiles and authentication data
 - **news** - News articles and updates
 - **trainings** - Training courses and workshops
-- **services** - Service offerings and features
+
+**Note:** Services are hardcoded in `lib/data.ts` and are not stored in the database.
 
 All tables have Row Level Security (RLS) enabled:
-- Public read access for all content
-- Admin-only write access (users with `teacher` role)
+- Public read access for news and trainings
+- Users can view/update their own profile
+- Admin-only write access (users with `teacher` role) for all content
 
 ## Project Structure
 

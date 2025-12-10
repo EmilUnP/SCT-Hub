@@ -35,9 +35,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">{t("contact.address")}</h3>
                     <p className="text-gray-600">
-                      123 Business Street<br />
-                      City, State 12345<br />
-                      United States
+                      Baku, Azerbaijan
                     </p>
                   </div>
                 </div>
@@ -49,10 +47,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">{t("contact.phone")}</h3>
                     <a
-                      href="tel:+1234567890"
+                      href="tel:+994501234567"
                       className="text-primary-600 hover:text-primary-700"
                     >
-                      +1 (234) 567-890
+                      +994 (50) 1234567
                     </a>
                   </div>
                 </div>
@@ -108,7 +106,7 @@ export default function ContactPage() {
               <MapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-600">{t("contact.map.placeholder")}</p>
               <p className="text-sm text-gray-500 mt-2">
-                123 Business Street, City, State 12345
+                Baku, Azerbaijan
               </p>
             </div>
           </div>

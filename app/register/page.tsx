@@ -13,10 +13,8 @@ export default function RegisterPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
     password: "",
     confirmPassword: "",
-    company: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -56,19 +54,11 @@ export default function RegisterPage() {
       return;
     }
 
-    if (!formData.phone.trim()) {
-      setErrorMessage("Phone number is required");
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
       const { error } = await signUp(
         formData.email.trim(),
         formData.password,
-        formData.name.trim() || undefined,
-        formData.phone.trim() || undefined,
-        formData.company.trim() || undefined
+        formData.name.trim() || undefined
       );
 
       if (error) {
@@ -189,38 +179,6 @@ export default function RegisterPage() {
                       name="email"
                       required
                       value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t("register.phone")} *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="company"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      {t("register.companyName")}
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
                       onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
