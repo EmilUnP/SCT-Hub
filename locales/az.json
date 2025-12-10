@@ -35,6 +35,12 @@
     "edit": "Redaktə et",
     "download": "Yüklə"
   },
+  "notFound": {
+    "title": "Səhifə Tapılmadı",
+    "description": "Axtardığınız səhifə mövcud deyil və ya köçürülüb.",
+    "goHome": "Ana Səhifəyə Qayıt",
+    "goBack": "Geri Qayıt"
+  },
   "profile": {
     "title": "Müəllim Paneli",
     "subtitle": "Siniflərinizi, tələbələrinizi, qeydlərinizi və sənədlərinizi idarə edin",

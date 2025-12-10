@@ -35,6 +35,12 @@
     "edit": "Edit",
     "download": "Download"
   },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home",
+    "goBack": "Go Back"
+  },
   "profile": {
     "title": "Teacher Dashboard",
     "subtitle": "Manage your classes, students, notes, and documents",
