@@ -5,11 +5,12 @@ import type { News, Training } from "@/types";
 export async function getNews() {
   const { data, error } = await supabase
     .from("news")
-    .select("*")
-    .order("date", { ascending: false });
+    .select("id, title, excerpt, content, category, date, image, created_at, updated_at")
+    .order("date", { ascending: false })
+    .limit(100); // Limit results for performance
   
   if (error) throw error;
-  return data;
+  return data || [];
 }
 
 export async function getNewsById(id: string) {
@@ -59,11 +60,12 @@ export async function deleteNews(id: string) {
 export async function getTrainings() {
   const { data, error } = await supabase
     .from("trainings")
-    .select("*")
-    .order("date", { ascending: true });
+    .select("id, title, description, category, date, duration, trainer, price, image, created_at, updated_at")
+    .order("date", { ascending: true })
+    .limit(100); // Limit results for performance
   
   if (error) throw error;
-  return data;
+  return data || [];
 }
 
 export async function getTrainingById(id: string) {
@@ -113,11 +115,12 @@ export async function deleteTraining(id: string) {
 export async function getUsers() {
   const { data, error } = await supabase
     .from("profiles")
-    .select("*")
-    .order("created_at", { ascending: false });
+    .select("id, email, name, role, phone, company, created_at, updated_at, last_login")
+    .order("created_at", { ascending: false })
+    .limit(100); // Limit results for performance
   
   if (error) throw error;
-  return data;
+  return data || [];
 }
 
 export async function getUserById(id: string) {

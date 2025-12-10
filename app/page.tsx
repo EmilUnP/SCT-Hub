@@ -43,9 +43,19 @@ export default function Home() {
   const loadData = async () => {
     try {
       setLoading(true);
+      // Add timeout wrapper to prevent hanging requests
+      const withTimeout = <T,>(promise: Promise<T>, timeoutMs: number): Promise<T> => {
+        return Promise.race([
+          promise,
+          new Promise<T>((_, reject) => 
+            setTimeout(() => reject(new Error('Request timeout')), timeoutMs)
+          )
+        ]);
+      };
+      
       const [trainingsData, newsData] = await Promise.all([
-        getTrainings().catch(() => []),
-        getNews().catch(() => []),
+        withTimeout(getTrainings().catch(() => []), 10000),
+        withTimeout(getNews().catch(() => []), 10000),
       ]);
 
       setTrainings(Array.isArray(trainingsData) ? trainingsData : []);

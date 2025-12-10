@@ -42,12 +42,32 @@ if (process.env.NODE_ENV === 'development' && supabaseUrl && supabaseAnonKey) {
   });
 }
 
-// Initialize Supabase client
+// Initialize Supabase client with performance optimizations
 // Don't throw during build - let it fail at runtime if needed
 // This allows the build to complete even if env vars aren't set in CI/CD
 export const supabase: SupabaseClient = createClient(
   supabaseUrl || 'https://placeholder.supabase.co',
-  supabaseAnonKey || 'placeholder-anon-key'
+  supabaseAnonKey || 'placeholder-anon-key',
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+    },
+    global: {
+      headers: {
+        'x-client-info': 'stc-hub-portal',
+      },
+    },
+    db: {
+      schema: 'public',
+    },
+    realtime: {
+      params: {
+        eventsPerSecond: 10,
+      },
+    },
+  }
 );
 
 // Runtime check for production (after client is created)

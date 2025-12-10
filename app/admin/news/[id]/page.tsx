@@ -302,16 +302,16 @@ export default function EditNewsPage() {
                 <p className="text-xs text-gray-600 mb-2">Image Preview:</p>
                 <div className="relative w-full h-48 rounded-lg border border-gray-200 overflow-hidden">
                   <Image
-                    src={formData.image}
-                    alt="Preview"
+                  src={formData.image}
+                  alt="Preview"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                     unoptimized
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
                 </div>
               </div>
             )}
