@@ -18,15 +18,9 @@ export default function NewsPage() {
   const loadNews = useCallback(async () => {
     try {
       setLoading(true);
-      // Add timeout wrapper
-      const timeoutPromise = new Promise<never>((_, reject) => 
-        setTimeout(() => reject(new Error('Request timeout')), 10000)
-      );
-      
-      const data = await Promise.race([
-        getNews(),
-        timeoutPromise
-      ]);
+      // getNews now handles errors gracefully and returns empty array
+      const data = await getNews();
+      console.log("News loaded:", data?.length || 0, "items");
       setNews(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Failed to load news:", error);

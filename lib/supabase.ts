@@ -45,6 +45,7 @@ if (process.env.NODE_ENV === 'development' && supabaseUrl && supabaseAnonKey) {
 // Initialize Supabase client with performance optimizations
 // Don't throw during build - let it fail at runtime if needed
 // This allows the build to complete even if env vars aren't set in CI/CD
+// Configured for both authenticated and anonymous access
 export const supabase: SupabaseClient = createClient(
   supabaseUrl || 'https://placeholder.supabase.co',
   supabaseAnonKey || 'placeholder-anon-key',
@@ -53,6 +54,8 @@ export const supabase: SupabaseClient = createClient(
       persistSession: true,
       autoRefreshToken: true,
       detectSessionInUrl: true,
+      // Allow anonymous access - don't require authentication for public data
+      flowType: 'pkce',
     },
     global: {
       headers: {

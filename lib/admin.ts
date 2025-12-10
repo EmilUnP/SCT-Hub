@@ -20,10 +20,15 @@ export async function getNews() {
       throw error;
     }
     
-    return Array.isArray(data) ? data : [];
+    // Ensure we always return an array
+    const result = Array.isArray(data) ? data : [];
+    console.log("getNews returned:", result.length, "items");
+    return result;
   } catch (error) {
     console.error("Error in getNews function:", error);
-    throw error;
+    // Return empty array instead of throwing to prevent UI crashes
+    // The error is already logged above
+    return [];
   }
 }
 
