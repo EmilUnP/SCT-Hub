@@ -28,13 +28,13 @@ export default function Footer() {
                 <Image 
                   src="/logo_white.png" 
                   alt="STC Hub Logo" 
-                  width={60}
-                  height={60}
-                  className="h-12 w-auto"
+                  width={72}
+                  height={72}
+                  className="h-14 w-auto"
                   onError={() => setLogoError(true)}
                 />
               )}
-              <h3 className="text-2xl font-bold text-white">{t("footer.company")}</h3>
+              <h3 className="text-xl font-bold text-white">{t("footer.company")}</h3>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               {t("footer.description")}
