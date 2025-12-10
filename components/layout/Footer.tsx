@@ -26,7 +26,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               {!logoError && (
                 <Image 
-                  src="/logo.png" 
+                  src="/logo_white.png" 
                   alt="STC Hub Logo" 
                   width={40}
                   height={40}
