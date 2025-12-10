@@ -79,15 +79,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loadUserProfile = async (supabaseUser: SupabaseUser) => {
     try {
-      // Try to get user profile from database
+      // Always fetch fresh profile data from database (no caching)
+      // Use maybeSingle to handle null gracefully instead of throwing error
       const { data: profile, error } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", supabaseUser.id)
-        .single();
+        .maybeSingle(); // Returns null instead of error if not found
 
-      // If profile doesn't exist, try to create it
-      if (error && error.code === "PGRST116") {
+      console.log("Loading user profile:", {
+        userId: supabaseUser.id,
+        profileFound: !!profile,
+        profileRole: profile?.role,
+        error: error ? {
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint
+        } : null
+      });
+
+      // If profile doesn't exist (null from maybeSingle or PGRST116 error), try to create it
+      if ((!profile && !error) || (error && error.code === "PGRST116")) {
         // Profile not found - create it with data from user_metadata
         const profileData: Record<string, any> = {
           id: supabaseUser.id,
@@ -150,15 +163,45 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           return;
         }
       } else if (error) {
-        // Other error loading profile
-        console.error("Error loading profile:", error);
+        // Other error loading profile - log but try to continue if we have profile data
+        console.error("Error loading profile:", {
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint
+        });
+        // If error but no profile, we'll fall through to catch block
+        if (!profile) {
+          throw error;
+        }
       }
+
+      // CRITICAL: If profile exists, ALWAYS use its role from database (most up-to-date)
+      // Only fallback to user_metadata if profile doesn't exist
+      let userRole: UserRole = "guest";
+      if (profile && profile.role) {
+        // Profile exists and has a role - use it (this is the source of truth)
+        userRole = profile.role as UserRole;
+      } else if (profile && !profile.role) {
+        // Profile exists but role is null/empty - default to guest
+        userRole = "guest";
+      } else if (supabaseUser.user_metadata?.role) {
+        // No profile but have metadata - use metadata
+        userRole = supabaseUser.user_metadata.role as UserRole;
+      }
+
+      console.log("Setting user role:", {
+        hasProfile: !!profile,
+        profileRole: profile?.role,
+        metadataRole: supabaseUser.user_metadata?.role,
+        finalRole: userRole
+      });
 
       const userData: User = {
         id: supabaseUser.id,
         email: supabaseUser.email || "",
         name: profile?.name || supabaseUser.user_metadata?.name || supabaseUser.email?.split("@")[0],
-        role: (profile?.role as UserRole) || (supabaseUser.user_metadata?.role as UserRole) || "guest",
+        role: userRole,
         phone: profile?.phone || supabaseUser.user_metadata?.phone,
         company: profile?.company || supabaseUser.user_metadata?.company,
         // Extended fields
@@ -201,6 +244,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const login = async (email: string, password: string) => {
+    // Clear any cached user data before login to ensure fresh fetch
+    setUser(null);
+    setIsLoading(true);
+    
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -212,6 +259,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       if (data.user) {
+        // Clear user state before loading to ensure fresh data
+        setUser(null);
+        // Load fresh profile from database
         await loadUserProfile(data.user);
         // Update last login
         await updateLastLogin(data.user.id);

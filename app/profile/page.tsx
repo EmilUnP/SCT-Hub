@@ -59,8 +59,8 @@ export default function ProfilePage() {
   const handleSave = () => {
     setIsEditing(false);
     if (user) {
-      const updatedUser = { ...user, name: editedName };
-      localStorage.setItem("auth_user", JSON.stringify(updatedUser));
+      // Don't cache user data in localStorage - always fetch from database
+      // The AuthContext will handle profile updates
       window.location.reload();
     }
   };
@@ -155,8 +155,6 @@ export default function ProfilePage() {
           <p className="text-xl md:text-2xl text-primary-100 animate-fade-in-delay">
             {user?.role === "student" 
               ? t("profile.subtitleStudent") 
-              : user?.role === "guest"
-              ? t("profile.guest.subtitle") || ""
               : t("profile.subtitle")}
           </p>
         </div>
