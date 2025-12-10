@@ -3,7 +3,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Validate environment variables
+// Validate environment variables (log warning but don't throw during module load)
 if (!supabaseUrl || !supabaseAnonKey) {
   if (typeof window !== 'undefined') {
     console.error(
@@ -13,12 +13,19 @@ if (!supabaseUrl || !supabaseAnonKey) {
       'NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key\n\n' +
       'See SETUP.md for your project credentials.'
     );
+  } else {
+    // Server-side: log but don't throw to allow build to complete
+    console.warn(
+      '⚠️ Supabase environment variables are missing. The application may not work correctly.'
+    );
   }
-  throw new Error(
-    'Missing Supabase environment variables. Please check SETUP.md for configuration instructions.'
-  );
 }
 
 // Initialize Supabase client
-export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+// Use fallback values to prevent errors during build/runtime initialization
+// Actual operations will fail if env vars are missing, but module will load
+export const supabase: SupabaseClient = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co',
+  supabaseAnonKey || 'placeholder-anon-key'
+);
 
