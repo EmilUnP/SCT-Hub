@@ -32,7 +32,8 @@ export default function Header() {
                 alt="STC Hub Logo" 
                 width={40}
                 height={40}
-                className="h-10 w-auto"
+                className="h-10"
+                style={{ width: 'auto', height: 'auto' }}
                 onError={() => setLogoError(true)}
               />
             )}

@@ -73,6 +73,35 @@ The following database schema has been set up in your Supabase project:
 - Verify RLS policies are correctly set up
 - Check browser console for database errors
 
+### "infinite recursion detected in policy for relation 'profiles'" error
+This error (PostgreSQL error code `42P17`) occurs when RLS policies create a circular dependency. This typically happens when a policy on the `profiles` table queries the `profiles` table itself.
+
+**Symptoms:**
+- Console shows: `Error loading profile: {code: '42P17', message: 'infinite recursion detected in policy for relation "profiles"'}`
+- Profile data fails to load after login
+- 500 Internal Server Error when querying profiles
+
+**Solution**: Run the SQL script provided in `fix_rls_recursion.sql`:
+
+1. Go to your Supabase Dashboard: https://supabase.com/dashboard
+2. Select your project
+3. Navigate to **SQL Editor** → **New query**
+4. Open the file `fix_rls_recursion.sql` in your project root
+5. Copy and paste the entire SQL script into the editor
+6. Click **Run** to execute the script
+7. The script will:
+   - Drop all existing problematic policies
+   - Create new non-recursive policies that use `auth.uid()` directly
+   - Add optional admin access policies using security definer functions
+8. Test your application - profile loading should now work
+
+**What the fix does:**
+- Removes policies that query the `profiles` table (which causes recursion)
+- Creates simple policies that only use `auth.uid()` to check if the user is accessing their own profile
+- Uses security definer functions for admin access to avoid recursion
+
+**Note**: After applying this fix, users can only view/update their own profiles. If you need admin users (teachers) to access all profiles, the script includes optional policies for that.
+
 ### "new row violates row-level security policy" error
 This error occurs when trying to create a profile during user registration. The RLS policy is blocking the insert operation.
 
