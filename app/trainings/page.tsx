@@ -18,7 +18,7 @@ export default function TrainingsPage() {
 
   useEffect(() => {
     loadTrainings();
-  }, []);
+  }, [loadTrainings]);
 
   const loadTrainings = useCallback(async () => {
     try {

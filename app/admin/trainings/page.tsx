@@ -16,7 +16,7 @@ export default function AdminTrainingsPage() {
 
   useEffect(() => {
     loadTrainings();
-  }, []);
+  }, [loadTrainings]);
 
   const loadTrainings = useCallback(async () => {
     try {

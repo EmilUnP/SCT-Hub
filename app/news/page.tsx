@@ -17,7 +17,7 @@ export default function NewsPage() {
 
   useEffect(() => {
     loadNews();
-  }, []);
+  }, [loadNews]);
 
   const loadNews = useCallback(async () => {
     try {

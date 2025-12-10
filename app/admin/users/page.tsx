@@ -36,7 +36,7 @@ export default function AdminUsersPage() {
 
   useEffect(() => {
     loadUsers();
-  }, []);
+  }, [loadUsers]);
 
   const loadUsers = useCallback(async () => {
     try {

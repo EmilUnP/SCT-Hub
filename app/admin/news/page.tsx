@@ -16,7 +16,7 @@ export default function AdminNewsPage() {
 
   useEffect(() => {
     loadNews();
-  }, []);
+  }, [loadNews]);
 
   const loadNews = useCallback(async () => {
     try {
