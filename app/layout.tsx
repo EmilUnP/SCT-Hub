@@ -5,6 +5,8 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import WebVitals from "@/components/WebVitals";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -35,13 +37,16 @@ export default function RootLayout({
   return (
     <html lang="az" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
-        <LanguageProvider>
-          <AuthProvider>
-            <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
-          </AuthProvider>
-        </LanguageProvider>
+        <ErrorBoundary>
+          <LanguageProvider>
+            <AuthProvider>
+              <Header />
+              <main className="min-h-screen">{children}</main>
+              <Footer />
+              <WebVitals />
+            </AuthProvider>
+          </LanguageProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

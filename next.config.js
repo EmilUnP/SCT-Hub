@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig = {
   reactStrictMode: true,
   compress: true, // Enable gzip compression
@@ -22,7 +26,11 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production', // Remove console logs in production
   },
+  // Performance optimizations
+  experimental: {
+    optimizeCss: true, // Enable CSS optimization
+  },
 }
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)
 

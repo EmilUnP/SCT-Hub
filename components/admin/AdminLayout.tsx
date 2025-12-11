@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useCallback, memo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
@@ -17,9 +17,14 @@ interface AdminLayoutProps {
   children: ReactNode;
 }
 
-export default function AdminLayout({ children }: AdminLayoutProps) {
+function AdminLayout({ children }: AdminLayoutProps) {
   const { user, isAdmin, logout, isLoading } = useAuth();
   const router = useRouter();
+
+  const handleLogout = useCallback(async () => {
+    await logout();
+    router.push("/login");
+  }, [logout, router]);
 
   if (isLoading) {
     return (
@@ -46,11 +51,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       </div>
     );
   }
-
-  const handleLogout = async () => {
-    await logout();
-    router.push("/login");
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -115,4 +115,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     </div>
   );
 }
+
+export default memo(AdminLayout);
 

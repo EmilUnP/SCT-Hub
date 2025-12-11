@@ -5,11 +5,25 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { User, Mail, LogOut, Edit2, Save, X, FileText, File, BookOpen, GraduationCap, Settings } from "lucide-react";
-import NotesSection from "@/components/profile/NotesSection";
-import DocumentsSection from "@/components/profile/DocumentsSection";
-import ClassesSection from "@/components/profile/ClassesSection";
-import StudentsSection from "@/components/profile/StudentsSection";
+import dynamic from "next/dynamic";
 import ProfileInfoSection from "@/components/profile/ProfileInfoSection";
+
+// Lazy load profile sections - only load when tab is active
+const NotesSection = dynamic(() => import("@/components/profile/NotesSection"), {
+  loading: () => <div className="animate-pulse bg-gray-100 rounded-lg h-64" />,
+});
+
+const DocumentsSection = dynamic(() => import("@/components/profile/DocumentsSection"), {
+  loading: () => <div className="animate-pulse bg-gray-100 rounded-lg h-64" />,
+});
+
+const ClassesSection = dynamic(() => import("@/components/profile/ClassesSection"), {
+  loading: () => <div className="animate-pulse bg-gray-100 rounded-lg h-64" />,
+});
+
+const StudentsSection = dynamic(() => import("@/components/profile/StudentsSection"), {
+  loading: () => <div className="animate-pulse bg-gray-100 rounded-lg h-64" />,
+});
 
 type TabType = "overview" | "info" | "notes" | "documents" | "classes" | "students";
 
