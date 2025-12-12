@@ -3,50 +3,53 @@
 import Link from "next/link";
 import { Home, ArrowLeft } from "lucide-react";
 import { loadTranslations, getLanguage, defaultLanguage } from "@/lib/i18n";
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 
-// Helper function to get translation safely during static generation
-function getTranslation(key: string, lang: string = defaultLanguage): string {
-  try {
-    const translations = loadTranslations(lang as any);
-    const keys = key.split(".");
-    let value: any = translations;
-    
-    for (const k of keys) {
-      if (value && typeof value === "object" && k in value) {
-        value = value[k];
-      } else {
-        return key;
-      }
+// Helper function to get translation safely
+function getTranslation(key: string, translations: Record<string, any>): string {
+  const keys = key.split(".");
+  let value: any = translations;
+  
+  for (const k of keys) {
+    if (value && typeof value === "object" && k in value) {
+      value = value[k];
+    } else {
+      return key;
     }
-    
-    return typeof value === "string" ? value : key;
-  } catch {
-    return key;
   }
+  
+  return typeof value === "string" ? value : key;
 }
 
 export default function NotFound() {
-  // Use direct translation function instead of context to avoid issues during static generation
-  const translations = useMemo(() => {
-    if (typeof window === "undefined") {
-      // During static generation, use default language
-      return {
-        title: getTranslation("notFound.title", defaultLanguage),
-        description: getTranslation("notFound.description", defaultLanguage),
-        goHome: getTranslation("notFound.goHome", defaultLanguage),
-        goBack: getTranslation("notFound.goBack", defaultLanguage),
-      };
-    }
-    
-    // On client, use the user's language preference
-    const lang = getLanguage();
+  // Initialize with default language translations for static generation
+  const [translations, setTranslations] = useState(() => {
+    const defaultTranslations = loadTranslations(defaultLanguage);
     return {
-      title: getTranslation("notFound.title", lang),
-      description: getTranslation("notFound.description", lang),
-      goHome: getTranslation("notFound.goHome", lang),
-      goBack: getTranslation("notFound.goBack", lang),
+      title: getTranslation("notFound.title", defaultTranslations),
+      description: getTranslation("notFound.description", defaultTranslations),
+      goHome: getTranslation("notFound.goHome", defaultTranslations),
+      goBack: getTranslation("notFound.goBack", defaultTranslations),
     };
+  });
+
+  // Update translations on client side based on user's language preference
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const lang = getLanguage();
+        const loaded = loadTranslations(lang);
+        setTranslations({
+          title: getTranslation("notFound.title", loaded),
+          description: getTranslation("notFound.description", loaded),
+          goHome: getTranslation("notFound.goHome", loaded),
+          goBack: getTranslation("notFound.goBack", loaded),
+        });
+      } catch (error) {
+        // Silently fail and use default translations
+        console.error("Failed to load translations:", error);
+      }
+    }
   }, []);
 
   return (
