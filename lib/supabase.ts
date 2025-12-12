@@ -56,10 +56,26 @@ export const supabase: SupabaseClient = createClient(
       detectSessionInUrl: true,
       // Allow anonymous access - don't require authentication for public data
       flowType: 'pkce',
+      storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+      storageKey: 'supabase.auth.token',
     },
     global: {
       headers: {
         'x-client-info': 'stc-hub-portal',
+        'Connection': 'keep-alive', // Keep connections alive for better performance
+      },
+      fetch: (url, options = {}) => {
+        // Add timeout to prevent hanging requests
+        const timeout = 10000; // 10 seconds
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeout);
+        
+        return fetch(url, {
+          ...options,
+          signal: controller.signal,
+        }).finally(() => {
+          clearTimeout(timeoutId);
+        });
       },
     },
     db: {

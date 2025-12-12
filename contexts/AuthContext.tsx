@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect, useMemo, ReactNode } from "react";
 import { supabase } from "@/lib/supabase";
 import { updateLastLogin } from "@/lib/profile";
+import { queryCache } from "@/lib/cache";
 import type { User as SupabaseUser, Session } from "@supabase/supabase-js";
 
 export type UserRole = "teacher" | "staff" | "student" | "guest";
@@ -77,10 +78,57 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const loadUserProfile = async (supabaseUser: SupabaseUser) => {
+  const loadUserProfile = async (supabaseUser: SupabaseUser, forceRefresh: boolean = false) => {
     try {
-      // Always fetch fresh profile data from database (no caching)
+      // Use caching for better performance, but allow force refresh on login
       // Use maybeSingle to handle null gracefully instead of throwing error
+      const cacheKey = `profile_${supabaseUser.id}`;
+      
+      // Check cache first unless forcing refresh
+      if (!forceRefresh) {
+        const cached = queryCache.get<any>(cacheKey);
+        if (cached) {
+          // Use cached data to build user object immediately
+          const userRole: UserRole = (cached.role as UserRole) || "guest";
+          const userData: User = {
+            id: supabaseUser.id,
+            email: supabaseUser.email || "",
+            name: cached.name || supabaseUser.user_metadata?.name || supabaseUser.email?.split("@")[0],
+            role: userRole,
+            phone: cached.phone || supabaseUser.user_metadata?.phone,
+            company: cached.company || supabaseUser.user_metadata?.company,
+            address: cached.address,
+            city: cached.city,
+            country: cached.country,
+            postal_code: cached.postal_code,
+            bio: cached.bio,
+            avatar_url: cached.avatar_url,
+            position: cached.position,
+            department: cached.department,
+            specialization: cached.specialization,
+            business_name: cached.business_name,
+            business_type: cached.business_type,
+            business_registration: cached.business_registration,
+            tax_id: cached.tax_id,
+            website: cached.website,
+            linkedin: cached.linkedin,
+            status: cached.status,
+            created_at: cached.created_at,
+            updated_at: cached.updated_at,
+            last_login: cached.last_login,
+          };
+          
+          setUser(userData);
+          setIsLoading(false);
+          
+          // Refresh in background for latest data
+          loadUserProfile(supabaseUser, true).catch(() => {
+            // Silent fail for background refresh
+          });
+          return;
+        }
+      }
+      
       const { data: profile, error } = await supabase
         .from("profiles")
         .select("*")
@@ -226,6 +274,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         last_login: profile?.last_login,
       };
 
+      // Cache profile for faster subsequent loads
+      if (profile) {
+        queryCache.set(cacheKey, profile, 5 * 60 * 1000); // 5 minutes
+      }
+
       setUser(userData);
     } catch (error) {
       console.error("Error loading user profile:", error);
@@ -261,8 +314,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (data.user) {
         // Clear user state before loading to ensure fresh data
         setUser(null);
-        // Load fresh profile from database
-        await loadUserProfile(data.user);
+        // Load fresh profile from database (force refresh on login)
+        await loadUserProfile(data.user, true);
         // Update last login
         await updateLastLogin(data.user.id);
       }
