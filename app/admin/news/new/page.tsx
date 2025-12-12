@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import AdminLayout from "@/components/admin/AdminLayout";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { createNews } from "@/lib/admin";
 import type { News } from "@/types";
 import { AlertCircle, CheckCircle, Loader2, ArrowLeft } from "lucide-react";
@@ -53,20 +53,7 @@ export default function NewNewsPage() {
       setError("Date is required");
       return false;
     }
-    if (formData.image && !isValidUrl(formData.image)) {
-      setError("Please enter a valid image URL");
-      return false;
-    }
     return true;
-  };
-
-  const isValidUrl = (url: string): boolean => {
-    try {
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
