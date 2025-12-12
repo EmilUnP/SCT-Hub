@@ -9,6 +9,9 @@ import { formatDate } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Training } from "@/types";
 
+// Force dynamic rendering to prevent build-time prerendering issues
+export const dynamic = 'force-dynamic';
+
 export default function TrainingsPage() {
   const { t, language } = useLanguage();
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);

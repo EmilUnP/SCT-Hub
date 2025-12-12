@@ -28,12 +28,15 @@ export default function ImageUpload({
 
   // Sync preview with value prop when it changes externally
   useEffect(() => {
-    if (value) {
-      setPreview(value);
-    } else if (!value && preview) {
-      // Only clear preview if value is explicitly cleared
-      setPreview(null);
-    }
+    setPreview((currentPreview) => {
+      if (value) {
+        return value;
+      } else if (!value && currentPreview) {
+        // Only clear preview if value is explicitly cleared
+        return null;
+      }
+      return currentPreview;
+    });
   }, [value]);
 
   const handleFileSelect = async (file: File) => {
