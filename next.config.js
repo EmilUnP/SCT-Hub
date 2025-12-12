@@ -26,10 +26,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production', // Remove console logs in production
   },
-  // Performance optimizations
-  experimental: {
-    optimizeCss: true, // Enable CSS optimization
-  },
 }
 
 module.exports = withBundleAnalyzer(nextConfig)
