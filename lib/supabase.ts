@@ -46,6 +46,14 @@ if (process.env.NODE_ENV === 'development' && supabaseUrl && supabaseAnonKey) {
 // Don't throw during build - let it fail at runtime if needed
 // This allows the build to complete even if env vars aren't set in CI/CD
 // Configured for both authenticated and anonymous access
+
+// Warn if using placeholder values
+if ((!supabaseUrl || supabaseUrl === 'https://placeholder.supabase.co') && typeof window !== 'undefined') {
+  console.error('⚠️ WARNING: Using placeholder Supabase URL!');
+  console.error('Please create a `.env.local` file with your Supabase credentials.');
+  console.error('See SETUP.md for instructions.');
+}
+
 export const supabase: SupabaseClient = createClient(
   supabaseUrl || 'https://placeholder.supabase.co',
   supabaseAnonKey || 'placeholder-anon-key',

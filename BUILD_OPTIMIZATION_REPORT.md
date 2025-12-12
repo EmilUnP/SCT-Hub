@@ -186,16 +186,16 @@ Run: `ANALYZE=true npm run build`
 #### Recommended Addition (`app/layout.tsx`):
 ```typescript
 export const metadata: Metadata = {
-  title: "Sinam Training & Consulting",
+  title: "Sinam Consulting & Training",
   description: "Professional accounting, HR, tax services and SERP system integration for businesses",
   openGraph: {
-    title: "Sinam Training & Consulting",
+    title: "Sinam Consulting & Training",
     description: "Professional accounting, HR, tax services and SERP system integration for businesses",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sinam Training & Consulting",
+    title: "Sinam Consulting & Training",
     description: "Professional accounting, HR, tax services and SERP system integration for businesses",
   },
 };

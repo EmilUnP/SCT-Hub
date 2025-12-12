@@ -1,6 +1,6 @@
-# STC Hub — Sinam Training & Consulting
+# STC Hub — Sinam Consulting & Training
 
-A modern, professional portal for STC Hub — Sinam Training & Consulting showcasing accounting, HR, tax services, and SERP system integration.
+A modern, professional portal for STC Hub — Sinam Consulting & Training showcasing accounting, HR, tax services, and SERP system integration.
 
 ## Tech Stack
 
