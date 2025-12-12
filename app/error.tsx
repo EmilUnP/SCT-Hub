@@ -4,13 +4,12 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { Home, AlertCircle } from "lucide-react";
 
-export default function Error({
-  error,
-  reset,
-}: {
+interface ErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+}
+
+export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     console.error("Application error:", error);
   }, [error]);
@@ -22,7 +21,7 @@ export default function Error({
           <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Something went wrong!</h1>
           <p className="text-lg text-gray-600 mb-8">
-            {error.message || "An unexpected error occurred. Please try again."}
+            {error?.message || "An unexpected error occurred. Please try again."}
           </p>
         </div>
         
