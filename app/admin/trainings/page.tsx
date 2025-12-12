@@ -8,6 +8,33 @@ import type { Training } from "@/types";
 import Link from "next/link";
 import { Plus, Edit, Trash2, Calendar, GraduationCap, AlertCircle, Clock, DollarSign, User } from "lucide-react";
 
+// Component for training image with error handling
+function TrainingImage({ image, title }: { image?: string; title: string }) {
+  const [imageError, setImageError] = useState(false);
+
+  if (!image || imageError) {
+    return (
+      <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center border border-primary-200">
+        <GraduationCap className="w-8 h-8 text-primary-600" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-gray-200 relative bg-gray-100">
+      <Image
+        src={image}
+        alt={title}
+        fill
+        sizes="64px"
+        className="object-cover"
+        unoptimized={image.includes('tezbazar.az') || image.includes('sinam.net')}
+        onError={() => setImageError(true)}
+      />
+    </div>
+  );
+}
+
 export default function AdminTrainingsPage() {
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [loading, setLoading] = useState(true);
@@ -122,25 +149,7 @@ export default function AdminTrainingsPage() {
                     <tr key={item.id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-4">
                         <div className="flex items-start gap-3">
-                          {item.image ? (
-                            <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-gray-200 relative">
-                              <Image
-                                src={item.image}
-                                alt={item.title}
-                                fill
-                                sizes="64px"
-                                className="object-cover"
-                                unoptimized
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).style.display = "none";
-                                }}
-                              />
-                            </div>
-                          ) : (
-                            <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center border border-primary-200">
-                              <GraduationCap className="w-8 h-8 text-primary-600" />
-                            </div>
-                          )}
+                          <TrainingImage image={item.image} title={item.title} />
                           <div className="flex-1 min-w-0">
                             <div className="text-sm font-semibold text-gray-900 mb-1">{item.title}</div>
                             <div className="text-sm text-gray-500 line-clamp-2">{item.description}</div>

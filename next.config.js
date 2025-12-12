@@ -18,6 +18,10 @@ const nextConfig = {
         hostname: 'sinam.net',
       },
       {
+        protocol: 'https',
+        hostname: 'tezbazar.az',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
       },
