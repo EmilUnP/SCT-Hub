@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -44,6 +45,7 @@ export default function RootLayout({
               <main className="min-h-screen">{children}</main>
               <Footer />
               <WebVitals />
+              <Analytics />
             </AuthProvider>
           </LanguageProvider>
         </ErrorBoundary>
