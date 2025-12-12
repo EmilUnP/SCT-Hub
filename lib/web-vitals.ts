@@ -1,4 +1,4 @@
-import { onCLS, onFID, onFCP, onLCP, onTTFB, onINP, Metric } from 'web-vitals';
+import { onCLS, onFCP, onLCP, onTTFB, onINP, Metric } from 'web-vitals';
 
 type WebVitalsCallback = (metric: Metric) => void;
 
@@ -45,10 +45,7 @@ export function reportWebVitals(onPerfEntry?: WebVitalsCallback) {
       sendToAnalytics(metric);
       onPerfEntry(metric);
     });
-    onFID((metric) => {
-      sendToAnalytics(metric);
-      onPerfEntry(metric);
-    });
+    // Note: onFID is deprecated, use onINP instead
     onFCP((metric) => {
       sendToAnalytics(metric);
       onPerfEntry(metric);

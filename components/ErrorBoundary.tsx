@@ -49,7 +49,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Something went wrong</h1>
             <p className="text-gray-600 mb-6">
-              We're sorry, but something unexpected happened. Please try refreshing the page.
+              We&apos;re sorry, but something unexpected happened. Please try refreshing the page.
             </p>
             {process.env.NODE_ENV === "development" && this.state.error && (
               <details className="mb-6 text-left">
