@@ -2,8 +2,8 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
-import Image from "next/image";
 import AdminLayout from "@/components/admin/AdminLayout";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { getTrainingById, updateTraining } from "@/lib/admin";
 import type { Training } from "@/types";
 import { AlertCircle, CheckCircle, Loader2, ArrowLeft } from "lucide-react";
@@ -75,20 +75,7 @@ export default function EditTrainingPage() {
       setError("Date is required");
       return false;
     }
-    if (formData.image && !isValidUrl(formData.image)) {
-      setError("Please enter a valid image URL");
-      return false;
-    }
     return true;
-  };
-
-  const isValidUrl = (url: string): boolean => {
-    try {
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -326,39 +313,16 @@ export default function EditTrainingPage() {
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Image URL <span className="text-gray-500 text-xs">(optional)</span>
-            </label>
-            <input
-              type="url"
-              value={formData.image || ""}
-              onChange={(e) => {
-                setFormData({ ...formData, image: e.target.value });
-                setError("");
-              }}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition"
-              placeholder="https://example.com/image.jpg"
-            />
-            {formData.image && isValidUrl(formData.image) && (
-              <div className="mt-3">
-                <p className="text-xs text-gray-600 mb-2">Image Preview:</p>
-                <div className="relative w-full h-48 rounded-lg border border-gray-200 overflow-hidden">
-                  <Image
-                  src={formData.image}
-                  alt="Preview"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                    unoptimized
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                />
-                </div>
-              </div>
-            )}
-          </div>
+          <ImageUpload
+            value={formData.image}
+            onChange={(url) => {
+              setFormData({ ...formData, image: url });
+              setError("");
+            }}
+            label="Image"
+            onError={(error) => setError(error)}
+            error={error}
+          />
 
           <div className="flex gap-4 pt-4 border-t border-gray-200">
             <button

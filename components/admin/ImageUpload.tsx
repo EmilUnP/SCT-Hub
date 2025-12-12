@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Upload, X, Loader2, ImageIcon } from "lucide-react";
+import { Upload, X, Loader2 } from "lucide-react";
 
 interface ImageUploadProps {
   value?: string;
@@ -25,6 +25,16 @@ export default function ImageUpload({
   const [preview, setPreview] = useState<string | null>(value || null);
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Sync preview with value prop when it changes externally
+  useEffect(() => {
+    if (value) {
+      setPreview(value);
+    } else if (!value && preview) {
+      // Only clear preview if value is explicitly cleared
+      setPreview(null);
+    }
+  }, [value]);
 
   const handleFileSelect = async (file: File) => {
     if (!file.type.startsWith("image/")) {
@@ -219,26 +229,6 @@ export default function ImageUpload({
           placeholder="https://example.com/image.jpg"
         />
       </div>
-
-      {/* Preview for URL */}
-      {value && isValidUrl(value) && value !== preview && (
-        <div className="mt-3">
-          <p className="text-xs text-gray-600 mb-2">Image Preview:</p>
-          <div className="relative w-full h-48 rounded-lg border border-gray-200 overflow-hidden">
-            <Image
-              src={value}
-              alt="Preview"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-              unoptimized
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
-              }}
-            />
-          </div>
-        </div>
-      )}
 
       {error && (
         <p className="text-xs text-red-600 mt-1">{error}</p>
