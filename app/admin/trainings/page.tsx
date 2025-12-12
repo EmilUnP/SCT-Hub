@@ -6,7 +6,7 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import { getTrainings, deleteTraining } from "@/lib/admin";
 import type { Training } from "@/types";
 import Link from "next/link";
-import { Plus, Edit, Trash2, Calendar, GraduationCap, AlertCircle, Clock, DollarSign, User } from "lucide-react";
+import { Plus, Edit, Trash2, Calendar, GraduationCap, AlertCircle, Clock, Coins, User } from "lucide-react";
 
 // Component for training image with error handling
 function TrainingImage({ image, title }: { image?: string; title: string }) {
@@ -168,7 +168,7 @@ export default function AdminTrainingsPage() {
                             {item.duration}
                           </div>
                           <div className="flex items-center gap-2 text-xs text-gray-600">
-                            <DollarSign className="w-3 h-3" />
+                            <Coins className="w-3 h-3" />
                             {item.price}
                           </div>
                           <div className="flex items-center gap-2 text-xs text-gray-600">

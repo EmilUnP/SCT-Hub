@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { getTrainings } from "@/lib/admin";
 import TrainingCard from "@/components/cards/TrainingCard";
 import RegistrationForm from "@/components/forms/RegistrationForm";
-import { Clock, User, Calendar, DollarSign, X } from "lucide-react";
+import { Clock, User, Calendar, Coins, X } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Training } from "@/types";
@@ -151,7 +151,7 @@ export default function TrainingsPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
-                        <DollarSign className="w-5 h-5 text-primary-600" />
+                        <Coins className="w-5 h-5 text-primary-600" />
                         <div>
                           <div className="font-semibold text-gray-900">{t("trainings.courseDetails.price")}</div>
                           <div className="text-gray-600">{course.price}</div>

@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useState } from "react";
 import Image from "next/image";
-import { Clock, User, Calendar, DollarSign } from "lucide-react";
+import { Clock, User, Calendar, Coins } from "lucide-react";
 import { Training } from "@/types";
 import { formatDate } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -91,7 +91,7 @@ function TrainingCard({ training, onClick }: TrainingCardProps) {
           <span>{training.trainer}</span>
         </div>
         <div className="flex items-center gap-2">
-          <DollarSign className="w-4 h-4" />
+          <Coins className="w-4 h-4" />
           <span className="font-semibold text-gray-900">{training.price}</span>
         </div>
       </div>

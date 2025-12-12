@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { statistics, teamMembers } from "@/lib/data";
+import { statistics } from "@/lib/data";
 import { Target, Users, TrendingUp, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -122,42 +122,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t("about.team.title")}</h2>
-            <p className="text-lg text-gray-600">{t("about.team.subtitle")}</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {teamMembers.map((member, index) => {
-              const teamImages = [
-                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80",
-                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&q=80",
-                "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&q=80",
-              ];
-              return (
-                <div key={member.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center group">
-                  <div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full">
-                    <Image
-                      src={teamImages[index % teamImages.length]}
-                      alt={member.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-primary-600/20 group-hover:from-primary-400/0 group-hover:to-primary-600/0 transition-all"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">{member.name}</h3>
-                  <p className="text-primary-600 font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 leading-relaxed">{member.bio}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
     </React.Fragment>
   );
 }

@@ -86,7 +86,7 @@ export const trainings: Training[] = [
     category: "SERP Training",
     duration: "2 days",
     trainer: "Expert Trainer",
-    price: "$299",
+    price: "299 AZN",
     date: "2025-01-15",
   },
   {
@@ -96,7 +96,7 @@ export const trainings: Training[] = [
     category: "Tax Training",
     duration: "1 day",
     trainer: "Tax Specialist",
-    price: "$199",
+    price: "199 AZN",
     date: "2025-01-20",
   },
   {
@@ -106,7 +106,7 @@ export const trainings: Training[] = [
     category: "HR Training",
     duration: "3 days",
     trainer: "HR Expert",
-    price: "$399",
+    price: "399 AZN",
     date: "2025-02-01",
   },
   {
@@ -116,7 +116,7 @@ export const trainings: Training[] = [
     category: "Accounting Training",
     duration: "2 days",
     trainer: "CFO Consultant",
-    price: "$349",
+    price: "349 AZN",
     date: "2025-02-10",
   },
 ];

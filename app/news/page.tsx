@@ -87,9 +87,26 @@ export default function NewsPage() {
 
   if (currentNews) {
     const newsImage = currentNews.image || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=80";
-    const newsTitle = t(`news.items.${currentNews.id}.title`) || currentNews.title;
-    const newsExcerpt = t(`news.items.${currentNews.id}.excerpt`) || currentNews.excerpt;
-    const newsContent = t(`news.items.${currentNews.id}.content`) || currentNews.content;
+    
+    // Get translations, but fallback to news data if translation key not found
+    const titleKey = `news.items.${currentNews.id}.title`;
+    const excerptKey = `news.items.${currentNews.id}.excerpt`;
+    const contentKey = `news.items.${currentNews.id}.content`;
+    
+    const newsTitle = (() => {
+      const translated = t(titleKey);
+      return translated === titleKey ? currentNews.title : translated;
+    })();
+    
+    const newsExcerpt = (() => {
+      const translated = t(excerptKey);
+      return translated === excerptKey ? currentNews.excerpt : translated;
+    })();
+    
+    const newsContent = (() => {
+      const translated = t(contentKey);
+      return translated === contentKey ? currentNews.content : translated;
+    })();
 
     return (
       <article className="min-h-screen bg-gray-50">

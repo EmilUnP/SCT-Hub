@@ -22,6 +22,10 @@ const nextConfig = {
         hostname: 'tezbazar.az',
       },
       {
+        protocol: 'https',
+        hostname: 'www.aeccglobal.my',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
       },
