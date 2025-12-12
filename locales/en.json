@@ -490,7 +490,10 @@
     "categories": {
       "productUpdates": "Product Updates",
       "taxUpdates": "Tax Updates",
-      "events": "Events"
+      "events": "Events",
+      "announcements": "Announcements",
+      "industryNews": "Industry News",
+      "general": "General"
     },
     "items": {
       "news-1": {

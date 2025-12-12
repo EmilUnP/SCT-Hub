@@ -490,7 +490,10 @@
     "categories": {
       "productUpdates": "Məhsul Yeniləmələri",
       "taxUpdates": "Vergi Yeniləmələri",
-      "events": "Tədbirlər"
+      "events": "Tədbirlər",
+      "announcements": "Elanlar",
+      "industryNews": "Sənaye Xəbərləri",
+      "general": "Ümumi"
     },
     "items": {
       "news-1": {

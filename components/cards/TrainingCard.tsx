@@ -13,7 +13,7 @@ interface TrainingCardProps {
 }
 
 function TrainingCard({ training, onClick }: TrainingCardProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   // Memoize click handler
   const handleClick = useCallback(() => {
@@ -57,7 +57,7 @@ function TrainingCard({ training, onClick }: TrainingCardProps) {
         </div>
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4" />
-          <span>{formatDate(training.date)}</span>
+          <span>{formatDate(training.date, language)}</span>
         </div>
         <div className="flex items-center gap-2">
           <User className="w-4 h-4" />

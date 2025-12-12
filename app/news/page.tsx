@@ -1,15 +1,16 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import Image from "next/image";
 import { getNews } from "@/lib/admin";
 import NewsCard from "@/components/cards/NewsCard";
 import { formatDate } from "@/lib/utils";
-import { Calendar, Filter } from "lucide-react";
+import { Calendar, Filter, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { News } from "@/types";
 
 export default function NewsPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedNews, setSelectedNews] = useState<string | null>(null);
   const [news, setNews] = useState<News[]>([]);
@@ -40,6 +41,9 @@ export default function NewsPage() {
       "Product Updates": "productUpdates",
       "Tax Updates": "taxUpdates",
       "Events": "events",
+      "Announcements": "announcements",
+      "Industry News": "industryNews",
+      "General": "general",
     };
     return mapping[category] || category.toLowerCase().replace(/\s+/g, "");
   }, []);
@@ -82,44 +86,78 @@ export default function NewsPage() {
   }
 
   if (currentNews) {
+    const newsImage = currentNews.image || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=80";
+    const newsTitle = t(`news.items.${currentNews.id}.title`) || currentNews.title;
+    const newsExcerpt = t(`news.items.${currentNews.id}.excerpt`) || currentNews.excerpt;
+    const newsContent = t(`news.items.${currentNews.id}.content`) || currentNews.content;
+
     return (
-      <article className="py-20">
-        <div className="container mx-auto px-4">
+      <article className="min-h-screen bg-gray-50">
+        {/* Hero Section with Image */}
+        <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+          <Image
+            src={newsImage}
+            alt={newsTitle}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
+            <div className="container mx-auto max-w-4xl">
+              <span className="inline-block bg-primary-600 text-white text-sm font-semibold px-3 py-1 rounded-full mb-4">
+                {t(`news.categories.${categoryToKey(currentNews.category)}`) || currentNews.category}
+              </span>
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+                {newsTitle}
+              </h1>
+              <div className="flex items-center gap-2 text-white/90 text-sm">
+                <Calendar className="w-4 h-4" />
+                <span>{formatDate(currentNews.date, language)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="container mx-auto px-4 py-12">
           <button
             onClick={() => setSelectedNews(null)}
-            className="mb-8 text-primary-600 hover:text-primary-700 flex items-center gap-2"
+            className="mb-8 text-primary-600 hover:text-primary-700 flex items-center gap-2 transition-colors font-medium"
           >
-            ← {t("news.backToNews")}
+            <ArrowLeft className="w-4 h-4" />
+            {t("news.backToNews")}
           </button>
+          
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-md p-8 md:p-12">
-              <div className="mb-6">
-                <span className="inline-block bg-primary-100 text-primary-800 text-sm font-semibold px-3 py-1 rounded mb-4">
-                  {t(`news.categories.${categoryToKey(currentNews.category)}`) || currentNews.category}
-                </span>
-                <div className="flex items-center gap-2 text-gray-500 text-sm mb-4">
-                  <Calendar className="w-4 h-4" />
-                  <span>{formatDate(currentNews.date)}</span>
+            <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
+              {/* Excerpt */}
+              {newsExcerpt && (
+                <div className="mb-8 pb-8 border-b border-gray-200">
+                  <p className="text-xl text-gray-700 leading-relaxed font-medium">
+                    {newsExcerpt}
+                  </p>
                 </div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-6">
-                  {t(`news.items.${currentNews.id}.title`) || currentNews.title}
-                </h1>
-              </div>
-              <div className="bg-gray-100 rounded-lg h-64 mb-8 flex items-center justify-center">
-                <span className="text-6xl">📰</span>
-              </div>
-              <div className="prose max-w-none">
-                <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  {t(`news.items.${currentNews.id}.excerpt`) || currentNews.excerpt}
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  {t(`news.items.${currentNews.id}.content`) || currentNews.content}
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
+              )}
+
+              {/* Main Content */}
+              <div className="prose prose-lg max-w-none">
+                <div className="text-gray-700 leading-relaxed">
+                  {newsContent.includes('\n') ? (
+                    newsContent.split('\n').map((paragraph, index) => 
+                      paragraph.trim() ? (
+                        <p key={index} className="mb-6 text-lg">
+                          {paragraph}
+                        </p>
+                      ) : null
+                    )
+                  ) : (
+                    <p className="mb-6 text-lg">
+                      {newsContent}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type { Training } from "@/types";
 
 export default function TrainingsPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
   const [showRegistration, setShowRegistration] = useState(false);
   const [trainings, setTrainings] = useState<Training[]>([]);
@@ -135,7 +135,7 @@ export default function TrainingsPage() {
                         <Calendar className="w-5 h-5 text-primary-600" />
                         <div>
                           <div className="font-semibold text-gray-900">{t("trainings.courseDetails.date")}</div>
-                          <div className="text-gray-600">{formatDate(course.date)}</div>
+                          <div className="text-gray-600">{formatDate(course.date, language)}</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">

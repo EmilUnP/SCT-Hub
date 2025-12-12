@@ -18,15 +18,40 @@ const categoryToKey = (category: string): string => {
     "Product Updates": "productUpdates",
     "Tax Updates": "taxUpdates",
     "Events": "events",
+    "Announcements": "announcements",
+    "Industry News": "industryNews",
+    "General": "general",
   };
-  return mapping[category] || category.toLowerCase().replace(/\s+/g, "");
+  
+  // If mapping exists, return it
+  if (mapping[category]) {
+    return mapping[category];
+  }
+  
+  // Fallback: convert to camelCase (e.g., "Industry News" -> "industryNews")
+  return category
+    .split(/\s+/)
+    .map((word, index) => 
+      index === 0 
+        ? word.toLowerCase() 
+        : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    )
+    .join("");
 };
 
 function NewsCard({ news, onClick }: NewsCardProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   // Memoize category key
   const categoryKey = useMemo(() => categoryToKey(news.category), [news.category]);
+  
+  // Memoize translated category with proper fallback
+  const translatedCategory = useMemo(() => {
+    const translationKey = `news.categories.${categoryKey}`;
+    const translated = t(translationKey);
+    // If translation returns the key itself (not found), use the original category
+    return translated === translationKey ? news.category : translated;
+  }, [t, categoryKey, news.category]);
   
   // Memoize click handler
   const handleClick = useCallback(() => {
@@ -51,7 +76,7 @@ function NewsCard({ news, onClick }: NewsCardProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
         <span className="absolute top-4 left-4 bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
-          {t(`news.categories.${categoryKey}`) || news.category}
+          {translatedCategory}
         </span>
       </div>
 
@@ -68,7 +93,7 @@ function NewsCard({ news, onClick }: NewsCardProps) {
         <div className="mt-auto pt-4 border-t border-gray-200">
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <Calendar className="w-4 h-4" />
-            <span>{formatDate(news.date)}</span>
+            <span>{formatDate(news.date, language)}</span>
           </div>
         </div>
       </div>

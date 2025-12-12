@@ -490,7 +490,10 @@
     "categories": {
       "productUpdates": "Обновления продуктов",
       "taxUpdates": "Налоговые обновления",
-      "events": "События"
+      "events": "События",
+      "announcements": "Объявления",
+      "industryNews": "Отраслевые новости",
+      "general": "Общее"
     },
     "items": {
       "news-1": {
