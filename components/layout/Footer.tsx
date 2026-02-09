@@ -27,7 +27,7 @@ export default function Footer() {
               {!logoError && (
                 <Image 
                   src="/logo_white.png" 
-                  alt="STC Hub Logo" 
+                  alt="FInLogic Logo" 
                   width={72}
                   height={72}
                   className="h-14"

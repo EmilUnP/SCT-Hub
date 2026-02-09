@@ -29,7 +29,7 @@ export default function Header() {
             {!logoError && (
               <Image 
                 src="/logo.png" 
-                alt="STC Hub Logo" 
+                alt="FInLogic Logo" 
                 width={40}
                 height={40}
                 className="h-10"

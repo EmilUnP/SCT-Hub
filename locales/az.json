@@ -143,12 +143,12 @@
     }
   },
   "header": {
-    "title": "STC Hub — Sinam Consulting & Training",
+    "title": "FinLogic Consulting & Training",
     "phone": "+994 (50) 1234567",
-    "email": "info@stchub.com"
+    "email": "info@finlogic.az"
   },
   "footer": {
-    "company": "Sinam Consulting & Training",
+    "company": "FinLogic Consulting & Training",
     "description": "SERP sistemi inteqrasiyası ilə peşəkar mühasibat, HR və vergi xidmətləri.",
     "quickLinks": "Sürətli Keçidlər",
     "services": "Xidmətlər",
@@ -204,7 +204,7 @@
       "viewAllNews": "Bütün Xəbərlərə Bax"
     },
     "about": {
-      "title": "STC Hub Haqqında",
+      "title": "FInLogic Haqqında",
       "description": "Peşəkar mühasibat və HR həlləri axtaran bizneslər üçün etibarlı tərəfdaş. Nəticələri çatdırmaq üçün ekspertizamızı kəskin SERP texnologiyası ilə birləşdiririk.",
       "learnMore": "Haqqımızda Ətraflı"
     },
@@ -363,11 +363,11 @@
     }
   },
   "about": {
-    "title": "STC Hub Haqqında",
+    "title": "FInLogic Haqqında",
     "subtitle": "Biznes mükaməldə etibarlı tərəfdaşınız",
     "mission": {
       "title": "Missiyamız",
-      "description1": "STC Hub — Sinam Consulting & Training-də missiyamız biznesləri böyümə və uğur gətirən hərtərəfli mühasibat, HR və vergi həlləri ilə gücləndirməkdir. Dərin ekspertizamızı kəskin SERP texnologiyası ilə birləşdirərək müştərilərimizə fövqəladə dəyər təmin edirik.",
+      "description1": "FinLogic Consulting & Training-də missiyamız biznesləri böyümə və uğur gətirən hərtərəfli mühasibat, HR və vergi həlləri ilə gücləndirməkdir. Dərin ekspertizamızı kəskin SERP texnologiyası ilə birləşdirərək müştərilərimizə fövqəladə dəyər təmin edirik.",
       "description2": "Biz müştərilərimizlə uzunmüddətli tərəfdaşlıq qurmağa, onların unikal ehtiyaclarını başa düşməyə və ən yüksək peşəkar və bütövlük standartlarını saxlayaraq biznes məqsədlərinə çatmağa kömək edən fərdiləşdirilmiş həllər təmin etməyə inanırıq."
     },
     "values": {
@@ -391,7 +391,7 @@
     },
     "team": {
       "title": "Komandamız",
-      "subtitle": "STC Hub-in arxasında olan ekspertlərlə tanış olun"
+      "subtitle": "FInLogic-in arxasında olan ekspertlərlə tanış olun"
     }
   },
   "contact": {
@@ -528,7 +528,7 @@
   },
   "register": {
     "title": "Hesab Yarat",
-    "subtitle": "STC Hub portalına qoşulun",
+    "subtitle": "FInLogic portalına qoşulun",
     "register": "Qeydiyyat",
     "fullName": "Tam Ad",
     "email": "E-poçt Ünvanı",

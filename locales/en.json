@@ -143,12 +143,12 @@
     }
   },
   "header": {
-    "title": "STC Hub — Sinam Consulting & Training",
+    "title": "FinLogic Consulting & Training",
     "phone": "+994 (50) 1234567",
-    "email": "info@stchub.com"
+    "email": "info@finlogic.az"
   },
   "footer": {
-    "company": "Sinam Consulting & Training",
+    "company": "FinLogic Consulting & Training",
     "description": "Professional accounting, HR and tax services with SERP system integration.",
     "quickLinks": "Quick Links",
     "services": "Services",
@@ -204,7 +204,7 @@
       "viewAllNews": "View All News"
     },
     "about": {
-      "title": "About STC Hub",
+      "title": "About FInLogic",
       "description": "Your trusted partner for businesses seeking professional accounting and HR solutions. We combine our expertise with cutting-edge SERP technology to deliver exceptional results.",
       "learnMore": "Learn More About Us"
     },
@@ -363,11 +363,11 @@
     }
   },
   "about": {
-    "title": "About STC Hub",
+    "title": "About FInLogic",
     "subtitle": "Your trusted partner in business excellence",
     "mission": {
       "title": "Our Mission",
-      "description1": "At STC Hub — Sinam Consulting & Training, our mission is to empower businesses with comprehensive accounting, HR, and tax solutions that drive growth and success. We combine our deep expertise with cutting-edge SERP technology to deliver exceptional value to our clients.",
+      "description1": "At FinLogic Consulting & Training, our mission is to empower businesses with comprehensive accounting, HR, and tax solutions that drive growth and success. We combine our deep expertise with cutting-edge SERP technology to deliver exceptional value to our clients.",
       "description2": "We believe in building long-term partnerships with our clients, understanding their unique needs, and providing tailored solutions that help them achieve their business goals while maintaining the highest standards of professionalism and integrity."
     },
     "values": {
@@ -391,7 +391,7 @@
     },
     "team": {
       "title": "Our Team",
-      "subtitle": "Meet the experts behind STC Hub"
+      "subtitle": "Meet the experts behind FInLogic"
     }
   },
   "contact": {
@@ -528,7 +528,7 @@
   },
   "register": {
     "title": "Create Account",
-    "subtitle": "Join the STC Hub portal",
+    "subtitle": "Join the FInLogic portal",
     "register": "Register",
     "fullName": "Full Name",
     "email": "Email Address",
