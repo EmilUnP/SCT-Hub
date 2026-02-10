@@ -14,7 +14,7 @@ Your app requires Supabase environment variables to work correctly. These must b
 #### Option 1: Via Vercel Dashboard (Recommended)
 
 1. Go to your Vercel project: https://vercel.com/dashboard
-2. Select your project (`sct-hub`)
+2. Select your project (`finlogic`)
 3. Go to **Settings** → **Environment Variables**
 4. Add the following variables:
 

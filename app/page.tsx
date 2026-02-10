@@ -3,8 +3,8 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, TrendingUp, Users, Award, Phone } from "lucide-react";
-import { services } from "@/lib/data";
+import { ArrowRight, CheckCircle, Phone } from "lucide-react";
+import { services, teamMembers } from "@/lib/data";
 import { getTrainings, getNews } from "@/lib/admin";
 import dynamic from "next/dynamic";
 
@@ -24,6 +24,10 @@ const TrainingCard = dynamic(() => import("@/components/cards/TrainingCard"), {
 
 const NewsCard = dynamic(() => import("@/components/cards/NewsCard"), {
   loading: () => <div className="bg-white rounded-xl shadow-md h-80 animate-pulse" />,
+});
+
+const TeamMemberCard = dynamic(() => import("@/components/cards/TeamMemberCard"), {
+  loading: () => <div className="bg-white rounded-2xl shadow-md aspect-[3/4] animate-pulse" />,
 });
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Training, News } from "@/types";
@@ -92,7 +96,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-24 md:py-32 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
@@ -100,9 +104,9 @@ export default function Home() {
             fill
             sizes="100vw"
             priority
-            className="object-cover opacity-60"
+            className="object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-600/50 to-primary-800/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-700/80 via-primary-800/70 to-primary-900/80" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -342,6 +346,33 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
             >
               {t("home.about.learnMore")}
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet the Team */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t("home.team.title")}</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full mx-auto mb-4" />
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {t("home.team.subtitle")}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {teamMembers.map((member) => (
+              <TeamMemberCard key={member.id} member={member} compact />
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link
+              href="/about#team"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
+            >
+              {t("about.team.title")}
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>

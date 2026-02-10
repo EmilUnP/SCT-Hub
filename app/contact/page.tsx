@@ -62,10 +62,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">{t("contact.email")}</h3>
                     <a
-                      href="mailto:info@stchub.com"
+                      href="mailto:info@finlogic.az"
                       className="text-primary-600 hover:text-primary-700"
                     >
-                      info@stchub.com
+                      info@finlogic.az
                     </a>
                   </div>
                 </div>

@@ -204,9 +204,13 @@
       "viewAllNews": "View All News"
     },
     "about": {
-      "title": "About FInLogic",
+      "title": "About FinLogic",
       "description": "Your trusted partner for businesses seeking professional accounting and HR solutions. We combine our expertise with cutting-edge SERP technology to deliver exceptional results.",
       "learnMore": "Learn More About Us"
+    },
+    "team": {
+      "title": "Meet Our Team",
+      "subtitle": "Experts dedicated to your success"
     },
     "contact": {
       "title": "Ready to Get Started?",
@@ -391,7 +395,29 @@
     },
     "team": {
       "title": "Our Team",
-      "subtitle": "Meet the experts behind FInLogic"
+      "subtitle": "Meet the experts behind FinLogic",
+      "members": {
+        "1": {
+          "name": "Emil Babayev",
+          "role": "CEO & Founder",
+          "bio": "20+ years of experience in accounting and business consulting. Expert in business development in Azerbaijan."
+        },
+        "2": {
+          "name": "Leyla Məmmədova",
+          "role": "Head of Accounting",
+          "bio": "Expert in financial management and SERP systems. Extensive experience in financial services in Baku."
+        },
+        "3": {
+          "name": "Rəşad Həsənov",
+          "role": "HR Director",
+          "bio": "HR professional specializing in outsourcing and compliance. Consultant for the Azerbaijan job market."
+        },
+        "4": {
+          "name": "Aynur Quliyeva",
+          "role": "Tax & Compliance Lead",
+          "bio": "Tax specialist with deep expertise in local regulations and SERP-driven compliance workflows."
+        }
+      }
     }
   },
   "contact": {

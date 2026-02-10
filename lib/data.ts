@@ -181,24 +181,42 @@ export const serpModules: SERPModule[] = [
   },
 ];
 
+// Free placeholder images from Unsplash (professional / portrait)
+const TEAM_IMAGES = [
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80",
+] as const;
+
 export const teamMembers: TeamMember[] = [
   {
     id: "1",
     name: "Emil Babayev",
     role: "CEO & Founder",
     bio: "20+ years of experience in accounting and business consulting. Expert in business development in Azerbaijan",
+    image: TEAM_IMAGES[0],
   },
   {
     id: "2",
     name: "Leyla Məmmədova",
     role: "Head of Accounting",
     bio: "Expert in financial management and SERP systems. Extensive experience in financial services in Baku",
+    image: TEAM_IMAGES[1],
   },
   {
     id: "3",
     name: "Rəşad Həsənov",
     role: "HR Director",
     bio: "HR professional specializing in outsourcing and compliance. Consultant for Azerbaijan job market",
+    image: TEAM_IMAGES[2],
+  },
+  {
+    id: "4",
+    name: "Aynur Quliyeva",
+    role: "Tax & Compliance Lead",
+    bio: "Tax specialist with deep expertise in local regulations and SERP-driven compliance workflows.",
+    image: TEAM_IMAGES[3],
   },
 ];
 

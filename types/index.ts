@@ -68,6 +68,7 @@ export interface TeamMember {
   name: string;
   role: string;
   bio: string;
+  /** Optional image URL (e.g. Unsplash). Used as fallback if no translation. */
   image?: string;
 }
 

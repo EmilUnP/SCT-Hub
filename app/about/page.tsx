@@ -2,9 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
-import { statistics } from "@/lib/data";
+import { statistics, teamMembers } from "@/lib/data";
 import { Target, Users, TrendingUp, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import TeamMemberCard from "@/components/cards/TeamMemberCard";
 
 export default function AboutPage() {
   const { t } = useLanguage();
@@ -118,6 +119,25 @@ export default function AboutPage() {
               <div className="text-5xl font-bold text-primary-600 mb-2">{statistics.trainings}+</div>
               <div className="text-gray-600">{t("home.statistics.trainingCourses")}</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section id="team" className="py-20 bg-gradient-to-b from-gray-50 to-white scroll-mt-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {t("about.team.title")}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {t("about.team.subtitle")}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member) => (
+              <TeamMemberCard key={member.id} member={member} />
+            ))}
           </div>
         </div>
       </section>

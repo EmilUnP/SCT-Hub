@@ -204,9 +204,13 @@
       "viewAllNews": "Bütün Xəbərlərə Bax"
     },
     "about": {
-      "title": "FInLogic Haqqında",
+      "title": "FinLogic Haqqında",
       "description": "Peşəkar mühasibat və HR həlləri axtaran bizneslər üçün etibarlı tərəfdaş. Nəticələri çatdırmaq üçün ekspertizamızı kəskin SERP texnologiyası ilə birləşdiririk.",
       "learnMore": "Haqqımızda Ətraflı"
+    },
+    "team": {
+      "title": "Komandamızla Tanış Olun",
+      "subtitle": "Uğurunuza sədaqətlə çalışan mütəxəssislər"
     },
     "contact": {
       "title": "Başlamağa hazırsınız?",
@@ -391,7 +395,29 @@
     },
     "team": {
       "title": "Komandamız",
-      "subtitle": "FInLogic-in arxasında olan ekspertlərlə tanış olun"
+      "subtitle": "FinLogic-in arxasında duran mütəxəssislərlə tanış olun",
+      "members": {
+        "1": {
+          "name": "Emil Babayev",
+          "role": "CEO və Təsisçi",
+          "bio": "Mühasibat və biznes konsaltinqində 20+ il təcrübə. Azərbaycanda biznes inkişafı üzrə mütəxəssis."
+        },
+        "2": {
+          "name": "Leyla Məmmədova",
+          "role": "Mühasibat şöbəsinin rəhbəri",
+          "bio": "Maliyyə idarəetməsi və SERP sistemləri üzrə mütəxəssis. Bakıda maliyyə xidmətlərində geniş təcrübə."
+        },
+        "3": {
+          "name": "Rəşad Həsənov",
+          "role": "HR Direktoru",
+          "bio": "Autsorsing və uyğunluq üzrə ixtisaslaşan HR mütəxəssisi. Azərbaycan əmək bazarı üzrə məsləhətçi."
+        },
+        "4": {
+          "name": "Aynur Quliyeva",
+          "role": "Vergi və uyğunluq rəhbəri",
+          "bio": "Yerli qanunvericilik və SERP əsaslı uyğunluq iş prosesləri üzrə dərin bilikli vergi mütəxəssisi."
+        }
+      }
     }
   },
   "contact": {

@@ -148,11 +148,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@stchub.com" className="flex items-center gap-3 text-gray-300 hover:text-white transition-all duration-300 group">
+                <a href="mailto:info@finlogic.az" className="flex items-center gap-3 text-gray-300 hover:text-white transition-all duration-300 group">
                   <div className="p-2 rounded-lg bg-white/10 group-hover:bg-primary-600 transition-all duration-300">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span className="group-hover:translate-x-1 transition-transform">info@stchub.com</span>
+                  <span className="group-hover:translate-x-1 transition-transform">info@finlogic.az</span>
                 </a>
               </li>
             </ul>

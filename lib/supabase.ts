@@ -69,7 +69,7 @@ export const supabase: SupabaseClient = createClient(
     },
     global: {
       headers: {
-        'x-client-info': 'stc-hub-portal',
+        'x-client-info': 'finlogic-portal',
         'Connection': 'keep-alive', // Keep connections alive for better performance
       },
       fetch: (url, options = {}) => {
