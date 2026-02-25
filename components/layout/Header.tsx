@@ -20,7 +20,7 @@ export default function Header() {
   const toggleServicesDropdown = () => setServicesDropdownOpen(!servicesDropdownOpen);
 
   return (
-    <header className="backdrop-blur-modern accent-top sticky top-0 z-50 shadow-modern border-b border-gray-100/50">
+    <header className="backdrop-blur-modern fixed top-0 left-0 right-0 w-full z-50 shadow-modern border-b border-gray-100/50">
       <div className="container mx-auto px-4">
         {/* Main Navigation */}
         <nav className="flex items-center justify-between py-4">
