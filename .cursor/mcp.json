@@ -10,6 +10,16 @@
                 "--access-token",
                 "sbp_c842f10ca18a06d513a4137f5524218b0f8e995b"
             ]
+        },
+        "magic": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@21st-dev/magic@latest"
+            ],
+            "env": {
+                "API_KEY": "459ee5aa3a9230d9c51473b1381e79a4d1850c12299578977666fcbe9cdf59a4"
+            }
         }
     }
 }

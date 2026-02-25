@@ -41,7 +41,7 @@ export default function RootLayout({
           <LanguageProvider>
             <AuthProvider>
               <Header />
-              <main className="min-h-screen">{children}</main>
+              <main className="min-h-screen antialiased">{children}</main>
               <Footer />
               <WebVitals />
             </AuthProvider>

@@ -12,7 +12,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white relative overflow-hidden">
+    <footer className="accent-top bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary-500 rounded-full blur-3xl"></div>
@@ -23,17 +23,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-col gap-2 mb-4">
               {!logoError && (
-                <Image 
-                  src="/logo_white.png" 
-                  alt="FInLogic Logo" 
-                  width={72}
-                  height={72}
-                  className="h-14"
-                  style={{ width: 'auto', height: 'auto' }}
-                  onError={() => setLogoError(true)}
-                />
+                <div className="h-9 w-[180px] shrink-0">
+                  <Image
+                    src="/logo_white.png"
+                    alt="FInLogic Logo"
+                    width={180}
+                    height={44}
+                    className="h-full w-auto max-w-full object-contain object-left"
+                    style={{ width: "auto", height: "36px", maxWidth: "180px" }}
+                    onError={() => setLogoError(true)}
+                  />
+                </div>
               )}
               <h3 className="text-xl font-bold text-white">{t("footer.company")}</h3>
             </div>

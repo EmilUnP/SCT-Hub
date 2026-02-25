@@ -32,7 +32,8 @@ function ServiceCard({ service, onInquiry }: ServiceCardProps) {
   }, [service.id]);
 
   return (
-    <div className="bg-white rounded-2xl shadow-modern hover:shadow-modern-lg transition-all duration-500 overflow-hidden border border-gray-100/50 group card-hover">
+    <div className="card-accent card-hover bg-white rounded-2xl shadow-modern hover:shadow-modern-lg transition-all duration-500 ease-out overflow-hidden border border-gray-100/50 group">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-600 to-primary-400 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden />
       <div className="relative h-48 overflow-hidden">
         <Image
           src={serviceImage}
@@ -40,7 +41,7 @@ function ServiceCard({ service, onInquiry }: ServiceCardProps) {
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           loading="lazy"
-          className="object-cover group-hover:scale-110 transition-transform duration-700"
+          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
         {service.serpIntegrated && (
@@ -81,14 +82,14 @@ function ServiceCard({ service, onInquiry }: ServiceCardProps) {
         <div className="flex gap-3">
           <Link
             href={`/services#${service.id}`}
-            className="flex-1 text-center px-4 py-2.5 border-2 border-primary-600 text-primary-600 rounded-xl hover:bg-primary-600 hover:text-white transition-all duration-300 font-semibold shadow-md hover:shadow-lg transform hover:scale-105"
+            className="flex-1 text-center px-4 py-2.5 border-2 border-primary-600 text-primary-600 rounded-xl hover:bg-primary-600 hover:text-white transition-all duration-300 ease-out font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
           >
             {t("common.learnMore")}
           </Link>
           {onInquiry && (
             <button
               onClick={() => onInquiry(service.id)}
-              className="flex-1 px-4 py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 flex items-center justify-center gap-2 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="flex-1 px-4 py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 ease-out flex items-center justify-center gap-2 font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
             >
               {t("common.inquiry") || "Inquiry"}
               <ArrowRight className="w-4 h-4" />
